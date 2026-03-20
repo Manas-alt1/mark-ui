@@ -105,7 +105,7 @@ export default function ComponentCard({ component, onClick }: ComponentCardProps
 
           {/* View Docs link with slide-up animation */}
           <a
-            href={`/docs#${component.id.toLowerCase()}`}
+            href={`/docs/components/${component.id.toLowerCase()}`}
             onClick={(e) => {
               // Prevent navigation if card has overlay
               if (component.hasOverlay) {

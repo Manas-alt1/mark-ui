@@ -3,120 +3,61 @@
 /**
  * LivePreview Component
  * 
- * Renders live preview instances of MARK UI components.
- * Uses a switch statement to render the appropriate component based on componentId.
- * Each preview uses minimal props to showcase the component's default state.
+ * Renders live instances of real MARK UI components.
  */
+
+import Button from '@mark-ui/components/inputs/Button/Button'
+import Input from '@mark-ui/components/inputs/Input/Input'
+import Checkbox from '@mark-ui/components/inputs/Checkbox/Checkbox'
+import Toggle from '@mark-ui/components/inputs/Toggle/Toggle'
+import Badge from '@mark-ui/components/display/Badge/Badge'
+import Card from '@mark-ui/components/display/Card/Card'
+import Spinner from '@mark-ui/components/feedback/Spinner/Spinner'
+import Alert from '@mark-ui/components/feedback/Alert/Alert'
+import Divider from '@mark-ui/components/layout/Divider/Divider'
+import Container from '@mark-ui/components/layout/Container/Container'
 
 interface LivePreviewProps {
   componentId: string;
 }
 
-export default function LivePreview({ componentId }: LivePreviewProps) {
-  // Mini dark stage area styling
-  const stageStyles: React.CSSProperties = {
-    background: 'var(--mark-bg)',
-    borderRadius: 'var(--mark-radius-md)',
-    padding: '16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '80px',
-  };
+const stageStyles: React.CSSProperties = {
+  background: 'var(--mark-bg)',
+  borderRadius: 'var(--mark-radius-md)',
+  padding: '16px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '80px',
+};
 
-  // Render appropriate component based on componentId
+export default function LivePreview({ componentId }: LivePreviewProps) {
   switch (componentId) {
     case 'Button':
       return (
         <div style={stageStyles}>
-          <button
-            style={{
-              background: 'var(--mark-accent-primary)',
-              color: 'var(--mark-bg)',
-              padding: '8px 16px',
-              borderRadius: 'var(--mark-radius-md)',
-              border: 'none',
-              fontFamily: 'var(--mark-font-display)',
-              fontWeight: 600,
-              cursor: 'pointer',
-            }}
-          >
-            Click me
-          </button>
+          <Button variant="primary" size="md">Click me</Button>
         </div>
       );
 
     case 'Input':
       return (
         <div style={stageStyles}>
-          <input
-            type="text"
-            placeholder="Type here..."
-            style={{
-              background: 'var(--mark-bg-elevated)',
-              border: '1px solid var(--mark-border)',
-              borderRadius: 'var(--mark-radius-md)',
-              padding: '8px 12px',
-              color: 'var(--mark-text)',
-              fontFamily: 'var(--mark-font-body)',
-              width: '200px',
-            }}
-          />
+          <Input placeholder="Type here..." />
         </div>
       );
 
     case 'Checkbox':
       return (
         <div style={stageStyles}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-            <input
-              type="checkbox"
-              defaultChecked
-              style={{
-                width: '18px',
-                height: '18px',
-                accentColor: 'var(--mark-accent-primary)',
-                cursor: 'pointer',
-              }}
-            />
-            <span style={{ color: 'var(--mark-text)', fontFamily: 'var(--mark-font-body)' }}>
-              Check me
-            </span>
-          </label>
+          <Checkbox label="Check me" defaultChecked />
         </div>
       );
 
     case 'Toggle':
       return (
         <div style={stageStyles}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-            <div
-              style={{
-                width: '44px',
-                height: '24px',
-                background: 'var(--mark-accent-primary)',
-                borderRadius: '12px',
-                position: 'relative',
-                transition: 'background 0.2s',
-              }}
-            >
-              <div
-                style={{
-                  width: '18px',
-                  height: '18px',
-                  background: 'var(--mark-bg)',
-                  borderRadius: '50%',
-                  position: 'absolute',
-                  top: '3px',
-                  right: '3px',
-                  transition: 'transform 0.2s',
-                }}
-              />
-            </div>
-            <span style={{ color: 'var(--mark-text)', fontFamily: 'var(--mark-font-body)' }}>
-              Enabled
-            </span>
-          </label>
+          <Toggle label="Enabled" defaultChecked />
         </div>
       );
 
@@ -129,7 +70,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
               border: '1px solid var(--mark-border)',
               borderRadius: 'var(--mark-radius-md)',
               padding: '8px 12px',
-              color: 'var(--mark-text)',
+              color: 'var(--mark-fg)',
               fontFamily: 'var(--mark-font-body)',
               width: '200px',
               cursor: 'pointer',
@@ -145,19 +86,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
     case 'Badge':
       return (
         <div style={stageStyles}>
-          <span
-            style={{
-              background: 'var(--mark-accent-primary)',
-              color: 'var(--mark-bg)',
-              padding: '4px 12px',
-              borderRadius: 'var(--mark-radius-full)',
-              fontFamily: 'var(--mark-font-display)',
-              fontSize: '12px',
-              fontWeight: 600,
-            }}
-          >
-            New
-          </span>
+          <Badge variant="accent">New</Badge>
         </div>
       );
 
@@ -187,21 +116,14 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
     case 'Card':
       return (
         <div style={stageStyles}>
-          <div
-            style={{
-              background: 'var(--mark-bg-elevated)',
-              border: '1px solid var(--mark-border)',
-              borderRadius: 'var(--mark-radius-lg)',
-              padding: '16px',
-              width: '180px',
-            }}
-          >
+          <Card variant="default" padding="sm">
             <div
               style={{
                 fontFamily: 'var(--mark-font-display)',
                 fontWeight: 600,
-                color: 'var(--mark-text)',
-                marginBottom: '8px',
+                color: 'var(--mark-fg)',
+                marginBottom: '4px',
+                fontSize: '14px',
               }}
             >
               Card Title
@@ -209,13 +131,13 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
             <div
               style={{
                 fontFamily: 'var(--mark-font-body)',
-                fontSize: '14px',
-                color: 'var(--mark-text-muted)',
+                fontSize: '13px',
+                color: 'var(--mark-fg-muted)',
               }}
             >
               Card content goes here
             </div>
-          </div>
+          </Card>
         </div>
       );
 
@@ -223,19 +145,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
       return (
         <div style={stageStyles}>
           <div style={{ position: 'relative' }}>
-            <button
-              style={{
-                background: 'var(--mark-bg-elevated)',
-                border: '1px solid var(--mark-border)',
-                borderRadius: 'var(--mark-radius-md)',
-                padding: '8px 16px',
-                color: 'var(--mark-text)',
-                fontFamily: 'var(--mark-font-body)',
-                cursor: 'pointer',
-              }}
-            >
-              Hover me
-            </button>
+            <Button variant="secondary" size="sm">Hover me</Button>
             <div
               style={{
                 position: 'absolute',
@@ -248,7 +158,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
                 borderRadius: 'var(--mark-radius-sm)',
                 padding: '4px 8px',
                 fontSize: '12px',
-                color: 'var(--mark-text)',
+                color: 'var(--mark-fg)',
                 fontFamily: 'var(--mark-font-body)',
                 whiteSpace: 'nowrap',
               }}
@@ -263,32 +173,8 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
       return (
         <div style={stageStyles}>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            <span
-              style={{
-                background: 'var(--mark-bg-elevated)',
-                border: '1px solid var(--mark-border)',
-                borderRadius: 'var(--mark-radius-md)',
-                padding: '4px 12px',
-                fontFamily: 'var(--mark-font-body)',
-                fontSize: '13px',
-                color: 'var(--mark-text)',
-              }}
-            >
-              React
-            </span>
-            <span
-              style={{
-                background: 'var(--mark-bg-elevated)',
-                border: '1px solid var(--mark-border)',
-                borderRadius: 'var(--mark-radius-md)',
-                padding: '4px 12px',
-                fontFamily: 'var(--mark-font-body)',
-                fontSize: '13px',
-                color: 'var(--mark-text)',
-              }}
-            >
-              TypeScript
-            </span>
+            <Badge variant="default" size="sm">React</Badge>
+            <Badge variant="default" size="sm">TypeScript</Badge>
           </div>
         </div>
       );
@@ -296,62 +182,21 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
     case 'Alert':
       return (
         <div style={stageStyles}>
-          <div
-            style={{
-              background: 'var(--mark-bg-elevated)',
-              border: '1px solid var(--mark-accent-primary)',
-              borderRadius: 'var(--mark-radius-md)',
-              padding: '12px 16px',
-              width: '220px',
-              display: 'flex',
-              gap: '8px',
-            }}
-          >
-            <span style={{ color: 'var(--mark-accent-primary)', fontSize: '18px' }}>ℹ</span>
-            <div>
-              <div
-                style={{
-                  fontFamily: 'var(--mark-font-display)',
-                  fontWeight: 600,
-                  color: 'var(--mark-text)',
-                  fontSize: '14px',
-                  marginBottom: '4px',
-                }}
-              >
-                Alert Title
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--mark-font-body)',
-                  fontSize: '12px',
-                  color: 'var(--mark-text-muted)',
-                }}
-              >
-                This is an alert message
-              </div>
-            </div>
-          </div>
+          <Alert variant="info" title="Alert Title">
+            This is an alert message
+          </Alert>
         </div>
       );
 
     case 'Toast':
       return (
         <div style={stageStyles}>
-          <div
-            style={{
-              background: 'var(--mark-bg-surface)',
-              border: '1px solid var(--mark-border)',
-              borderRadius: 'var(--mark-radius-md)',
-              padding: '12px 16px',
-              width: '200px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-            }}
-          >
+          <Card variant="default" padding="sm">
             <div
               style={{
                 fontFamily: 'var(--mark-font-display)',
                 fontWeight: 600,
-                color: 'var(--mark-text)',
+                color: 'var(--mark-fg)',
                 fontSize: '14px',
               }}
             >
@@ -361,34 +206,20 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
               style={{
                 fontFamily: 'var(--mark-font-body)',
                 fontSize: '12px',
-                color: 'var(--mark-text-muted)',
+                color: 'var(--mark-fg-muted)',
                 marginTop: '4px',
               }}
             >
               Action completed
             </div>
-          </div>
+          </Card>
         </div>
       );
 
     case 'Spinner':
       return (
         <div style={stageStyles}>
-          <div
-            style={{
-              width: '32px',
-              height: '32px',
-              border: '3px solid var(--mark-border)',
-              borderTop: '3px solid var(--mark-accent-primary)',
-              borderRadius: '50%',
-              animation: 'spin 1s linear infinite',
-            }}
-          />
-          <style jsx>{`
-            @keyframes spin {
-              to { transform: rotate(360deg); }
-            }
-          `}</style>
+          <Spinner size="md" color="accent" />
         </div>
       );
 
@@ -416,7 +247,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
               }}
             />
           </div>
-          <style jsx>{`
+          <style>{`
             @keyframes pulse {
               0%, 100% { opacity: 1; }
               50% { opacity: 0.5; }
@@ -432,7 +263,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
             style={{
               fontFamily: 'var(--mark-font-body)',
               fontSize: '13px',
-              color: 'var(--mark-text-muted)',
+              color: 'var(--mark-fg-muted)',
               textAlign: 'center',
             }}
           >
@@ -448,7 +279,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
             style={{
               fontFamily: 'var(--mark-font-body)',
               fontSize: '13px',
-              color: 'var(--mark-text-muted)',
+              color: 'var(--mark-fg-muted)',
               textAlign: 'center',
             }}
           >
@@ -459,49 +290,35 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
 
     case 'Divider':
       return (
-        <div style={stageStyles}>
-          <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div
-              style={{
-                height: '1px',
-                background: 'var(--mark-border)',
-                width: '100%',
-              }}
-            />
-            <div
-              style={{
-                height: '1px',
-                background: 'var(--mark-border)',
-                width: '100%',
-                opacity: 0.5,
-              }}
-            />
-          </div>
+        <div style={{ ...stageStyles, flexDirection: 'column', gap: '12px', width: '100%' }}>
+          <Divider />
+          <Divider label="Section" />
         </div>
       );
 
     case 'Container':
       return (
         <div style={stageStyles}>
-          <div
-            style={{
-              border: '2px dashed var(--mark-border)',
-              borderRadius: 'var(--mark-radius-md)',
-              padding: '16px',
-              width: '180px',
-              textAlign: 'center',
-            }}
-          >
+          <Container size="sm" padding>
             <div
               style={{
-                fontFamily: 'var(--mark-font-body)',
-                fontSize: '12px',
-                color: 'var(--mark-text-muted)',
+                border: '2px dashed var(--mark-border)',
+                borderRadius: 'var(--mark-radius-md)',
+                padding: '16px',
+                textAlign: 'center',
               }}
             >
-              Container content
+              <div
+                style={{
+                  fontFamily: 'var(--mark-font-body)',
+                  fontSize: '12px',
+                  color: 'var(--mark-fg-muted)',
+                }}
+              >
+                Container content
+              </div>
             </div>
-          </div>
+          </Container>
         </div>
       );
 
@@ -512,7 +329,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
             style={{
               fontFamily: 'var(--mark-font-body)',
               fontSize: '13px',
-              color: 'var(--mark-text-muted)',
+              color: 'var(--mark-fg-muted)',
             }}
           >
             Preview unavailable
