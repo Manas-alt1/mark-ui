@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import type { ComponentMeta, FilterState } from './componentRegistry';
+import type { ComponentMeta, FilterState, ComponentCategory } from './componentRegistry';
 import { COMPONENT_CATEGORIES } from './componentRegistry';
 import ComponentCard from './ComponentCard';
 import CategoryDivider from './CategoryDivider';
@@ -42,12 +42,12 @@ export default function ComponentGrid({ components, activeFilter, onCardClick }:
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {Object.entries(COMPONENT_CATEGORIES).map(([category, componentIds], categoryIndex) => {
+            {Object.entries(COMPONENT_CATEGORIES).map(([category], categoryIndex) => {
               const categoryComponents = components.filter(c => c.category === category);
               
               return (
                 <div key={category} className="category-section">
-                  <CategoryDivider category={category as any} />
+                  <CategoryDivider category={category as ComponentCategory} />
                   <div className="component-grid-items">
                     {categoryComponents.map((component, index) => (
                       <motion.div

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { AlertProps } from './Alert.types'
+import { useFunAnimation } from '../../../animations/useFunAnimation'
 
 const VARIANT_STYLES = {
   info: {
@@ -48,17 +49,24 @@ export default function Alert({
   className = '',
 }: AlertProps) {
   const [visible, setVisible] = useState(true)
+  const alertRef = useRef<HTMLDivElement>(null)
   const v = VARIANT_STYLES[variant]
+  const { triggerAnimation } = useFunAnimation()
 
   const handleDismiss = () => {
-    setVisible(false)
-    onDismiss?.()
+    triggerAnimation({ trigger: 'dismiss', originRef: alertRef })
+    // Add small delay to allow animation to play before layout collapse
+    setTimeout(() => {
+      setVisible(false)
+      onDismiss?.()
+    }, 400) // approx duration of dismiss animations
   }
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
+          ref={alertRef}
           className={className}
           role="alert"
           initial={{ opacity: 0, height: 0 }}

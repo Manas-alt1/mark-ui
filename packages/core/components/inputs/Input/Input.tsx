@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import type { InputProps } from './Input.types'
+import { useFunAnimation } from '../../../animations/useFunAnimation'
 
 const SIZE_STYLES = {
   sm: {
@@ -38,7 +39,14 @@ export default function Input({
   const [focused, setFocused] = useState(false)
   const [hasErrorShake, setHasErrorShake] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const s = SIZE_STYLES[size]
+  const { triggerAnimation } = useFunAnimation()
+
+  const handleFocus = () => {
+    setFocused(true)
+    triggerAnimation({ trigger: 'focus', originRef: wrapperRef })
+  }
 
   // Determine border/shadow based on state
   let borderColor = 'var(--mark-border-strong)'
@@ -93,6 +101,7 @@ export default function Input({
 
       {/* Input wrapper */}
       <motion.div
+        ref={wrapperRef}
         animate={hasErrorShake ? { x: [0, -4, 4, -4, 4, 0] } : {}}
         transition={{ duration: 0.4 }}
         onAnimationComplete={triggerShake}
@@ -123,7 +132,7 @@ export default function Input({
           onChange={onChange}
           placeholder={placeholder}
           disabled={isDisabled}
-          onFocus={() => setFocused(true)}
+          onFocus={handleFocus}
           onBlur={() => setFocused(false)}
           style={{
             width: '100%',

@@ -6,9 +6,11 @@ import {
   useState,
   useEffect,
   useCallback,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { applyTheme, defaultTheme, type ThemeId } from "./themes";
+import { FunAnimationProvider } from "../../packages/core/animations/useFunAnimation";
 
 interface ThemeContextValue {
   theme: ThemeId;
@@ -19,18 +21,27 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const STORAGE_KEY = "mark-ui-theme";
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<ThemeId>(defaultTheme);
-  const [mounted, setMounted] = useState(false);
+const emptySubscribe = () => () => {};
 
-  // Hydrate from localStorage on mount
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+
+  const [theme, setThemeState] = useState<ThemeId>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem(STORAGE_KEY) as ThemeId | null;
+      return stored ?? defaultTheme;
+    }
+    return defaultTheme;
+  });
+
+  // Apply theme on change
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ThemeId | null;
-    const initial = stored ?? defaultTheme;
-    setThemeState(initial);
-    applyTheme(initial);
-    setMounted(true);
-  }, []);
+    applyTheme(theme);
+  }, [theme]);
 
   const setTheme = useCallback((newTheme: ThemeId) => {
     setThemeState(newTheme);
@@ -45,7 +56,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
+      <FunAnimationProvider>
+        {children}
+      </FunAnimationProvider>
     </ThemeContext.Provider>
   );
 }

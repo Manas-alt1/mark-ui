@@ -144,9 +144,13 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
     case 'Tooltip':
       return (
         <div style={stageStyles}>
-          <div style={{ position: 'relative' }}>
+          <div
+            className="tooltip-trigger-group"
+            style={{ position: 'relative', display: 'inline-block' }}
+          >
             <Button variant="secondary" size="sm">Hover me</Button>
             <div
+              className="tooltip-popup"
               style={{
                 position: 'absolute',
                 bottom: '100%',
@@ -181,38 +185,42 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
 
     case 'Alert':
       return (
-        <div style={stageStyles}>
-          <Alert variant="info" title="Alert Title">
-            This is an alert message
-          </Alert>
+        <div style={{ ...stageStyles, padding: '12px', alignItems: 'flex-start' }}>
+          <div style={{ width: '100%', maxWidth: '240px', transform: 'scale(0.85)', transformOrigin: 'center' }}>
+            <Alert variant="info" title="Alert">
+              Info message
+            </Alert>
+          </div>
         </div>
       );
 
     case 'Toast':
       return (
-        <div style={stageStyles}>
-          <Card variant="default" padding="sm">
-            <div
-              style={{
-                fontFamily: 'var(--mark-font-display)',
-                fontWeight: 600,
-                color: 'var(--mark-fg)',
-                fontSize: '14px',
-              }}
-            >
-              Success!
-            </div>
-            <div
-              style={{
-                fontFamily: 'var(--mark-font-body)',
-                fontSize: '12px',
-                color: 'var(--mark-fg-muted)',
-                marginTop: '4px',
-              }}
-            >
-              Action completed
-            </div>
-          </Card>
+        <div style={{ ...stageStyles, padding: '12px' }}>
+          <div style={{ transform: 'scale(0.9)', transformOrigin: 'center', minWidth: '180px' }}>
+            <Card variant="default" padding="sm">
+              <div
+                style={{
+                  fontFamily: 'var(--mark-font-display)',
+                  fontWeight: 600,
+                  color: 'var(--mark-fg)',
+                  fontSize: '13px',
+                }}
+              >
+                Success!
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--mark-font-body)',
+                  fontSize: '12px',
+                  color: 'var(--mark-fg-muted)',
+                  marginTop: '2px',
+                }}
+              >
+                Action completed
+              </div>
+            </Card>
+          </div>
         </div>
       );
 
@@ -226,24 +234,35 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
     case 'Skeleton':
       return (
         <div style={stageStyles}>
-          <div style={{ width: '200px' }}>
+          <div style={{ width: '160px' }}>
             <div
               style={{
-                height: '16px',
+                height: '14px',
                 background: 'var(--mark-bg-elevated)',
                 borderRadius: 'var(--mark-radius-sm)',
-                marginBottom: '8px',
+                marginBottom: '6px',
                 animation: 'pulse 1.5s ease-in-out infinite',
               }}
             />
             <div
               style={{
-                height: '16px',
+                height: '14px',
                 background: 'var(--mark-bg-elevated)',
                 borderRadius: 'var(--mark-radius-sm)',
                 width: '70%',
+                marginBottom: '6px',
                 animation: 'pulse 1.5s ease-in-out infinite',
                 animationDelay: '0.2s',
+              }}
+            />
+            <div
+              style={{
+                height: '14px',
+                background: 'var(--mark-bg-elevated)',
+                borderRadius: 'var(--mark-radius-sm)',
+                width: '40%',
+                animation: 'pulse 1.5s ease-in-out infinite',
+                animationDelay: '0.4s',
               }}
             />
           </div>

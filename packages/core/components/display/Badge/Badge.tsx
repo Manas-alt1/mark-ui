@@ -1,7 +1,9 @@
 'use client'
 
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import type { BadgeProps } from './Badge.types'
+import { useFunAnimation } from '../../../animations/useFunAnimation'
 
 const VARIANT_STYLES = {
   default: {
@@ -64,10 +66,18 @@ export default function Badge({
 }: BadgeProps) {
   const v = VARIANT_STYLES[variant]
   const s = SIZE_STYLES[size]
+  const badgeRef = useRef<HTMLSpanElement>(null)
+  const { triggerAnimation } = useFunAnimation()
+
+  const handleAnimationStart = () => {
+    triggerAnimation({ trigger: 'mount', originRef: badgeRef })
+  }
 
   return (
     <motion.span
+      ref={badgeRef}
       className={className}
+      onAnimationStart={handleAnimationStart}
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{

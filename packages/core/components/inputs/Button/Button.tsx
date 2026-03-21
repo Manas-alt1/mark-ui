@@ -1,8 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useRef } from 'react'
 import type { ButtonProps } from './Button.types'
 import Spinner from '../../feedback/Spinner/Spinner'
+import { useFunAnimation } from '../../../animations/useFunAnimation'
 
 const VARIANT_STYLES = {
   primary: {
@@ -74,11 +76,20 @@ export default function Button({
   const v = VARIANT_STYLES[variant]
   const s = SIZE_STYLES[size]
   const disabled = isDisabled || isLoading
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const { triggerAnimation } = useFunAnimation()
+
+  const handleClick = () => {
+    if (disabled) return
+    triggerAnimation({ trigger: 'click', originRef: buttonRef })
+    onClick?.()
+  }
 
   return (
     <motion.button
+      ref={buttonRef}
       className={className}
-      onClick={disabled ? undefined : onClick}
+      onClick={handleClick}
       disabled={disabled}
       whileHover={disabled ? {} : { y: -1 }}
       whileTap={disabled ? {} : { scale: 0.97, y: 0 }}

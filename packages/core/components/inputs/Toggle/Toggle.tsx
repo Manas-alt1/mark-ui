@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import type { ToggleProps } from './Toggle.types'
+import { useFunAnimation } from '../../../animations/useFunAnimation'
 
 const SIZE_MAP = {
   sm: { trackW: 28, trackH: 16, thumb: 12 },
@@ -24,11 +25,20 @@ export default function Toggle({
   const isControlled = controlledChecked !== undefined
   const checked = isControlled ? controlledChecked : internalChecked
   const s = SIZE_MAP[size]
+  const thumbRef = useRef<HTMLDivElement>(null)
+  const { triggerAnimation } = useFunAnimation()
 
   const toggle = () => {
     if (isDisabled) return
     const next = !checked
     if (!isControlled) setInternalChecked(next)
+    
+    // trigger fun animation ON STATE CHANGE
+    triggerAnimation({
+      trigger: next ? 'toggle-on' : 'toggle-off',
+      originRef: thumbRef
+    })
+
     onChange?.(next)
   }
 
@@ -86,6 +96,7 @@ export default function Toggle({
       >
         {/* Thumb */}
         <motion.div
+          ref={thumbRef}
           animate={{
             x: checked ? thumbTravel : 0,
           }}

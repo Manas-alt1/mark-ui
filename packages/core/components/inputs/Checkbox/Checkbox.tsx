@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import type { CheckboxProps } from './Checkbox.types'
+import { useFunAnimation } from '../../../animations/useFunAnimation'
 
 const SIZE_MAP = {
   sm: { box: 14, labelSize: 'var(--mark-text-sm)', stroke: 2 },
@@ -25,11 +26,20 @@ export default function Checkbox({
   const isControlled = controlledChecked !== undefined
   const checked = isControlled ? controlledChecked : internalChecked
   const s = SIZE_MAP[size]
+  const boxRef = useRef<HTMLDivElement>(null)
+  const { triggerAnimation } = useFunAnimation()
 
   const toggle = () => {
     if (isDisabled) return
     const next = !checked
     if (!isControlled) setInternalChecked(next)
+    
+    // Trigger animation
+    triggerAnimation({
+      trigger: next ? 'check' : 'uncheck',
+      originRef: boxRef
+    })
+
     onChange?.(next)
   }
 
@@ -65,6 +75,7 @@ export default function Checkbox({
 
       {/* Custom box */}
       <motion.div
+        ref={boxRef}
         animate={{ scale: checked ? [0.85, 1] : 1 }}
         transition={{
           duration: 0.12,

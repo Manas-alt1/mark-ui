@@ -60,6 +60,7 @@
   .components-showcase-layout {
     flex-direction: column;
     gap: 0;
+    padding: 0 16px; /* Reduce horizontal padding on mobile */
   }
 }
 
@@ -109,6 +110,16 @@
   display: flex;
   align-items: center;
   margin: 16px 0;
+  position: relative;
+}
+
+.category-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--mark-border);
+  opacity: 0.3;
+  margin-left: 12px;
 }
 
 .category-divider-label {
@@ -118,19 +129,7 @@
   color: var(--mark-text-secondary, color-mix(in srgb, currentColor 60%, transparent));
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0 12px 0 0;
-  position: relative;
-}
-
-.category-divider-label::after {
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  width: 100vw;
-  height: 1px;
-  background: var(--mark-border);
-  opacity: 0.3;
+  flex-shrink: 0;
 }
 /* ComponentGrid Component */
 
@@ -302,8 +301,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 64px 24px;
+  padding: 80px 48px 60px 48px; /* Increased horizontal padding from 24px to 48px for better internal spacing */
   background: var(--mark-bg-surface);
+  margin-top: 80px; /* Add top margin to separate from content above */
 }
 
 .cta-heading {
@@ -348,4 +348,53 @@
 .components-showcase-page {
   width: 100%;
   min-height: 100vh;
+  padding-bottom: 160px; /* Large bottom padding to ensure proper footer separation */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Ensure proper spacing between page content and footer */
+.components-showcase-page::after {
+  content: '';
+  display: block;
+  height: 60px; /* Additional invisible spacer for extra breathing room */
+}
+
+/* Mobile adjustments for footer spacing */
+@media (max-width: 767px) {
+  .components-showcase-page {
+    padding-bottom: 120px; /* Slightly less padding on mobile */
+  }
+  
+  .components-showcase-page::after {
+    height: 40px; /* Smaller spacer on mobile */
+  }
+
+  .components-showcase-cta {
+    margin-top: 48px; /* Reduced top margin on mobile for better spacing */
+    padding: 60px 32px 40px 32px; /* Increased horizontal padding on mobile from 24px to 32px */
+  }
+}
+
+/* Layout spacing improvements */
+.components-showcase-layout {
+  display: flex;
+  gap: 48px;
+  width: 100%;
+  padding: 0 24px; /* Add horizontal padding for better content spacing */
+  max-width: 1400px; /* Add max-width to prevent overly wide layouts */
+  margin: 0 auto; /* Center the layout */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+/* Tooltip hover behavior */
+.tooltip-popup {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.tooltip-trigger-group:hover .tooltip-popup {
+  opacity: 1;
+  visibility: visible;
 }
