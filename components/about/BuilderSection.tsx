@@ -1,0 +1,110 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Avatar, Badge } from "@/packages/core";
+
+const GitHubIcon = () => (
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
+  </svg>
+);
+const LinkedInIcon = () => (
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125ZM6.84 20.452H3.834V9H6.84v11.452Z" />
+  </svg>
+);
+const EmailIcon = () => (
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" />
+  </svg>
+);
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as const },
+  },
+};
+
+export default function BuilderSection() {
+  return (
+    <section className="about-section">
+      <motion.div
+        className="builder-layout"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        {/* Avatar Left Column */}
+        <div className="builder-avatar-column">
+          <div className="builder-avatar-wrap">
+            <Avatar
+              alt="Manas Bhavsar"
+              shape="circle"
+              status="online"
+            />
+          </div>
+        </div>
+
+        {/* Content Right Column */}
+        <div className="builder-content">
+          <h2 className="about-h2" style={{ marginBottom: 32 }}>The person behind it</h2>
+          
+          <h3 className="builder-name">Manas Bhavsar</h3>
+
+          <div className="builder-badge">
+            <Badge variant="accent">Frontend Developer</Badge>
+          </div>
+
+          <div className="builder-bio">
+            <p>
+              I&apos;m Manas — a frontend developer, gamer, and photographer who
+              builds things from scratch or doesn&apos;t build them at all.
+            </p>
+            <p>
+              Mark UI is the project I poured everything into. Not because I
+              had to — because I genuinely love what it&apos;s becoming. For me,
+              the quality of something is directly tied to how much I care about
+              it. And I care about this a lot.
+            </p>
+            <p>
+              When I&apos;m not pushing pixels I&apos;m either deep in a game,
+              behind a camera lens, or quietly recharging as the introvert I am.
+            </p>
+          </div>
+
+          <div className="builder-socials">
+            <a
+              href="https://github.com/Manas-bhavsar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+              aria-label="GitHub"
+            >
+              <GitHubIcon />
+            </a>
+            <a
+              href="https://linkedin.com/in/manasbhavsar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon />
+            </a>
+            <a
+              href="mailto:manas@markui.dev"
+              className="social-link"
+              aria-label="Email"
+            >
+              <EmailIcon />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
