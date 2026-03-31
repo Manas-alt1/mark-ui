@@ -20,7 +20,7 @@ export default function TooltipDocPage() {
         <Tooltip
           content="This action requires admin privileges."
           placement={placement}
-          delay={delay}
+          showDelay={delay}
         >
           <Button variant="secondary">Hover me</Button>
         </Tooltip>
@@ -102,8 +102,9 @@ export default function TooltipDocPage() {
           <tbody>
             <tr><td><code>content*</code></td><td><code>React.ReactNode</code></td><td>—</td><td>Tooltip content</td></tr>
             <tr><td><code>placement</code></td><td><code>'top'|'bottom'|'left'|'right'</code></td><td><code>'bottom'</code></td><td>Preferred position</td></tr>
-            <tr><td><code>delay</code></td><td><code>number</code></td><td><code>400</code></td><td>Hover delay in ms</td></tr>
-            <tr><td><code>isDisabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents tooltip showing</td></tr>
+            <tr><td><code>showDelay</code></td><td><code>number</code></td><td><code>500</code></td><td>Hover delay in ms</td></tr>
+            <tr><td><code>hideDelay</code></td><td><code>number</code></td><td><code>200</code></td><td>Delay before hiding in ms</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents tooltip showing</td></tr>
             <tr><td><code>children*</code></td><td><code>React.ReactElement</code></td><td>—</td><td>The trigger element</td></tr>
           </tbody>
         </table>

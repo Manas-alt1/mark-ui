@@ -36,7 +36,7 @@ export default function CardDocPage() {
                 The new deployment pipeline has successfully finished running. All 42 tests passed without warnings.
               </p>
             </Card.Body>
-            <Card.Footer style={{ display: "flex", justifyContent: "flex-end", gap: 12 }}>
+            <Card.Footer className="flex justify-end gap-3">
               <Button variant="ghost" size="sm">Dismiss</Button>
               <Button variant="secondary" size="sm">View Logs</Button>
             </Card.Footer>

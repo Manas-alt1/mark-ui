@@ -24,22 +24,22 @@ export default function ModalDocPage() {
         <Button variant="primary" onClick={() => setIsOpen(true)}>Open Modal</Button>
 
         <Modal
-          isOpen={isOpen}
+          open={isOpen}
           onClose={() => setIsOpen(false)}
           size={size}
-          placement={placement}
-          isDismissible={isDismissible}
-          hideCloseButton={hideCloseButton}
+          closeOnBackdrop={isDismissible}
+          closeOnEscape={isDismissible}
         >
-          <Modal.Header>
-            <h4 style={{ margin: 0, fontFamily: "var(--mark-font-display)", color: "var(--mark-fg)" }}>Edit Profile</h4>
+          <Modal.Header title="Edit Profile" showClose={!hideCloseButton} onClose={() => setIsOpen(false)}>
             <p style={{ margin: "4px 0 0", fontSize: 13, color: "var(--mark-fg)", opacity: 0.6 }}>Make changes to your public profile.</p>
           </Modal.Header>
-          <Modal.Body style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <Input label="Name" defaultValue="Jane Doe" />
-            <Input label="Email" defaultValue="jane@example.com" />
+          <Modal.Body>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <Input label="Name" placeholder="Jane Doe" />
+              <Input label="Email" placeholder="jane@example.com" />
+            </div>
           </Modal.Body>
-          <Modal.Footer style={{ display: "flex", justifyContent: "flex-end", gap: 12 }}>
+          <Modal.Footer align="right">
             <Button variant="ghost" onClick={() => setIsOpen(false)}>Cancel</Button>
             <Button variant="primary" onClick={() => setIsOpen(false)}>Save Changes</Button>
           </Modal.Footer>
@@ -118,12 +118,11 @@ export default function ModalDocPage() {
             <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
           </thead>
           <tbody>
-            <tr><td><code>isOpen*</code></td><td><code>boolean</code></td><td>—</td><td>Open state</td></tr>
+            <tr><td><code>open*</code></td><td><code>boolean</code></td><td>—</td><td>Open state</td></tr>
             <tr><td><code>onClose*</code></td><td><code>() =&gt; void</code></td><td>—</td><td>Called when closed</td></tr>
-            <tr><td><code>size</code></td><td><code>'sm'|'md'|'lg'|'full'</code></td><td><code>'md'</code></td><td>Modal width</td></tr>
-            <tr><td><code>placement</code></td><td><code>'center'|'top'|'bottom'</code></td><td><code>'center'</code></td><td>Vertical position</td></tr>
-            <tr><td><code>isDismissible</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close on outside click / Esc</td></tr>
-            <tr><td><code>hideCloseButton</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Hides top-right X button</td></tr>
+            <tr><td><code>size</code></td><td><code>'sm'|'md'|'lg'|'xl'|'full'</code></td><td><code>'md'</code></td><td>Modal width</td></tr>
+            <tr><td><code>closeOnBackdrop</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close on outside click</td></tr>
+            <tr><td><code>closeOnEscape</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close on Esc key</td></tr>
           </tbody>
         </table>
       </div>

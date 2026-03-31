@@ -22,7 +22,7 @@ export default function ToggleDocPage() {
       <div className="doc-preview-stage">
         <Toggle
           checked={checked}
-          onCheckedChange={setChecked as any} /* Type bypass */
+          onChange={setChecked}
           size={size}
           isDisabled={isDisabled}
           label={showLabel ? "Enable dark mode" : undefined}
@@ -117,7 +117,7 @@ export default function ToggleDocPage() {
           <tbody>
             <tr><td><code>checked</code></td><td><code>boolean</code></td><td>—</td><td>Controlled state</td></tr>
             <tr><td><code>defaultChecked</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Uncontrolled initial state</td></tr>
-            <tr><td><code>onCheckedChange</code></td><td><code>(checked: boolean) =&gt; void</code></td><td>—</td><td>Change handler</td></tr>
+            <tr><td><code>onChange</code></td><td><code>(checked: boolean) =&gt; void</code></td><td>—</td><td>Change handler</td></tr>
             <tr><td><code>isDisabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents interaction</td></tr>
             <tr><td><code>label</code></td><td><code>string</code></td><td>—</td><td>Visible label text</td></tr>
             <tr><td><code>description</code></td><td><code>string</code></td><td>—</td><td>Secondary text below label</td></tr>

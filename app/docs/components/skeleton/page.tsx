@@ -5,8 +5,8 @@ import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Skeleton } from "@/packages/core";
 
 export default function SkeletonDocPage() {
-  const [variant, setVariant] = useState<"text" | "circle" | "rectangle" | "card">("text");
-  const [animate, setAnimate] = useState(true);
+  const [variant, setVariant] = useState<"text" | "circle" | "rectangle">("text");
+  const [animation, setAnimation] = useState<"pulse" | "wave" | "none">("pulse");
   const [lines, setLines] = useState(3);
   const [width, setWidth] = useState<string>("100%");
   const [height, setHeight] = useState<string>("auto");
@@ -23,11 +23,10 @@ export default function SkeletonDocPage() {
         <div style={{ width: "100%", maxWidth: 400 }}>
           <Skeleton
             variant={variant}
-            animate={animate}
+            animation={animation}
             lines={lines}
             width={width !== "auto" && width !== "100%" ? width : undefined}
             height={height !== "auto" ? height : undefined}
-            style={{ width, height: height !== "auto" ? height : undefined }}
           />
         </div>
       </div>
@@ -43,7 +42,6 @@ export default function SkeletonDocPage() {
               <option value="text">text</option>
               <option value="circle">circle</option>
               <option value="rectangle">rectangle</option>
-              <option value="card">card</option>
             </select>
           </div>
 
@@ -68,10 +66,11 @@ export default function SkeletonDocPage() {
 
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Animation</label>
-            <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14 }}>
-              <input type="checkbox" checked={animate} onChange={(e) => setAnimate(e.target.checked)} />
-              animate
-            </label>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={animation} onChange={(e) => setAnimation(e.target.value as any)}>
+              <option value="pulse">pulse</option>
+              <option value="wave">wave</option>
+              <option value="none">none</option>
+            </select>
           </div>
 
         </div>
@@ -83,8 +82,8 @@ export default function SkeletonDocPage() {
         
         <div style={{ flex: 1, minWidth: 200 }}>
           <div style={{ marginBottom: 12, fontSize: 13, color: "var(--mark-fg)", opacity: 0.5 }}>Text (1/3/5 lines)</div>
-          <Skeleton variant="text" lines={1} style={{ marginBottom: 12 }} />
-          <Skeleton variant="text" lines={3} style={{ marginBottom: 12 }} />
+          <div style={{ marginBottom: 12 }}><Skeleton variant="text" lines={1} /></div>
+          <div style={{ marginBottom: 12 }}><Skeleton variant="text" lines={3} /></div>
         </div>
 
         <div style={{ flex: 1, minWidth: 200 }}>
@@ -92,13 +91,22 @@ export default function SkeletonDocPage() {
           <div style={{ display: "flex", gap: 16 }}>
             <Skeleton variant="circle" width={60} height={60} />
             <Skeleton variant="rectangle" width={100} height={60} />
-            <Skeleton variant="rectangle" width={100} height={60} animate={false} />
+            <Skeleton variant="rectangle" width={100} height={60} animation="none" />
           </div>
         </div>
 
         <div style={{ flex: 1, minWidth: 250 }}>
-          <div style={{ marginBottom: 12, fontSize: 13, color: "var(--mark-fg)", opacity: 0.5 }}>Card Layout Variant</div>
-          <Skeleton variant="card" />
+          <div style={{ marginBottom: 12, fontSize: 13, color: "var(--mark-fg)", opacity: 0.5 }}>Card Layout Variant (Composition)</div>
+          <div style={{ border: "1px solid var(--mark-border)", padding: 16, borderRadius: "var(--mark-radius-lg)", display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+              <Skeleton variant="circle" width={40} height={40} />
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
+                <Skeleton variant="text" lines={1} width="60%" />
+                <Skeleton variant="text" lines={1} width="40%" />
+              </div>
+            </div>
+            <Skeleton variant="rectangle" height={100} />
+          </div>
         </div>
 
       </div>
@@ -140,11 +148,11 @@ export default function SkeletonDocPage() {
             <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
           </thead>
           <tbody>
-            <tr><td><code>variant</code></td><td><code>'text'|'circle'|'rectangle'|'card'</code></td><td><code>'text'</code></td><td>Shape variant</td></tr>
+            <tr><td><code>variant</code></td><td><code>'text'|'circle'|'rectangle'</code></td><td><code>'text'</code></td><td>Shape variant</td></tr>
             <tr><td><code>width</code></td><td><code>string|number</code></td><td>—</td><td>Custom width</td></tr>
             <tr><td><code>height</code></td><td><code>string|number</code></td><td>—</td><td>Custom height</td></tr>
             <tr><td><code>lines</code></td><td><code>number</code></td><td><code>3</code></td><td>Number of text lines</td></tr>
-            <tr><td><code>animate</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enables shimmer animation</td></tr>
+            <tr><td><code>animation</code></td><td><code>'pulse'|'wave'|'none'</code></td><td><code>'pulse'</code></td><td>Shimmer animation</td></tr>
             <tr><td><code>className</code></td><td><code>string</code></td><td>—</td><td>Additional CSS classes</td></tr>
           </tbody>
         </table>

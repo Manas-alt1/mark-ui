@@ -30,18 +30,20 @@ export default function SelectDocPage() {
       <h3 id="preview" className="doc-section-label">PREVIEW</h3>
       <div className="doc-preview-stage">
         <div style={{ width: "100%", maxWidth: 300 }}>
-          <Select
-            options={BASIC_OPTIONS}
-            value={value}
-            onSelect={setValue as any} /* Type bypass */
-            placeholder="Choose a city"
-            size={size}
-            isDisabled={isDisabled}
-            isError={isError}
-            label={showLabel ? "Office Location" : undefined}
-            helperText={showHelper && !isError ? "Select your primary workplace." : undefined}
-            errorMessage={isError ? "Please select a valid location." : undefined}
-          />
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {showLabel && <label style={{ fontSize: 14, fontWeight: 500, color: "var(--mark-fg)" }}>Office Location</label>}
+            <Select
+              options={BASIC_OPTIONS}
+              value={value}
+              onChange={setValue}
+              placeholder="Choose a city"
+              size={size}
+              disabled={isDisabled}
+              error={isError}
+            />
+            {showHelper && !isError && <span style={{ fontSize: 13, color: "var(--mark-fg-muted)" }}>Select your primary workplace.</span>}
+            {isError && <span style={{ fontSize: 13, color: "var(--mark-error)" }}>Please select a valid location.</span>}
+          </div>
         </div>
       </div>
 
@@ -82,10 +84,16 @@ export default function SelectDocPage() {
       <h3 id="variants" className="doc-section-label">VARIANTS</h3>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 32, marginBottom: 48 }}>
         <Select options={[{label:"One", value:"1"}]} placeholder="Default closed" />
-        <Select options={BASIC_OPTIONS} value="tyo" onSelect={()=>{}} placeholder="With selected value" />
-        <Select options={BASIC_OPTIONS} label="With Label" placeholder="Choose..." />
-        <Select options={BASIC_OPTIONS} isError errorMessage="Required field" placeholder="Error state" />
-        <Select options={BASIC_OPTIONS} isDisabled placeholder="Disabled" />
+        <Select options={BASIC_OPTIONS} value="tyo" onChange={()=>{}} placeholder="With selected value" />
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <label style={{ fontSize: 14, fontWeight: 500, color: "var(--mark-fg)" }}>With Label</label>
+          <Select options={BASIC_OPTIONS} placeholder="Choose..." />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <Select options={BASIC_OPTIONS} error placeholder="Error state" />
+          <span style={{ fontSize: 13, color: "var(--mark-error)" }}>Required field</span>
+        </div>
+        <Select options={BASIC_OPTIONS} disabled placeholder="Disabled" />
       </div>
 
       {/* USAGE */}
@@ -128,14 +136,11 @@ export default function SelectDocPage() {
             <tr><td><code>options</code></td><td><code>SelectOption[]</code></td><td>—</td><td>Array of option objects</td></tr>
             <tr><td><code>value</code></td><td><code>string</code></td><td>—</td><td>Controlled selected value</td></tr>
             <tr><td><code>defaultValue</code></td><td><code>string</code></td><td>—</td><td>Uncontrolled initial value</td></tr>
-            <tr><td><code>onSelect</code></td><td><code>(value: string) =&gt; void</code></td><td>—</td><td>Change handler</td></tr>
+            <tr><td><code>onChange</code></td><td><code>(value: string) =&gt; void</code></td><td>—</td><td>Change handler</td></tr>
             <tr><td><code>placeholder</code></td><td><code>string</code></td><td>—</td><td>Shown when nothing selected</td></tr>
-            <tr><td><code>label</code></td><td><code>string</code></td><td>—</td><td>Visible label above select</td></tr>
             <tr><td><code>size</code></td><td><code>'sm' | 'md' | 'lg'</code></td><td><code>'md'</code></td><td>Select size</td></tr>
-            <tr><td><code>isDisabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents interaction</td></tr>
-            <tr><td><code>isError</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Error visual state</td></tr>
-            <tr><td><code>errorMessage</code></td><td><code>string</code></td><td>—</td><td>Error text below select</td></tr>
-            <tr><td><code>helperText</code></td><td><code>string</code></td><td>—</td><td>Helper text below select</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents interaction</td></tr>
+            <tr><td><code>error</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Error visual state</td></tr>
           </tbody>
         </table>
       </div>

@@ -23,33 +23,36 @@ export default function DrawerDocPage() {
         <Button variant="secondary" onClick={() => setIsOpen(true)}>Open Drawer</Button>
 
         <Drawer
-          isOpen={isOpen}
+          open={isOpen}
           onClose={() => setIsOpen(false)}
           placement={placement}
           size={size}
-          isDismissible={isDismissible}
+          closeOnBackdrop={isDismissible}
+          closeOnEscape={isDismissible}
         >
-          <Drawer.Header>
-            <h4 style={{ margin: 0, fontFamily: "var(--mark-font-display)", color: "var(--mark-fg)", fontSize: 20 }}>Account Settings</h4>
-          </Drawer.Header>
-          <Drawer.Body style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            <div>
-              <h5 style={{ margin: "0 0 16px", color: "var(--mark-fg)", fontSize: 14 }}>Personal Info</h5>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <Input label="Full Name" defaultValue="Jane Doe" />
-                <Input label="Title" defaultValue="Senior Developer" />
+          <div style={{ padding: 24, display: "flex", flexDirection: "column", height: "100%" }}>
+            <div style={{ paddingBottom: 16, borderBottom: "1px solid var(--mark-border)", marginBottom: 24 }}>
+              <h4 style={{ margin: 0, fontFamily: "var(--mark-font-display)", color: "var(--mark-fg)", fontSize: 20 }}>Account Settings</h4>
+            </div>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 24 }}>
+              <div>
+                <h5 style={{ margin: "0 0 16px", color: "var(--mark-fg)", fontSize: 14 }}>Personal Info</h5>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <Input label="Full Name" placeholder="Jane Doe" />
+                  <Input label="Title" placeholder="Senior Developer" />
+                </div>
+              </div>
+              <div>
+                <h5 style={{ margin: "0 0 16px", color: "var(--mark-fg)", fontSize: 14 }}>Security</h5>
+                <Button variant="ghost">Change Password</Button>
+                <Button variant="ghost">Delete Account</Button>
               </div>
             </div>
-            <div>
-              <h5 style={{ margin: "0 0 16px", color: "var(--mark-fg)", fontSize: 14 }}>Security</h5>
-              <Button variant="ghost" style={{ width: "100%", justifyContent: "flex-start" }}>Change Password</Button>
-              <Button variant="ghost" style={{ width: "100%", justifyContent: "flex-start", color: "var(--mark-error)" }}>Delete Account</Button>
+            <div style={{ paddingTop: 16, borderTop: "1px solid var(--mark-border)", display: "flex", justifyContent: "space-between", gap: 12, marginTop: 24 }}>
+              <Button variant="ghost" onClick={() => setIsOpen(false)}>Close</Button>
+              <Button variant="primary" onClick={() => setIsOpen(false)}>Save</Button>
             </div>
-          </Drawer.Body>
-          <Drawer.Footer style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
-            <Button variant="ghost" onClick={() => setIsOpen(false)}>Close</Button>
-            <Button variant="primary" onClick={() => setIsOpen(false)}>Save</Button>
-          </Drawer.Footer>
+          </div>
         </Drawer>
       </div>
 
@@ -125,12 +128,12 @@ export default function DrawerDocPage() {
             <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
           </thead>
           <tbody>
-            <tr><td><code>isOpen*</code></td><td><code>boolean</code></td><td>—</td><td>Open state</td></tr>
+            <tr><td><code>open*</code></td><td><code>boolean</code></td><td>—</td><td>Open state</td></tr>
             <tr><td><code>onClose*</code></td><td><code>() =&gt; void</code></td><td>—</td><td>Called when closed</td></tr>
             <tr><td><code>placement</code></td><td><code>'left'|'right'|'top'|'bottom'</code></td><td><code>'right'</code></td><td>Slide-in edge</td></tr>
-            <tr><td><code>size</code></td><td><code>'sm'|'md'|'lg'|'full'</code></td><td><code>'md'</code></td><td>Panel size</td></tr>
-            <tr><td><code>isDismissible</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close on outside click / Esc</td></tr>
-            <tr><td><code>hideCloseButton</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Hides top-right X button</td></tr>
+            <tr><td><code>size</code></td><td><code>'sm'|'md'|'lg'|'xl'|'full'</code></td><td><code>'md'</code></td><td>Panel size</td></tr>
+            <tr><td><code>closeOnBackdrop</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close on backdrop click</td></tr>
+            <tr><td><code>closeOnEscape</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close on escape key</td></tr>
           </tbody>
         </table>
       </div>
@@ -138,12 +141,7 @@ export default function DrawerDocPage() {
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
       <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>{`import { Drawer } from '@markui/core'
-
-// Contains compound components:
-// <Drawer.Header>
-// <Drawer.Body>
-// <Drawer.Footer>`}</code></pre>
+        <pre><code>{`import { Drawer } from '@markui/core'`}</code></pre>
       </div>
 
     </ComponentDocTemplate>

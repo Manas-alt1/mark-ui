@@ -21,7 +21,7 @@ export default function AvatarDocPage() {
       <div className="doc-preview-stage">
         <Avatar
           src={mode === "image" ? "https://i.pravatar.cc/150?u=a042581f4e29026024d" : undefined}
-          name={mode === "initials" ? "Jane Doe" : undefined}
+          alt={mode === "initials" ? "Jane Doe" : undefined}
           size={size}
           shape={shape}
           status={status !== "none" ? status as any : undefined}
@@ -83,7 +83,7 @@ export default function AvatarDocPage() {
           <div style={{ marginTop: 8, fontSize: 12 }}>Image</div>
         </div>
         <div style={{ textAlign: "center" }}>
-          <Avatar name="Avery Li" size="lg" />
+          <Avatar alt="Avery Li" size="lg" />
           <div style={{ marginTop: 8, fontSize: 12 }}>Initials</div>
         </div>
         <div style={{ textAlign: "center" }}>
@@ -91,11 +91,11 @@ export default function AvatarDocPage() {
           <div style={{ marginTop: 8, fontSize: 12 }}>Icon</div>
         </div>
         <div style={{ textAlign: "center", display: "flex", gap: 8, borderLeft: "1px solid var(--mark-border)", paddingLeft: 32 }}>
-          <Avatar name="C C" size="xs" />
-          <Avatar name="C C" size="sm" />
-          <Avatar name="C C" size="md" />
-          <Avatar name="C C" size="lg" />
-          <Avatar name="C C" size="xl" />
+          <Avatar alt="C C" size="xs" />
+          <Avatar alt="C C" size="sm" />
+          <Avatar alt="C C" size="md" />
+          <Avatar alt="C C" size="lg" />
+          <Avatar alt="C C" size="xl" />
         </div>
       </div>
 

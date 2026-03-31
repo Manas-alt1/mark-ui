@@ -41,7 +41,7 @@ const FOCUSABLE_SELECTOR = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(', ')
 
-export default function Modal({
+function ModalRoot({
   open,
   onClose,
   size = 'md',
@@ -253,6 +253,14 @@ export default function Modal({
   // Render in portal for proper z-index layering
   return typeof window !== 'undefined' ? createPortal(modalContent, document.body) : null
 }
+
+const Modal = Object.assign(ModalRoot, {
+  Header: ModalHeader,
+  Body: ModalBody,
+  Footer: ModalFooter,
+})
+
+export default Modal
 
 // Compound components - full implementations
 export function ModalHeader({ title, showClose = true, onClose, children }: ModalHeaderProps) {

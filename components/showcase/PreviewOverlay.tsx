@@ -64,7 +64,7 @@ export default function PreviewOverlay({ componentId, onClose }: PreviewOverlayP
           {/* Prevent clicks on preview content from closing overlay */}
           <div onClick={(e) => e.stopPropagation()}>
             {componentId === 'Modal' && <ModalPreview />}
-            {componentId === 'Drawer' && <DrawerPreview onClose={onClose} />}
+            {componentId === 'Drawer' && <DrawerPreview />}
           </div>
         </motion.div>
       )}

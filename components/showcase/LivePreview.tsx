@@ -77,7 +77,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
               { value: 'option2', label: 'Option 2' },
               { value: 'option3', label: 'Option 3' }
             ]}
-            style={{ width: '200px' }}
+            className="showcase-select-preview"
           />
         </div>
       );
@@ -93,7 +93,8 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
       return (
         <div style={stageStyles}>
           <Avatar 
-            name="John Doe"
+            initials="JD"
+            alt="John Doe"
             size="md"
             shape="circle"
           />
@@ -131,7 +132,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
     case 'Tooltip':
       return (
         <div style={stageStyles}>
-          <Tooltip content="Tooltip text" position="top">
+          <Tooltip content="Tooltip text" placement="top">
             <Button variant="secondary" size="sm">Hover me</Button>
           </Tooltip>
         </div>
@@ -165,7 +166,7 @@ export default function LivePreview({ componentId }: LivePreviewProps) {
             <Toast
               variant="success"
               title="Success!"
-              message="Action completed"
+              description="Action completed"
               onDismiss={() => {}}
             />
           </div>

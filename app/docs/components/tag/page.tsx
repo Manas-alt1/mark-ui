@@ -5,10 +5,9 @@ import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Tag } from "@/packages/core";
 
 export default function TagDocPage() {
-  const [variant, setVariant] = useState<"default" | "accent" | "success" | "warning" | "error">("default");
+  const [variant, setVariant] = useState<"default" | "accent" | "success" | "warning" | "danger">("default");
   const [size, setSize] = useState<"sm" | "md">("md");
-  const [isDismissible, setIsDismissible] = useState(false);
-  const [hasLeftIcon, setHasLeftIcon] = useState(false);
+  const [removable, setRemovable] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
   return (
@@ -25,9 +24,8 @@ export default function TagDocPage() {
             <Tag
               variant={variant}
               size={size}
-              isDismissible={isDismissible}
-              onDismiss={() => setIsVisible(false)}
-              leftIcon={hasLeftIcon ? <span style={{ fontSize: 12 }}>🔥</span> : undefined}
+              removable={removable}
+              onRemove={() => setIsVisible(false)}
             >
               Mark UI Framework
             </Tag>
@@ -54,7 +52,7 @@ export default function TagDocPage() {
               <option value="accent">accent</option>
               <option value="success">success</option>
               <option value="warning">warning</option>
-              <option value="error">error</option>
+              <option value="danger">danger</option>
             </select>
           </div>
 
@@ -69,8 +67,7 @@ export default function TagDocPage() {
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Options</label>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14 }}><input type="checkbox" checked={isDismissible} onChange={(e) => setIsDismissible(e.target.checked)} /> isDismissible</label>
-              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14 }}><input type="checkbox" checked={hasLeftIcon} onChange={(e) => setHasLeftIcon(e.target.checked)} /> leftIcon</label>
+              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14 }}><input type="checkbox" checked={removable} onChange={(e) => setRemovable(e.target.checked)} /> removable</label>
             </div>
           </div>
 
@@ -81,9 +78,9 @@ export default function TagDocPage() {
       <h3 id="variants" className="doc-section-label">VARIANTS</h3>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 48 }}>
         <Tag variant="default">Default Filter</Tag>
-        <Tag variant="accent" isDismissible>Accent Active</Tag>
-        <Tag variant="success" leftIcon={<span style={{fontSize: 10}}>●</span>}>Success Tag</Tag>
-        <Tag variant="error" isDismissible size="sm">Small Error</Tag>
+        <Tag variant="accent" removable>Accent Active</Tag>
+        <Tag variant="success">Success Tag</Tag>
+        <Tag variant="danger" removable size="sm">Small Danger</Tag>
         <Tag variant="warning">Warning Status</Tag>
       </div>
 
@@ -95,7 +92,7 @@ export default function TagDocPage() {
           <ul className="usage-list">
             <li>Use Tags for user-applied filters that can be removed.</li>
             <li>Use Tags for selected items in a multi-select pattern.</li>
-            <li>Use leftIcon to add visual context to category tags.</li>
+            <li>Use removable tags only when users can immediately clear the selection.</li>
           </ul>
         </div>
         <div className="usage-col usage-dont">
@@ -124,12 +121,11 @@ export default function TagDocPage() {
             <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
           </thead>
           <tbody>
-            <tr><td><code>variant</code></td><td><code>'default'|'accent'|'success'|'warning'|'error'</code></td><td><code>'default'</code></td><td>Visual style</td></tr>
+            <tr><td><code>variant</code></td><td><code>'default'|'primary'|'accent'|'success'|'warning'|'danger'</code></td><td><code>'default'</code></td><td>Visual style</td></tr>
             <tr><td><code>size</code></td><td><code>'sm'|'md'</code></td><td><code>'md'</code></td><td>Tag size</td></tr>
-            <tr><td><code>isDismissible</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Shows dismiss button</td></tr>
-            <tr><td><code>onDismiss</code></td><td><code>function</code></td><td>—</td><td>Called when dismissed</td></tr>
-            <tr><td><code>leftIcon</code></td><td><code>React.ReactNode</code></td><td>—</td><td>Icon before label</td></tr>
-            <tr><td><code>isDisabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents dismissal</td></tr>
+            <tr><td><code>removable</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Shows dismiss button</td></tr>
+            <tr><td><code>onRemove</code></td><td><code>function</code></td><td>—</td><td>Called when dismissed</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents dismissal</td></tr>
           </tbody>
         </table>
       </div>

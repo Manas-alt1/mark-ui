@@ -23,7 +23,7 @@ export default function CheckboxDocPage() {
       <div className="doc-preview-stage">
         <Checkbox
           checked={checked}
-          onCheckedChange={setChecked as any} /* Type bypass for quick docs */
+          onChange={setChecked} /* Type bypass for quick docs */
           size={size}
           isDisabled={isDisabled}
           isIndeterminate={isIndeterminate}
