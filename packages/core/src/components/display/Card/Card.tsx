@@ -38,7 +38,7 @@ const PADDING_MAP = {
   lg: 'var(--mark-space-8)',
 } as const
 
-function CardRoot({
+export function Card({
   variant = 'default',
   padding = 'md',
   isHoverable = false,
@@ -92,7 +92,7 @@ function CardRoot({
   )
 }
 
-function CardHeader({ children, className = '' }: CardHeaderProps) {
+export function CardHeader({ children, className = '' }: CardHeaderProps) {
   return (
     <div
       className={className}
@@ -106,7 +106,7 @@ function CardHeader({ children, className = '' }: CardHeaderProps) {
   )
 }
 
-function CardBody({ children, className = '' }: CardBodyProps) {
+export function CardBody({ children, className = '' }: CardBodyProps) {
   return (
     <div
       className={className}
@@ -117,7 +117,7 @@ function CardBody({ children, className = '' }: CardBodyProps) {
   )
 }
 
-function CardFooter({ children, className = '' }: CardFooterProps) {
+export function CardFooter({ children, className = '' }: CardFooterProps) {
   return (
     <div
       className={className}
@@ -130,12 +130,5 @@ function CardFooter({ children, className = '' }: CardFooterProps) {
     </div>
   )
 }
-
-// Compound component pattern
-const Card = Object.assign(CardRoot, {
-  Header: CardHeader,
-  Body: CardBody,
-  Footer: CardFooter,
-})
 
 export default Card

@@ -41,7 +41,7 @@ const FOCUSABLE_SELECTOR = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(', ')
 
-function ModalRoot({
+export function Modal({
   open,
   onClose,
   size = 'md',
@@ -254,14 +254,6 @@ function ModalRoot({
   return typeof window !== 'undefined' ? createPortal(modalContent, document.body) : null
 }
 
-const Modal = Object.assign(ModalRoot, {
-  Header: ModalHeader,
-  Body: ModalBody,
-  Footer: ModalFooter,
-})
-
-export default Modal
-
 // Compound components - full implementations
 export function ModalHeader({ title, showClose = true, onClose, children }: ModalHeaderProps) {
   return (
@@ -382,3 +374,5 @@ export function ModalFooter({ children, align = 'right' }: ModalFooterProps) {
     </div>
   )
 }
+
+export default Modal

@@ -1,140 +1,234 @@
-# MARK UI
+<div align="center">
 
-> Build interfaces that leave a mark.
+<br />
 
-MARK UI is a React component library built for developers who refuse to blend in. Every component ships with animations, every theme is swappable in one click, and every prop is fully typed. This isn't just a component library — it's a design language.
+```
+███╗   ███╗ █████╗ ██████╗ ██╗  ██╗    ██╗   ██╗██╗
+████╗ ████║██╔══██╗██╔══██╗██║ ██╔╝    ██║   ██║██║
+██╔████╔██║███████║██████╔╝█████╔╝     ██║   ██║██║
+██║╚██╔╝██║██╔══██║██╔══██╗██╔═██╗     ██║   ██║██║
+██║ ╚═╝ ██║██║  ██║██║  ██║██║  ██╗    ╚██████╔╝██║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═════╝ ╚═╝
+```
+
+**Motion is not decoration. It is the message.**
+
+[![npm version](https://img.shields.io/npm/v/@markui/core?color=ffffff&labelColor=000000&style=flat-square)](https://www.npmjs.com/package/@markui/core)
+[![npm downloads](https://img.shields.io/npm/dm/@markui/core?color=ffffff&labelColor=000000&style=flat-square)](https://www.npmjs.com/package/@markui/core)
+[![license](https://img.shields.io/github/license/Manas-bhavsar/mark-ui?color=ffffff&labelColor=000000&style=flat-square)](./LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-ready-ffffff?labelColor=000000&style=flat-square)](https://www.typescriptlang.org/)
+
+[Documentation](https://markui.vercel.app/docs) · [Components](https://markui.vercel.app/components) · [Themes](https://markui.vercel.app/themes) · [Changelog](https://markui.vercel.app/docs/changelog)
+
+<br />
+
+</div>
 
 ---
 
-## What makes it different
+## The Story
 
-- **Motion-first** — every component has a defined animation story. What moves, when it moves, and how it feels. Powered by a shared motion token system.
-- **Live theme switching** — two collections, fifteen themes. Switch instantly with no reload, no flash. The whole site transitions in one smooth shift.
-- **Styled defaults, real customization** — works out of the box but built to be fully overridden. Not just accent colors — entire personalities.
-- **TypeScript native** — fully typed props, consistent APIs, great developer experience throughout.
-- **Accessible by default** — keyboard navigation, ARIA attributes, focus management, and `prefers-reduced-motion` support on every component.
+Most component libraries treat animation as an afterthought — a sprinkle of `transition: all 0.2s` on a hover state, called a day.
+
+MARK UI was built on a different premise.
+
+What if motion was the foundation? What if every component was designed from the ground up with animation as a *first-class citizen* — not bolted on, but baked in? What if switching themes felt like changing the entire personality of your app, not just swapping colors?
+
+That's MARK UI. A motion-first React component library where every interaction has intention, every transition has weight, and every theme tells a story.
 
 ---
 
-## Tech Stack
+## What's Inside
 
-| Layer | Technology |
+**18 production-ready components** — inputs, display, feedback, overlays — every one of them animated with Framer Motion v12 from the ground up.
+
+**6 launch themes** across two families:
+
+| Professional | Fun |
 |---|---|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS + CSS Variables |
-| Animation | Framer Motion |
-| UI Primitives | Shadcn/ui (restyled) |
-| Display Font | Oxanium (Google Fonts) |
-| Body Font | Clash Display (Fontshare) |
-| Code Font | JetBrains Mono |
+| `monochrome` — clean black and white | `cyberpunk` — neon yellow on deep black |
+| `arctic` — cool whites and icy blues | `matrixx` — matrix green on dark |
+| `obsidian` — dark glass, muted tones | `gotham` — moody greys and shadow |
+
+**Zero Tailwind config required.** MARK UI ships pre-built CSS. You import it once and you're done.
+
+**Full TypeScript support.** Every component, every prop, every type — shipped with declarations.
 
 ---
 
-## Theme Collections
+## Installation
 
-Themes are split into two collections. Each theme is fully defined as CSS variables and switches live via a `data-theme` attribute on the root element.
+```bash
+# npm
+npm install @markui/core framer-motion
 
-### 💼 Professional
+# pnpm
+pnpm add @markui/core framer-motion
 
-| Theme | Primary | Accent | Status |
-|---|---|---|---|
-| Monochrome | `#FAFAFA` | `#0A0A0A` | ✅ Live |
-| Arctic | `#2563EB` | `#64748B` | 🗓 Planned |
-| Obsidian | `#6366F1` | `#A78BFA` | 🗓 Planned |
-| Ivory | `#78716C` | `#D97706` | 🗓 Planned |
-| Slate | `#334155` | `#0EA5E9` | 🗓 Planned |
-| Sage | `#4D7C6F` | `#F59E0B` | 🗓 Planned |
-| Carbon | `#E5E7EB` | `#EF4444` | 🗓 Planned |
-
-### 🎮 Fun
-
-| Theme | Inspiration | Primary | Accent | Status |
-|---|---|---|---|---|
-| Cyberpunk | Cyberpunk 2077 | `#FF2D9B` | `#00F5FF` | ✅ Live |
-| Shinigami | Bleach / Death Note | `#C9A84C` | `#1A1A2E` | 🗓 Planned |
-| Titan | Attack on Titan | `#8B6914` | `#2D5A3D` | 🗓 Planned |
-| Nebula | Guardians / Space | `#9B59B6` | `#E74C3C` | 🗓 Planned |
-| Matrixx | The Matrix | `#00FF41` | `#003B00` | 🗓 Planned |
-| Gotham | Batman / DC | `#FFD700` | `#1C1C1C` | 🗓 Planned |
-| Akira | Akira / Neo Tokyo | `#FF4500` | `#0A0AFF` | 🗓 Planned |
-| Hobbit | Lord of the Rings | `#8B7355` | `#4A7C59` | 🗓 Planned |
-
----
-
-## Component List
-
-Phase 1 ships with 19 components across five categories. Every component is fully animated, fully typed, and fully themeable.
-
-**Inputs**
-Button, Input, Checkbox, Toggle, Select
-
-**Display**
-Badge, Avatar, Card, Tooltip, Tag
-
-**Feedback**
-Alert, Toast, Spinner, Skeleton
-
-**Overlay**
-Modal, Drawer
-
-**Layout**
-Divider, Container
-
----
-
-## Folder Structure
-
+# yarn
+yarn add @markui/core framer-motion
 ```
-markui/
-├── packages/
-│   ├── core/                  ← all components
-│   │   ├── components/
-│   │   │   ├── inputs/
-│   │   │   ├── display/
-│   │   │   ├── feedback/
-│   │   │   ├── overlay/
-│   │   │   └── layout/
-│   │   ├── themes/            ← token definitions
-│   │   └── index.ts           ← exports
-│   └── cli/                   ← future: npx markui add
-│
-└── apps/
-    └── docs/                  ← documentation website
-        ├── app/
-        │   ├── layout.tsx
-        │   ├── page.tsx       ← Home
-        │   ├── about/
-        │   ├── docs/
-        │   ├── themes/
-        │   └── components/
-        ├── components/
-        │   ├── layout/        ← Navbar, Footer, PageTransition
-        │   ├── theme/         ← ThemeProvider, ThemePanel
-        │   └── ui/            ← ComingSoon, shared UI
-        └── styles/
-            └── globals.css    ← CSS variables, motion tokens
+
+> `framer-motion` is a required peer dependency. `tailwindcss` is **not** required.
+
+---
+
+## Setup
+
+### 1. Import the stylesheet
+
+In your app root — `app/layout.tsx` for Next.js, `main.tsx` for Vite:
+
+```ts
+import "@markui/core/styles";
 ```
+
+### 2. Pick a theme
+
+```tsx
+// Next.js
+<html data-markui-theme="obsidian">
+
+// Vite
+document.documentElement.setAttribute("data-markui-theme", "cyberpunk");
+```
+
+### 3. Use components
+
+```tsx
+import { Button, Card, Badge } from "@markui/core";
+
+export default function App() {
+  return (
+    <Card>
+      <Badge variant="subtle">New</Badge>
+      <Button>Get started</Button>
+    </Card>
+  );
+}
+```
+
+That's it. No provider wrapping. No config files. No theme setup beyond a single attribute.
+
+---
+
+## Components
+
+| Category | Components |
+|---|---|
+| **Inputs** | `Button` `Input` `Checkbox` `Select` `Toggle` |
+| **Display** | `Avatar` `Badge` `Card` `Tag` |
+| **Feedback & Overlay** | `Alert` `Toast` `Tooltip` `Modal` `Drawer` `Skeleton` `Spinner` `Divider` `Container` |
+
+Every component ships with:
+- Interactive playground in the docs
+- Full prop table with types and defaults
+- Usage guidelines — do's and don'ts
+- Accessibility notes and keyboard behavior
+- Reduced motion support via `prefers-reduced-motion`
+
+---
+
+## Framework Support
+
+### Next.js 15 (App Router)
+
+```tsx
+// app/layout.tsx
+import "@markui/core/styles";
+
+export default function RootLayout({ children }) {
+  return (
+    <html data-markui-theme="monochrome">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+MARK UI components are client components. In server components, wrap them in a `"use client"` boundary:
+
+```tsx
+// components/MyButton.tsx
+"use client";
+import { Button } from "@markui/core";
+export default function MyButton() {
+  return <Button>Click me</Button>;
+}
+```
+
+### Vite / React
+
+```tsx
+// src/main.tsx
+import "@markui/core/styles";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+
+createRoot(document.getElementById("root")!).render(<App />);
+```
+
+---
+
+## Motion Philosophy
+
+MARK UI doesn't animate things randomly. Every motion decision follows three rules:
+
+**1. Motion communicates state.** A button press, a modal appearing, a toast dismissing — each animation tells the user something happened.
+
+**2. Motion respects the user.** All animations honor `prefers-reduced-motion`. Users who need reduced motion get functional, accessible components without visual noise.
+
+**3. Motion fits the theme.** `cyberpunk` animations are sharp and electric. `arctic` animations are slow and fluid. The theme isn't just colors — it's a complete personality.
+
+---
+
+## Accessibility
+
+MARK UI is built with accessibility as a requirement, not a feature:
+
+- Full keyboard navigation across all components
+- ARIA roles and attributes implemented per WAI-ARIA spec
+- Screen reader tested
+- Reduced motion support via CSS custom properties
+- Focus management in modals and drawers
+
+Read the full [Accessibility guide →](https://markui.vercel.app/docs/accessibility)
 
 ---
 
 ## Roadmap
 
-- [x] Core component library — Phase 1 (19 components)
-- [x] Theme system — CSS variable engine, ThemeProvider, useTheme
-- [x] Launch themes — Monochrome + Cyberpunk
-- [ ] Full documentation site with live component playground
-- [ ] Fun Collection — all 8 themes
-- [ ] Professional Collection — all 7 themes
-- [ ] Mark UI CLI — `npx markui add [component]`
-- [ ] Figma Kit — all components as Figma components
+**v0.1.0** — Current release
+18 components · 6 themes · Full docs · npm publish
+
+**v0.2.0** — Planned
+`Tabs` · `Accordion` · `DropdownMenu` · `Breadcrumbs` · `Progress` · `Slider`
+
+**v0.3.0** — Planned
+Premium templates · Additional theme packs · Form validation guide
+
+Follow the [Changelog →](https://markui.vercel.app/docs/changelog) for updates.
 
 ---
 
-## Status
+## Documentation
 
-This project is actively in development. The component library and theme system are being built in parallel with the documentation site. Follow along or star the repo to stay updated.
+Full documentation, interactive component playgrounds, theme previews, and guides live at:
+
+**[markui.vercel.app/docs](https://markui.vercel.app/docs)**
 
 ---
 
-*MARK UI — Build interfaces that leave a mark.*
+## License
+
+MIT — free to use in personal and commercial projects.
+
+---
+
+<div align="center">
+
+Built with intention. Animated with purpose.
+
+**[markui.vercel.app](https://markui.vercel.app)**
+
+</div>

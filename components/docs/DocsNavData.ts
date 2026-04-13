@@ -4,8 +4,16 @@ export const DOCS_NAV = [
     items: [
       { name: "Introduction", href: "/docs" },
       { name: "Installation", href: "/docs/installation" },
+      { name: "Server Components", href: "/docs/server-components" },
       { name: "Theming Guide", href: "/docs/theming" },
       { name: "Motion Guide", href: "/docs/motion" },
+    ],
+  },
+  {
+    title: "FOUNDATIONS",
+    items: [
+      { name: "Typography", href: "/docs/typography" },
+      { name: "Accessibility", href: "/docs/accessibility" },
     ],
   },
   {
@@ -53,6 +61,12 @@ export const DOCS_NAV = [
       { name: "Professional Collection", href: "/docs/themes/professional" },
       { name: "Fun Collection", href: "/docs/themes/fun" },
       { name: "Custom Themes", href: "/docs/themes/custom" },
+    ],
+  },
+  {
+    title: "RELEASES",
+    items: [
+      { name: "Changelog", href: "/docs/changelog" },
     ],
   },
 ];

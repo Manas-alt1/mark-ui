@@ -1,63 +1,64 @@
 'use client';
 
 // MARK UI — Core Package Barrel Export
-// All 19 Phase 1 components (10 Week 1 + 8 Week 2 + 1 existing)
 
-// Inputs
-export { default as Button } from './components/inputs/Button/Button'
-export type { ButtonProps } from './components/inputs/Button/Button.types'
+// --- Inputs ---
+export { Button } from './components/inputs/Button'
+export type { ButtonProps } from './components/inputs/Button'
 
-export { default as Checkbox } from './components/inputs/Checkbox/Checkbox'
-export type { CheckboxProps } from './components/inputs/Checkbox/Checkbox.types'
+export { Input } from './components/inputs/Input'
+export type { InputProps } from './components/inputs/Input'
 
-export { default as Input } from './components/inputs/Input/Input'
-export type { InputProps } from './components/inputs/Input/Input.types'
+export { Checkbox } from './components/inputs/Checkbox'
+export type { CheckboxProps } from './components/inputs/Checkbox'
 
-export { default as Select } from './components/inputs/Select/Select'
-export type { SelectProps, SelectOption } from './components/inputs/Select/Select.types'
+export { Select } from './components/inputs/Select'
+export type { SelectProps, SelectOption } from './components/inputs/Select'
 
-export { default as Toggle } from './components/inputs/Toggle/Toggle'
-export type { ToggleProps } from './components/inputs/Toggle/Toggle.types'
+export { Toggle } from './components/inputs/Toggle'
+export type { ToggleProps } from './components/inputs/Toggle'
 
-// Display
-export { default as Avatar } from './components/display/Avatar/Avatar'
-export type { AvatarProps } from './components/display/Avatar/Avatar.types'
+// --- Display ---
+export { Avatar } from './components/display/Avatar'
+export type { AvatarProps } from './components/display/Avatar'
 
-export { default as Badge } from './components/display/Badge/Badge'
-export type { BadgeProps } from './components/display/Badge/Badge.types'
+export { Badge } from './components/display/Badge'
+export type { BadgeProps } from './components/display/Badge'
 
-export { default as Card } from './components/display/Card/Card'
-export type { CardProps, CardHeaderProps, CardBodyProps, CardFooterProps } from './components/display/Card/Card.types'
+export { Card, CardHeader, CardBody, CardFooter } from './components/display/Card'
+export type { CardProps, CardHeaderProps, CardBodyProps, CardFooterProps } from './components/display/Card'
 
-export { default as Tag } from './components/display/Tag/Tag'
-export type { TagProps } from './components/display/Tag/Tag.types'
+export { Tag } from './components/display/Tag'
+export type { TagProps } from './components/display/Tag'
 
-// Feedback
-export { default as Alert } from './components/feedback/Alert/Alert'
-export type { AlertProps } from './components/feedback/Alert/Alert.types'
+// --- Feedback & Overlay ---
+export { Alert } from './components/feedback/Alert'
+export type { AlertProps } from './components/feedback/Alert'
 
-export { default as Skeleton } from './components/feedback/Skeleton/Skeleton'
-export type { SkeletonProps } from './components/feedback/Skeleton/Skeleton.types'
+export { Skeleton } from './components/feedback/Skeleton'
+export type { SkeletonProps } from './components/feedback/Skeleton'
 
-export { default as Spinner } from './components/feedback/Spinner/Spinner'
-export type { SpinnerProps } from './components/feedback/Spinner/Spinner.types'
+export { Spinner } from './components/feedback/Spinner'
+export type { SpinnerProps } from './components/feedback/Spinner'
 
-// Layout
-export { default as Container } from './components/layout/Container/Container'
-export type { ContainerProps } from './components/layout/Container/Container.types'
+export { Modal, ModalHeader, ModalBody, ModalFooter } from './components/overlay/Modal'
+export type { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps } from './components/overlay/Modal'
 
-export { default as Divider } from './components/layout/Divider/Divider'
-export type { DividerProps } from './components/layout/Divider/Divider.types'
-
-export { default as Tooltip } from './components/layout/Tooltip/Tooltip'
-export type { TooltipProps } from './components/layout/Tooltip/Tooltip.types'
-
-// Overlay
-export { default as Drawer } from './components/overlay/Drawer/Drawer'
-export type { DrawerProps } from './components/overlay/Drawer/Drawer.types'
-
-export { default as Modal, ModalHeader, ModalBody, ModalFooter } from './components/overlay/Modal/Modal'
-export type { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps } from './components/overlay/Modal/Modal.types'
+export { Drawer } from './components/overlay/Drawer'
+export type { DrawerProps } from './components/overlay/Drawer'
 
 export { Toast, ToastProvider, useToast } from './components/overlay/Toast'
-export type { ToastProps, ToastContextValue } from './components/overlay/Toast/Toast.types'
+export type { ToastProps, ToastContextValue } from './components/overlay/Toast'
+
+// --- Layout ---
+export { Container } from './components/layout/Container'
+export type { ContainerProps } from './components/layout/Container'
+
+export { Divider } from './components/layout/Divider'
+export type { DividerProps } from './components/layout/Divider'
+
+export { Tooltip } from './components/layout/Tooltip'
+export type { TooltipProps } from './components/layout/Tooltip'
+
+// --- Shared Types ---
+export * from './types'

@@ -27,29 +27,6 @@ interface ButtonProps {
 
 declare function Button({ variant, size, isLoading, isDisabled, leftIcon, rightIcon, fullWidth, onClick, children, className, }: ButtonProps): react_jsx_runtime.JSX.Element;
 
-interface CheckboxProps {
-    /** Controlled checked state */
-    checked?: boolean;
-    /** Initial checked state (uncontrolled) */
-    defaultChecked?: boolean;
-    /** Change handler */
-    onChange?: (checked: boolean) => void;
-    /** Disable the checkbox */
-    isDisabled?: boolean;
-    /** Show dash instead of check */
-    isIndeterminate?: boolean;
-    /** Label text */
-    label?: string;
-    /** Description below label */
-    description?: string;
-    /** Checkbox size */
-    size?: 'sm' | 'md' | 'lg';
-    /** Additional CSS class */
-    className?: string;
-}
-
-declare function Checkbox({ checked: controlledChecked, defaultChecked, onChange, isDisabled, isIndeterminate, label, description, size, className, }: CheckboxProps): react_jsx_runtime.JSX.Element;
-
 interface InputProps {
     /** Field label displayed above input */
     label?: string;
@@ -82,6 +59,29 @@ interface InputProps {
 }
 
 declare function Input({ label, placeholder, value, onChange, type, size, isDisabled, isError, isSuccess, errorMessage, helperText, leftIcon, rightIcon, className, }: InputProps): react_jsx_runtime.JSX.Element;
+
+interface CheckboxProps {
+    /** Controlled checked state */
+    checked?: boolean;
+    /** Initial checked state (uncontrolled) */
+    defaultChecked?: boolean;
+    /** Change handler */
+    onChange?: (checked: boolean) => void;
+    /** Disable the checkbox */
+    isDisabled?: boolean;
+    /** Show dash instead of check */
+    isIndeterminate?: boolean;
+    /** Label text */
+    label?: string;
+    /** Description below label */
+    description?: string;
+    /** Checkbox size */
+    size?: 'sm' | 'md' | 'lg';
+    /** Additional CSS class */
+    className?: string;
+}
+
+declare function Checkbox({ checked: controlledChecked, defaultChecked, onChange, isDisabled, isIndeterminate, label, description, size, className, }: CheckboxProps): react_jsx_runtime.JSX.Element;
 
 interface SelectOption {
     value: string;
@@ -197,15 +197,10 @@ interface CardFooterProps {
     className?: string;
 }
 
-declare function CardRoot({ variant, padding, isHoverable, isClickable, onClick, children, className, }: CardProps): react_jsx_runtime.JSX.Element;
+declare function Card({ variant, padding, isHoverable, isClickable, onClick, children, className, }: CardProps): react_jsx_runtime.JSX.Element;
 declare function CardHeader({ children, className }: CardHeaderProps): react_jsx_runtime.JSX.Element;
 declare function CardBody({ children, className }: CardBodyProps): react_jsx_runtime.JSX.Element;
 declare function CardFooter({ children, className }: CardFooterProps): react_jsx_runtime.JSX.Element;
-declare const Card: typeof CardRoot & {
-    Header: typeof CardHeader;
-    Body: typeof CardBody;
-    Footer: typeof CardFooter;
-};
 
 interface TagProps {
     /** Tag content */
@@ -277,6 +272,110 @@ interface SpinnerProps {
 
 declare function Spinner({ size, color, label, className, }: SpinnerProps): react_jsx_runtime.JSX.Element;
 
+interface ModalProps {
+    /** Modal visibility */
+    open: boolean;
+    /** Close handler */
+    onClose: () => void;
+    /** Modal size */
+    size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+    /** Close on backdrop click */
+    closeOnBackdrop?: boolean;
+    /** Close on Escape key */
+    closeOnEscape?: boolean;
+    /** Modal content */
+    children: React.ReactNode;
+    /** Additional CSS class */
+    className?: string;
+}
+interface ModalHeaderProps {
+    /** Header title */
+    title?: string;
+    /** Show close button */
+    showClose?: boolean;
+    /** Close handler */
+    onClose?: () => void;
+    /** Additional content */
+    children?: React.ReactNode;
+}
+interface ModalBodyProps {
+    /** Body content */
+    children: React.ReactNode;
+    /** Padding variant */
+    padding?: 'none' | 'sm' | 'md' | 'lg';
+}
+interface ModalFooterProps {
+    /** Footer content */
+    children: React.ReactNode;
+    /** Alignment */
+    align?: 'left' | 'center' | 'right';
+}
+
+declare function Modal({ open, onClose, size, closeOnBackdrop, closeOnEscape, children, className, }: ModalProps): react.ReactPortal | null;
+declare function ModalHeader({ title, showClose, onClose, children }: ModalHeaderProps): react_jsx_runtime.JSX.Element;
+declare function ModalBody({ children, padding }: ModalBodyProps): react_jsx_runtime.JSX.Element;
+declare function ModalFooter({ children, align }: ModalFooterProps): react_jsx_runtime.JSX.Element;
+
+interface DrawerProps {
+    /** Drawer visibility */
+    open: boolean;
+    /** Close handler */
+    onClose: () => void;
+    /** Slide direction */
+    placement?: 'left' | 'right' | 'top' | 'bottom';
+    /** Drawer size */
+    size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+    /** Show backdrop overlay */
+    showBackdrop?: boolean;
+    /** Close on backdrop click */
+    closeOnBackdrop?: boolean;
+    /** Close on Escape key */
+    closeOnEscape?: boolean;
+    /** Drawer content */
+    children: React.ReactNode;
+    /** Additional CSS class */
+    className?: string;
+}
+
+declare function Drawer({ open, onClose, placement, size, showBackdrop, closeOnBackdrop, closeOnEscape, children, className, }: DrawerProps): react.ReactPortal | null;
+
+interface ToastProps {
+    /** Toast title */
+    title?: string;
+    /** Toast description */
+    description?: string;
+    /** Visual variant */
+    variant?: 'success' | 'error' | 'warning' | 'info';
+    /** Auto-dismiss duration (0 = no auto-dismiss) */
+    duration?: number;
+    /** Manual dismiss handler */
+    onDismiss?: () => void;
+    /** Action button */
+    action?: {
+        label: string;
+        onClick: () => void;
+    };
+    /** Additional CSS class */
+    className?: string;
+}
+interface ToastContextValue {
+    toast: (props: Omit<ToastProps, 'onDismiss'>) => string;
+    dismiss: (id: string) => void;
+    dismissAll: () => void;
+}
+
+declare function Toast({ title, description, variant, duration, onDismiss, action, className, }: ToastProps): react_jsx_runtime.JSX.Element;
+
+declare function useToast(): ToastContextValue;
+interface ToastProviderProps {
+    children: react__default.ReactNode;
+    /** Maximum number of toasts to show at once */
+    maxToasts?: number;
+    /** Position of toast container */
+    position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
+}
+declare function ToastProvider({ children, maxToasts, position }: ToastProviderProps): react_jsx_runtime.JSX.Element;
+
 interface ContainerProps {
     /** Maximum width */
     size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
@@ -324,114 +423,22 @@ interface TooltipProps {
 
 declare function Tooltip({ content, children, placement, showDelay, hideDelay, disabled, className, }: TooltipProps): react_jsx_runtime.JSX.Element;
 
-interface DrawerProps {
-    /** Drawer visibility */
-    open: boolean;
-    /** Close handler */
-    onClose: () => void;
-    /** Slide direction */
-    placement?: 'left' | 'right' | 'top' | 'bottom';
-    /** Drawer size */
-    size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
-    /** Show backdrop overlay */
-    showBackdrop?: boolean;
-    /** Close on backdrop click */
-    closeOnBackdrop?: boolean;
-    /** Close on Escape key */
-    closeOnEscape?: boolean;
-    /** Drawer content */
-    children: React.ReactNode;
-    /** Additional CSS class */
-    className?: string;
+type ThemeId = 'monochrome' | 'arctic' | 'obsidian' | 'ivory' | 'slate' | 'sage' | 'carbon' | 'cyberpunk' | 'shinigami' | 'titan' | 'nebula' | 'matrixx' | 'gotham' | 'akira' | 'hobbit';
+type ThemeCollection = 'professional' | 'fun';
+type ThemeStatus = 'live' | 'planned';
+interface ThemeTokens {
+    accentPrimary: string;
+    accentSecondary: string;
+    accentGlow: string;
+    accentSubtle: string;
+}
+interface Theme {
+    id: ThemeId;
+    name: string;
+    collection: ThemeCollection;
+    status: ThemeStatus;
+    personality: string;
+    tokens: ThemeTokens;
 }
 
-declare function Drawer({ open, onClose, placement, size, showBackdrop, closeOnBackdrop, closeOnEscape, children, className, }: DrawerProps): react.ReactPortal | null;
-
-interface ModalProps {
-    /** Modal visibility */
-    open: boolean;
-    /** Close handler */
-    onClose: () => void;
-    /** Modal size */
-    size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
-    /** Close on backdrop click */
-    closeOnBackdrop?: boolean;
-    /** Close on Escape key */
-    closeOnEscape?: boolean;
-    /** Modal content */
-    children: React.ReactNode;
-    /** Additional CSS class */
-    className?: string;
-}
-interface ModalHeaderProps {
-    /** Header title */
-    title?: string;
-    /** Show close button */
-    showClose?: boolean;
-    /** Close handler */
-    onClose?: () => void;
-    /** Additional content */
-    children?: React.ReactNode;
-}
-interface ModalBodyProps {
-    /** Body content */
-    children: React.ReactNode;
-    /** Padding variant */
-    padding?: 'none' | 'sm' | 'md' | 'lg';
-}
-interface ModalFooterProps {
-    /** Footer content */
-    children: React.ReactNode;
-    /** Alignment */
-    align?: 'left' | 'center' | 'right';
-}
-
-declare function ModalRoot({ open, onClose, size, closeOnBackdrop, closeOnEscape, children, className, }: ModalProps): react.ReactPortal | null;
-declare const Modal: typeof ModalRoot & {
-    Header: typeof ModalHeader;
-    Body: typeof ModalBody;
-    Footer: typeof ModalFooter;
-};
-
-declare function ModalHeader({ title, showClose, onClose, children }: ModalHeaderProps): react_jsx_runtime.JSX.Element;
-declare function ModalBody({ children, padding }: ModalBodyProps): react_jsx_runtime.JSX.Element;
-declare function ModalFooter({ children, align }: ModalFooterProps): react_jsx_runtime.JSX.Element;
-
-interface ToastProps {
-    /** Toast title */
-    title?: string;
-    /** Toast description */
-    description?: string;
-    /** Visual variant */
-    variant?: 'success' | 'error' | 'warning' | 'info';
-    /** Auto-dismiss duration (0 = no auto-dismiss) */
-    duration?: number;
-    /** Manual dismiss handler */
-    onDismiss?: () => void;
-    /** Action button */
-    action?: {
-        label: string;
-        onClick: () => void;
-    };
-    /** Additional CSS class */
-    className?: string;
-}
-interface ToastContextValue {
-    toast: (props: Omit<ToastProps, 'onDismiss'>) => string;
-    dismiss: (id: string) => void;
-    dismissAll: () => void;
-}
-
-declare function Toast({ title, description, variant, duration, onDismiss, action, className, }: ToastProps): react_jsx_runtime.JSX.Element;
-
-declare function useToast(): ToastContextValue;
-interface ToastProviderProps {
-    children: react__default.ReactNode;
-    /** Maximum number of toasts to show at once */
-    maxToasts?: number;
-    /** Position of toast container */
-    position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
-}
-declare function ToastProvider({ children, maxToasts, position }: ToastProviderProps): react_jsx_runtime.JSX.Element;
-
-export { Alert, type AlertProps, Avatar, type AvatarProps, Badge, type BadgeProps, Button, type ButtonProps, Card, type CardBodyProps, type CardFooterProps, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, Container, type ContainerProps, Divider, type DividerProps, Drawer, type DrawerProps, Input, type InputProps, Modal, ModalBody, type ModalBodyProps, ModalFooter, type ModalFooterProps, ModalHeader, type ModalHeaderProps, type ModalProps, Select, type SelectOption, type SelectProps, Skeleton, type SkeletonProps, Spinner, type SpinnerProps, Tag, type TagProps, Toast, type ToastContextValue, type ToastProps, ToastProvider, Toggle, type ToggleProps, Tooltip, type TooltipProps, useToast };
+export { Alert, type AlertProps, Avatar, type AvatarProps, Badge, type BadgeProps, Button, type ButtonProps, Card, CardBody, type CardBodyProps, CardFooter, type CardFooterProps, CardHeader, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, Container, type ContainerProps, Divider, type DividerProps, Drawer, type DrawerProps, Input, type InputProps, Modal, ModalBody, type ModalBodyProps, ModalFooter, type ModalFooterProps, ModalHeader, type ModalHeaderProps, type ModalProps, Select, type SelectOption, type SelectProps, Skeleton, type SkeletonProps, Spinner, type SpinnerProps, Tag, type TagProps, type Theme, type ThemeCollection, type ThemeId, type ThemeStatus, type ThemeTokens, Toast, type ToastContextValue, type ToastProps, ToastProvider, Toggle, type ToggleProps, Tooltip, type TooltipProps, useToast };
