@@ -1,0 +1,48 @@
+{
+  "name": "@markui/core",
+  "version": "0.1.0",
+  "description": "Motion-first React component library",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./dist/styles.css"
+  ],
+  "scripts": {
+    "build:css": "tailwindcss -i src/styles/index.css -o dist/styles.css",
+    "build:js": "tsup",
+    "build": "rm -rf dist && pnpm build:css && pnpm build:js",
+    "dev": "concurrently \"pnpm build:css --watch\" \"pnpm build:js --watch\"",
+    "lint": "eslint src",
+    "preflight": "tsx scripts/preflight.ts",
+    "prepublishOnly": "pnpm build && pnpm preflight",
+    "publish:dry": "pnpm preflight && npm pack --dry-run"
+  },
+  "peerDependencies": {
+    "framer-motion": ">=12",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "concurrently": "^9.1.2",
+    "tailwindcss": "^4.0.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

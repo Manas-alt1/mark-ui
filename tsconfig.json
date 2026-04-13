@@ -21,7 +21,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@mark-ui/*": ["packages/core/*"]
+      "@mark-ui/*": ["packages/core/src/*"]
     }
   },
   "include": [

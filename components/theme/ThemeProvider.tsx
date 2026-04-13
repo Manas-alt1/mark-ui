@@ -1,23 +1,16 @@
 "use client";
 
 import {
-  createContext,
-  useContext,
   useState,
   useEffect,
   useCallback,
+  useContext,
   useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { applyTheme, defaultTheme, getSafeThemeId, isThemeLive, type ThemeId } from "./themes";
-import { FunAnimationProvider } from "../../packages/core/animations/useFunAnimation";
-
-interface ThemeContextValue {
-  theme: ThemeId;
-  setTheme: (theme: ThemeId) => void;
-}
-
-const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
+import { ThemeContext, type ThemeContextValue } from "../../packages/core/src/theme/ThemeContext";
+import { FunAnimationProvider } from "../../packages/core/src/animations/useFunAnimation";
 
 const STORAGE_KEY = "mark-ui-theme";
 
