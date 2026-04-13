@@ -1,6 +1,6 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import * as react from 'react';
-import react__default from 'react';
+import * as React$1 from 'react';
+import React__default from 'react';
 
 interface ButtonProps {
     /** Visual style */
@@ -197,7 +197,11 @@ interface CardFooterProps {
     className?: string;
 }
 
-declare function Card({ variant, padding, isHoverable, isClickable, onClick, children, className, }: CardProps): react_jsx_runtime.JSX.Element;
+declare const Card: React__default.FC<CardProps> & {
+    Header: typeof CardHeader;
+    Body: typeof CardBody;
+    Footer: typeof CardFooter;
+};
 declare function CardHeader({ children, className }: CardHeaderProps): react_jsx_runtime.JSX.Element;
 declare function CardBody({ children, className }: CardBodyProps): react_jsx_runtime.JSX.Element;
 declare function CardFooter({ children, className }: CardFooterProps): react_jsx_runtime.JSX.Element;
@@ -311,7 +315,11 @@ interface ModalFooterProps {
     align?: 'left' | 'center' | 'right';
 }
 
-declare function Modal({ open, onClose, size, closeOnBackdrop, closeOnEscape, children, className, }: ModalProps): react.ReactPortal | null;
+declare const Modal: React__default.FC<ModalProps> & {
+    Header: typeof ModalHeader;
+    Body: typeof ModalBody;
+    Footer: typeof ModalFooter;
+};
 declare function ModalHeader({ title, showClose, onClose, children }: ModalHeaderProps): react_jsx_runtime.JSX.Element;
 declare function ModalBody({ children, padding }: ModalBodyProps): react_jsx_runtime.JSX.Element;
 declare function ModalFooter({ children, align }: ModalFooterProps): react_jsx_runtime.JSX.Element;
@@ -337,7 +345,7 @@ interface DrawerProps {
     className?: string;
 }
 
-declare function Drawer({ open, onClose, placement, size, showBackdrop, closeOnBackdrop, closeOnEscape, children, className, }: DrawerProps): react.ReactPortal | null;
+declare function Drawer({ open, onClose, placement, size, showBackdrop, closeOnBackdrop, closeOnEscape, children, className, }: DrawerProps): React$1.ReactPortal | null;
 
 interface ToastProps {
     /** Toast title */
@@ -368,7 +376,7 @@ declare function Toast({ title, description, variant, duration, onDismiss, actio
 
 declare function useToast(): ToastContextValue;
 interface ToastProviderProps {
-    children: react__default.ReactNode;
+    children: React__default.ReactNode;
     /** Maximum number of toasts to show at once */
     maxToasts?: number;
     /** Position of toast container */

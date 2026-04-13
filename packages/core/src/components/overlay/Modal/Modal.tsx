@@ -1,7 +1,7 @@
 'use client'
 
+import React, { useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import type { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps } from './Modal.types'
 import { useFunAnimation } from '../../../animations/useFunAnimation'
@@ -41,7 +41,11 @@ const FOCUSABLE_SELECTOR = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(', ')
 
-export function Modal({
+export const Modal: React.FC<ModalProps> & {
+  Header: typeof ModalHeader
+  Body: typeof ModalBody
+  Footer: typeof ModalFooter
+} = ({
   open,
   onClose,
   size = 'md',
@@ -49,7 +53,7 @@ export function Modal({
   closeOnEscape = true,
   children,
   className = '',
-}: ModalProps) {
+}) => {
   const modalRef = useRef<HTMLDivElement>(null)
   const backdropRef = useRef<HTMLDivElement>(null)
   const previousActiveElement = useRef<HTMLElement | null>(null)
@@ -374,5 +378,9 @@ export function ModalFooter({ children, align = 'right' }: ModalFooterProps) {
     </div>
   )
 }
+
+Modal.Header = ModalHeader
+Modal.Body = ModalBody
+Modal.Footer = ModalFooter
 
 export default Modal

@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import type {
   CardProps,
@@ -38,7 +39,11 @@ const PADDING_MAP = {
   lg: 'var(--mark-space-8)',
 } as const
 
-export function Card({
+export const Card: React.FC<CardProps> & {
+  Header: typeof CardHeader
+  Body: typeof CardBody
+  Footer: typeof CardFooter
+} = ({
   variant = 'default',
   padding = 'md',
   isHoverable = false,
@@ -46,7 +51,7 @@ export function Card({
   onClick,
   children,
   className = '',
-}: CardProps) {
+}) => {
   const v = VARIANT_STYLES[variant]
   const interactive = isHoverable || isClickable
 
@@ -130,5 +135,9 @@ export function CardFooter({ children, className = '' }: CardFooterProps) {
     </div>
   )
 }
+
+Card.Header = CardHeader
+Card.Body = CardBody
+Card.Footer = CardFooter
 
 export default Card
