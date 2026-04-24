@@ -45,12 +45,12 @@ export default function GetStartedCTA() {
         >
           <code className="install-code">npm install @markui/core</code>
           <button
-            className="copy-btn"
+            className="copy-btn active-press"
             onClick={handleCopy}
             type="button"
             aria-label="Copy install command"
           >
-            {copied ? "Copied ✓" : "Copy"}
+            {copied ? "COPIED ✓" : "COPY"}
           </button>
         </motion.div>
 
@@ -61,8 +61,8 @@ export default function GetStartedCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Link href="/docs" className="btn-primary">
-            Read the Docs →
+          <Link href="/docs" className="btn-primary active-press">
+            READ THE DOCS →
           </Link>
           <a
             href="https://github.com/Manas-bhavsar/mark-ui"
@@ -70,7 +70,7 @@ export default function GetStartedCTA() {
             rel="noopener noreferrer"
             className="btn-ghost"
           >
-            View on GitHub
+            VIEW ON GITHUB
           </a>
         </motion.div>
       </div>

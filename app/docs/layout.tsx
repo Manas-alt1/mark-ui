@@ -1,7 +1,7 @@
 import "@/styles/docs.css";
 import DocsSidebar from "@/components/docs/DocsSidebar";
 import DocsTOC from "@/components/docs/DocsTOC";
-import { ToastProvider } from "@/packages/core";
+import { ToastProvider } from "@markui/core";
 
 export const metadata = {
   title: "MARK UI Docs",
@@ -15,7 +15,7 @@ export default function DocsLayout({
 }) {
   return (
     <ToastProvider>
-      <div className="docs-layout">
+      <div className="docs-layout readable-page">
         {/* Left Sidebar */}
         <DocsSidebar />
 

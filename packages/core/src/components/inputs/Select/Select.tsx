@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useId } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { SelectProps } from './Select.types'
 import { useFunAnimation } from '../../../animations/useFunAnimation'
@@ -32,22 +32,19 @@ export default function Select({
   className = '',
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedValue, setSelectedValue] = useState(value || defaultValue || '')
+  const [internalValue, setInternalValue] = useState(defaultValue || '')
   const [focusedIndex, setFocusedIndex] = useState(-1)
   const [focused, setFocused] = useState(false)
   
   const selectRef = useRef<HTMLDivElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const { triggerAnimation } = useFunAnimation()
+  const listboxId = useId()
   
   const s = SIZE_STYLES[size]
 
-  // Update selected value when controlled value changes
-  useEffect(() => {
-    if (value !== undefined) {
-      setSelectedValue(value)
-    }
-  }, [value])
+  // Derived state: prioritize controlled 'value' over internal state
+  const selectedValue = value !== undefined ? value : internalValue
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -84,7 +81,7 @@ export default function Select({
     const option = options.find(opt => opt.value === optionValue)
     if (option?.disabled) return
 
-    setSelectedValue(optionValue)
+    setInternalValue(optionValue)
     setIsOpen(false)
     setFocusedIndex(-1)
     
@@ -177,6 +174,7 @@ export default function Select({
         role="combobox"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
+        aria-controls={listboxId}
         aria-label={placeholder}
         tabIndex={disabled ? -1 : 0}
         onKeyDown={handleKeyDown}
@@ -238,6 +236,7 @@ export default function Select({
         {isOpen && (
           <motion.div
             ref={dropdownRef}
+            id={listboxId}
             role="listbox"
             aria-label="Options"
             {...dropdownAnimation}

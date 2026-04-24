@@ -83,9 +83,10 @@ export default function Skeleton({
 
   // Base styles for all skeleton variants
   const baseStyles = useMemo(() => ({
-    background: animation === 'wave' 
+    backgroundColor: 'var(--mark-bg-elevated)',
+    backgroundImage: animation === 'wave' 
       ? `linear-gradient(90deg, var(--mark-bg-elevated) 25%, var(--mark-bg-overlay) 50%, var(--mark-bg-elevated) 75%)`
-      : 'var(--mark-bg-elevated)',
+      : 'none',
     backgroundSize: animation === 'wave' ? '200px 100%' : 'auto',
     backgroundRepeat: 'no-repeat',
     display: 'block',
@@ -117,7 +118,7 @@ export default function Skeleton({
   // Render multiple lines for text variant
   if (variant === 'text' && lines > 1) {
     return (
-      <div className={className} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--mark-space-2)' }}>
+      <div className={className} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--mark-space-2)', width: '100%' }}>
         {Array.from({ length: lines }, (_, index) => (
           <motion.div
             key={index}
@@ -125,7 +126,8 @@ export default function Skeleton({
             style={{
               ...baseStyles,
               // Make last line slightly shorter for more realistic text appearance
-              width: index === lines - 1 && !width ? '75%' : baseStyles.width,
+              width: index === lines - 1 && (!width || width === '100%') ? '75%' : baseStyles.width,
+              height: baseStyles.height || '1em',
             }}
             variants={animationConfig}
             initial="initial"

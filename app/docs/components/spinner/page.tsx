@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Spinner, Button } from "@/packages/core";
+import { Spinner, Button } from "@markui/core";
 
 export default function SpinnerDocPage() {
   const [size, setSize] = useState<"sm" | "md" | "lg" | "xl">("md");

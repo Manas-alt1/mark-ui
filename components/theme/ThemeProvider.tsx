@@ -9,8 +9,8 @@ import {
   type ReactNode,
 } from "react";
 import { applyTheme, defaultTheme, getSafeThemeId, isThemeLive, type ThemeId } from "./themes";
-import { ThemeContext, type ThemeContextValue } from "../../packages/core/src/theme/ThemeContext";
-import { FunAnimationProvider } from "../../packages/core/src/animations/useFunAnimation";
+import { ThemeContext, type ThemeContextValue } from "@markui/core/theme/ThemeContext";
+import { FunAnimationProvider } from "@markui/core/animations/useFunAnimation";
 
 const STORAGE_KEY = "mark-ui-theme";
 

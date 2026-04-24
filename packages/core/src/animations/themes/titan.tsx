@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { AnimationInstance } from '../useFunAnimation';
 
@@ -28,7 +28,7 @@ function TitanClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => voi
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
-  const debris = React.useRef(
+  const debris = useMemo(() => 
     Array.from({ length: 16 }).map(() => ({
       angle: Math.random() * Math.PI * 2,
       speed: 80 + Math.random() * 120,
@@ -38,8 +38,9 @@ function TitanClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => voi
       color: ['#8B6914', '#2D5A3D', '#5C4A1E'][Math.floor(Math.random() * 3)],
       rotSpeed: (Math.random() - 0.5) * 1440,
       lifetime: 600 + Math.random() * 400,
-    }))
-  ).current;
+    })),
+    []
+  );
 
   const slashAngles = [30, 90, 150];
 
@@ -147,13 +148,14 @@ function TitanToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () => 
     }
   }, []);
 
-  const dustClouds = React.useRef(
+  const dustClouds = useMemo(() => 
     Array.from({ length: 8 }).map(() => ({
       x: (Math.random() - 0.5) * 60,
       size: 20 + Math.random() * 20,
       delay: Math.random() * 0.1,
-    }))
-  ).current;
+    })),
+    []
+  );
 
   return (
     <>
@@ -229,11 +231,12 @@ function TitanToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () => 
 
 // ─── CHECK — Military Brand ───────────────────────────────────────────────
 function TitanCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const smokeParticles = React.useRef(
+  const smokeParticles = useMemo(() => 
     Array.from({ length: 4 }).map(() => ({
       dx: (Math.random() - 0.5) * 10,
-    }))
-  ).current;
+    })),
+    []
+  );
 
   return (
     <>
@@ -298,13 +301,14 @@ function TitanCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => voi
 
 // ─── MOUNT — Parachute Drop ───────────────────────────────────────────────
 function TitanMount({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const dustParticles = React.useRef(
+  const dustParticles = useMemo(() => 
     Array.from({ length: 6 }).map((_, i) => ({
       dir: i % 2 === 0 ? 'left' : 'right' as 'left' | 'right',
       x: ((i % 2 === 0 ? -1 : 1) * (20 + Math.random() * 30)),
       size: 12 + Math.random() * 8,
-    }))
-  ).current;
+    })),
+    []
+  );
 
   return (
     <>
@@ -378,6 +382,7 @@ function TitanDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () => v
           width: rect.width,
           height: rect.height,
           backgroundColor: 'rgba(255,255,255,0.05)',
+          transformOrigin: 'bottom',
           pointerEvents: 'none',
         }}
       />

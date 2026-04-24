@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Toggle } from "@/packages/core";
+import { Toggle } from "@markui/core";
 
 export default function ToggleDocPage() {
   const [checked, setChecked] = useState(false);

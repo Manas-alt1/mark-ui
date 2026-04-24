@@ -11,38 +11,57 @@ const navLinks = [
 ];
 
 const connectLinks = [
-  { href: "https://github.com/Manas-bhavsar", label: "GitHub", external: true },
-  { href: "mailto:manas.bhavsar45@gmail.com", label: "Email", external: true },
+  { href: "https://github.com/Manas-bhavsar", label: "GITHUB", external: true },
+  { href: "mailto:manas.bhavsar45@gmail.com", label: "EMAIL", external: true },
 ];
 
 export default function Footer() {
   return (
     <footer
       style={{
-        backgroundColor: "var(--mark-bg-surface)",
-        borderTop: "1px solid var(--mark-border)",
+        width: "100%",
+        borderTop: "6px solid var(--mark-fg)",
+        backgroundColor: "var(--mark-bg)",
+        position: "relative",
+        zIndex: 50,
+        transition: `
+          background-color var(--mark-duration-normal) var(--mark-ease-smooth),
+          border-color var(--mark-duration-normal) var(--mark-ease-smooth)
+        `,
       }}
     >
       {/* Main Footer */}
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 32px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Left — Brand */}
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <span
-              className="text-lg font-extrabold tracking-tight"
-              style={{ color: "var(--mark-accent-primary)", fontFamily: "var(--mark-font-display)" }}
+              style={{
+                fontFamily: "var(--mark-font-display)",
+                fontSize: 32,
+                color: "var(--mark-accent-primary)",
+                transition: "color var(--mark-duration-normal) var(--mark-ease-smooth)",
+              }}
             >
               MARK UI
             </span>
             <p
-              className="mt-3 text-sm leading-relaxed"
-              style={{ color: "var(--mark-fg)", opacity: 0.6 }}
+              style={{
+                fontFamily: "var(--mark-font-hand)",
+                fontSize: 18,
+                color: "var(--mark-fg)",
+                opacity: 0.8,
+              }}
             >
               Build interfaces that leave a mark.
             </p>
             <p
-              className="mt-1 text-xs"
-              style={{ color: "var(--mark-fg)", opacity: 0.35 }}
+              style={{
+                fontFamily: "var(--mark-font-hand)",
+                fontSize: 14,
+                color: "var(--mark-fg)",
+                opacity: 0.6,
+              }}
             >
               Open source. MIT licensed.
             </p>
@@ -51,31 +70,43 @@ export default function Footer() {
           {/* Center — Navigate */}
           <div>
             <h4
-              className="text-xs font-bold uppercase tracking-wider mb-4"
-              style={{ color: "var(--mark-fg)", opacity: 0.4 }}
+              style={{
+                fontFamily: "var(--mark-font-display)",
+                fontSize: 18,
+                color: "var(--mark-fg)",
+                marginBottom: 16,
+                borderBottom: "2px solid var(--mark-fg)",
+                display: "inline-block",
+                paddingBottom: 4,
+              }}
             >
-              Navigate
+              NAVIGATE
             </h4>
-            <ul className="space-y-2.5">
+            <ul style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm"
                     style={{
+                      fontFamily: "var(--mark-font-hand)",
+                      fontSize: 18,
                       color: "var(--mark-fg)",
-                      opacity: 0.6,
-                      transition: `color var(--mark-duration-fast) var(--mark-ease-smooth), opacity var(--mark-duration-fast) var(--mark-ease-smooth)`,
+                      textDecoration: "underline",
+                      textDecorationColor: "transparent",
+                      textDecorationThickness: "2px",
+                      textUnderlineOffset: "4px",
+                      transition: `
+                        color var(--mark-duration-fast) var(--mark-ease-smooth),
+                        text-decoration-color var(--mark-duration-fast) var(--mark-ease-smooth)
+                      `,
                     }}
                     onMouseEnter={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = "var(--mark-accent-primary)";
-                      el.style.opacity = "1";
+                      (e.currentTarget as HTMLElement).style.color = "var(--mark-accent-primary)";
+                      (e.currentTarget as HTMLElement).style.textDecorationColor = "var(--mark-accent-primary)";
                     }}
                     onMouseLeave={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = "var(--mark-fg)";
-                      el.style.opacity = "0.6";
+                      (e.currentTarget as HTMLElement).style.color = "var(--mark-fg)";
+                      (e.currentTarget as HTMLElement).style.textDecorationColor = "transparent";
                     }}
                   >
                     {link.label}
@@ -88,33 +119,45 @@ export default function Footer() {
           {/* Right — Connect */}
           <div>
             <h4
-              className="text-xs font-bold uppercase tracking-wider mb-4"
-              style={{ color: "var(--mark-fg)", opacity: 0.4 }}
+              style={{
+                fontFamily: "var(--mark-font-display)",
+                fontSize: 18,
+                color: "var(--mark-fg)",
+                marginBottom: 16,
+                borderBottom: "2px solid var(--mark-fg)",
+                display: "inline-block",
+                paddingBottom: 4,
+              }}
             >
-              Connect
+              CONNECT
             </h4>
-            <ul className="space-y-2.5">
+            <ul style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {connectLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="text-sm"
                     style={{
+                      fontFamily: "var(--mark-font-hand)",
+                      fontSize: 18,
                       color: "var(--mark-fg)",
-                      opacity: 0.6,
-                      transition: `color var(--mark-duration-fast) var(--mark-ease-smooth), opacity var(--mark-duration-fast) var(--mark-ease-smooth)`,
+                      textDecoration: "underline",
+                      textDecorationColor: "transparent",
+                      textDecorationThickness: "2px",
+                      textUnderlineOffset: "4px",
+                      transition: `
+                        color var(--mark-duration-fast) var(--mark-ease-smooth),
+                        text-decoration-color var(--mark-duration-fast) var(--mark-ease-smooth)
+                      `,
                     }}
                     onMouseEnter={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = "var(--mark-accent-primary)";
-                      el.style.opacity = "1";
+                      (e.currentTarget as HTMLElement).style.color = "var(--mark-accent-primary)";
+                      (e.currentTarget as HTMLElement).style.textDecorationColor = "var(--mark-accent-primary)";
                     }}
                     onMouseLeave={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = "var(--mark-fg)";
-                      el.style.opacity = "0.6";
+                      (e.currentTarget as HTMLElement).style.color = "var(--mark-fg)";
+                      (e.currentTarget as HTMLElement).style.textDecorationColor = "transparent";
                     }}
                   >
                     {link.label}
@@ -128,23 +171,40 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div
-        className="border-t px-6 py-4"
-        style={{ borderColor: "var(--mark-border)" }}
+        style={{
+          borderTop: "3px dashed var(--mark-fg)",
+          padding: "24px 32px",
+        }}
       >
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p
-            className="text-xs"
-            style={{ color: "var(--mark-fg)", opacity: 0.35 }}
-          >
-            © {new Date().getFullYear()} Mark UI. All rights reserved.
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 16,
+            fontFamily: "var(--mark-font-hand)",
+            color: "var(--mark-fg)",
+            fontSize: 16,
+          }}
+        >
+          <p style={{ opacity: 0.8 }}>
+            © {new Date().getFullYear()} MARK UI. All rights reserved.
           </p>
-          <p className="text-xs" style={{ color: "var(--mark-fg)", opacity: 0.35 }}>
+          <p style={{ opacity: 0.8 }}>
             Built with{" "}
             <span
-              className="font-semibold"
-              style={{ color: "var(--mark-accent-primary)", opacity: 1 }}
+              style={{
+                color: "var(--mark-accent-primary)",
+                fontFamily: "var(--mark-font-display)",
+                textDecoration: "underline",
+                textDecorationStyle: "dotted",
+                textUnderlineOffset: "3px",
+              }}
             >
-              Mark UI
+              MARK UI
             </span>
           </p>
         </div>

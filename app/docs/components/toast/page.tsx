@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Button, useToast } from "@/packages/core";
+import { Button, useToast } from "@markui/core";
 
 export default function ToastDocPage() {
   const { toast } = useToast();

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Avatar } from "@/packages/core";
+import { Avatar } from "@markui/core";
 
 export default function AvatarDocPage() {
   const [size, setSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">("md");
@@ -24,7 +24,7 @@ export default function AvatarDocPage() {
           alt={mode === "initials" ? "Jane Doe" : undefined}
           size={size}
           shape={shape}
-          status={status !== "none" ? status as any : undefined}
+          status={status !== "none" ? status as Exclude<typeof status, "none"> : undefined}
         />
       </div>
 
@@ -35,7 +35,7 @@ export default function AvatarDocPage() {
           
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Render Mode</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={mode} onChange={(e) => setMode(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={mode} onChange={(e) => setMode(e.target.value as typeof mode)}>
               <option value="image">Image Source</option>
               <option value="initials">Initials</option>
               <option value="fallback">Anonymous/Fallback</option>
@@ -44,7 +44,7 @@ export default function AvatarDocPage() {
 
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Size</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={size} onChange={(e) => setSize(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={size} onChange={(e) => setSize(e.target.value as typeof size)}>
               <option value="xs">xs</option>
               <option value="sm">sm</option>
               <option value="md">md</option>
@@ -55,7 +55,7 @@ export default function AvatarDocPage() {
 
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Shape</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={shape} onChange={(e) => setShape(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={shape} onChange={(e) => setShape(e.target.value as typeof shape)}>
               <option value="circle">circle</option>
               <option value="square">square</option>
             </select>
@@ -63,7 +63,7 @@ export default function AvatarDocPage() {
 
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Status Dot</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={status} onChange={(e) => setStatus(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={status} onChange={(e) => setStatus(e.target.value as typeof status)}>
               <option value="none">none</option>
               <option value="online">online</option>
               <option value="offline">offline</option>
@@ -124,7 +124,7 @@ export default function AvatarDocPage() {
       <ul style={{ color: "var(--mark-fg)", opacity: 0.8, lineHeight: 1.7, fontSize: 15, marginBottom: 48 }}>
         <li><strong>Image:</strong> <code>alt</code> text pulled from name prop.</li>
         <li><strong>Initials:</strong> <code>aria-label</code> provides full name to screen readers.</li>
-        <li><strong>Status dot:</strong> <code>aria-label</code> describes status — "Online", "Busy" etc.</li>
+        <li><strong>Status dot:</strong> <code>aria-label</code> describes status — &quot;Online&quot;, &quot;Busy&quot; etc.</li>
       </ul>
 
       {/* PROPS */}
@@ -138,9 +138,9 @@ export default function AvatarDocPage() {
             <tr><td><code>src</code></td><td><code>string</code></td><td>—</td><td>Image URL</td></tr>
             <tr><td><code>alt</code></td><td><code>string</code></td><td>—</td><td>Image alt text (defaults to name)</td></tr>
             <tr><td><code>name</code></td><td><code>string</code></td><td>—</td><td>Used for initials + alt text</td></tr>
-            <tr><td><code>size</code></td><td><code>'xs'|'sm'|'md'|'lg'|'xl'</code></td><td><code>'md'</code></td><td>Avatar size</td></tr>
-            <tr><td><code>shape</code></td><td><code>'circle'|'square'</code></td><td><code>'circle'</code></td><td>Border radius shape</td></tr>
-            <tr><td><code>status</code></td><td><code>'online'|'offline'|'busy'|'away'</code></td><td>—</td><td>Status indicator</td></tr>
+            <tr><td><code>size</code></td><td><code>&apos;xs&apos;|&apos;sm&apos;|&apos;md&apos;|&apos;lg&apos;|&apos;xl&apos;</code></td><td><code>&apos;md&apos;</code></td><td>Avatar size</td></tr>
+            <tr><td><code>shape</code></td><td><code>&apos;circle&apos;|&apos;square&apos;</code></td><td><code>&apos;circle&apos;</code></td><td>Border radius shape</td></tr>
+            <tr><td><code>status</code></td><td><code>&apos;online&apos;|&apos;offline&apos;|&apos;busy&apos;|&apos;away&apos;</code></td><td>—</td><td>Status indicator</td></tr>
           </tbody>
         </table>
       </div>
@@ -148,7 +148,7 @@ export default function AvatarDocPage() {
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
       <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Avatar {"}"} from '@markui/core'</code></pre>
+        <pre><code>import {"{"} Avatar {"}"} from &apos;@markui/core&apos;</code></pre>
       </div>
 
     </ComponentDocTemplate>

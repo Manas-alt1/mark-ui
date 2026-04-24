@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert } from "@/packages/core";
+import { Alert } from "@markui/core";
 import Link from "next/link";
 
 export default function AccessibilityPage() {
@@ -38,13 +38,13 @@ export default function AccessibilityPage() {
       <ul className="docs-body-text">
         <li>All CSS transitions are set to <code>0.01ms</code>.</li>
         <li>Framer Motion animations are disabled.</li>
-        <li>Theme-specific "Fun" animations (easter eggs) are completely stripped.</li>
+        <li>Theme-specific &quot;Fun&quot; animations (easter eggs) are completely stripped.</li>
         <li>Layout shifts caused by animation entry/exit are eliminated.</li>
       </ul>
 
       <Alert variant="info" title="Testing Reduced Motion" isDismissible={false}>
         You can test this in Chrome DevTools by opening the Command Menu (⌘⇧P), 
-        typing "Rendering", and selecting "Emulate CSS prefers-reduced-motion: reduce".
+        typing &quot;Rendering&quot;, and selecting &quot;Emulate CSS prefers-reduced-motion: reduce&quot;.
       </Alert>
 
       <h2>Keyboard Navigation</h2>
@@ -94,8 +94,8 @@ export default function AccessibilityPage() {
       <h2>ARIA & Semantics</h2>
       <p className="docs-body-text">
         We utilize ARIA attributes only when native HTML semantics are insufficient. 
-        For example, our <code>Modal</code> uses <code>role="dialog"</code> and 
-        <code>aria-modal="true"</code>, while <code>Alert</code> uses <code>role="alert"</code> 
+        For example, our <code>Modal</code> uses <code>role=&quot;dialog&quot;</code> and 
+        <code>aria-modal=&quot;true&quot;</code>, while <code>Alert</code> uses <code>role=&quot;alert&quot;</code> 
         for immediate screen reader announcement.
       </p>
 

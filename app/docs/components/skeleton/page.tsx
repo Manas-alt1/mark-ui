@@ -1,81 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Skeleton } from "@/packages/core";
+import { Skeleton } from "@markui/core";
 
 export default function SkeletonDocPage() {
-  const [variant, setVariant] = useState<"text" | "circle" | "rectangle">("text");
-  const [animation, setAnimation] = useState<"pulse" | "wave" | "none">("pulse");
-  const [lines, setLines] = useState(3);
-  const [width, setWidth] = useState<string>("100%");
-  const [height, setHeight] = useState<string>("auto");
-
   return (
     <ComponentDocTemplate
       name="Skeleton"
       category="Feedback"
       description="Loading placeholder that mimics the shape of incoming content. Reduces perceived load time by showing structure before data."
     >
-      {/* PREVIEW */}
-      <h3 id="preview" className="doc-section-label">PREVIEW</h3>
-      <div className="doc-preview-stage">
-        <div style={{ width: "100%", maxWidth: 400 }}>
-          <Skeleton
-            variant={variant}
-            animation={animation}
-            lines={lines}
-            width={width !== "auto" && width !== "100%" ? width : undefined}
-            height={height !== "auto" ? height : undefined}
-          />
-        </div>
-      </div>
-
-      {/* PLAYGROUND */}
-      <h3 id="playground" className="doc-section-label">PLAYGROUND</h3>
-      <div className="doc-playground-panel">
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 24 }}>
-          
-          <div>
-            <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Variant</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={variant} onChange={(e) => setVariant(e.target.value as any)}>
-              <option value="text">text</option>
-              <option value="circle">circle</option>
-              <option value="rectangle">rectangle</option>
-            </select>
-          </div>
-
-          <div>
-            <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Lines (Text only)</label>
-            <input 
-              type="number" 
-              value={lines} 
-              onChange={(e) => setLines(Number(e.target.value))}
-              disabled={variant !== "text"}
-              style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4, opacity: variant === "text" ? 1 : 0.5 }}
-            />
-          </div>
-
-          <div>
-            <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Dimensions</label>
-            <div style={{ display: "flex", gap: 8 }}>
-              <input type="text" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="W" style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} />
-              <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} placeholder="H" style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} />
-            </div>
-          </div>
-
-          <div>
-            <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Animation</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={animation} onChange={(e) => setAnimation(e.target.value as any)}>
-              <option value="pulse">pulse</option>
-              <option value="wave">wave</option>
-              <option value="none">none</option>
-            </select>
-          </div>
-
-        </div>
-      </div>
-
       {/* VARIANTS */}
       <h3 id="variants" className="doc-section-label">VARIANTS</h3>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 32, marginBottom: 48, alignItems: "flex-start" }}>

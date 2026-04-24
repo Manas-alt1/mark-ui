@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Select } from "@/packages/core";
+import { Select } from "@markui/core";
 
 const BASIC_OPTIONS = [
   { label: "New York", value: "ny" },

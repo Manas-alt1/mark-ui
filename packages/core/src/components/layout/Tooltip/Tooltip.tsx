@@ -1,20 +1,16 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useState, useEffect, useCallback, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
 import type { TooltipProps } from './Tooltip.types'
-import { useFunAnimation } from '../../../animations/useFunAnimation'
 
 interface Position {
   top: number
   left: number
 }
 
-interface TooltipDimensions {
-  width: number
-  height: number
-}
+const emptySubscribe = () => () => {}
 
 export default function Tooltip({
   content,
@@ -29,19 +25,15 @@ export default function Tooltip({
   const tooltipRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [position, setPosition] = useState<Position>({ top: 0, left: 0 })
-  const [mounted, setMounted] = useState(false)
   const showTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const hideTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
-  const { triggerAnimation } = useFunAnimation()
 
-  // Handle client-side mounting
-  useEffect(() => {
-    setMounted(true)
-    return () => {
-      if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current)
-      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current)
-    }
-  }, [])
+  // Avoid hydration mismatch by only rendering portals on the client
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  )
 
   const calculatePosition = useCallback((triggerElement: HTMLElement, tooltipElement: HTMLElement): Position => {
     const triggerRect = triggerElement.getBoundingClientRect()
@@ -54,7 +46,6 @@ export default function Tooltip({
     const gap = 8 // Gap between trigger and tooltip
     let top = 0
     let left = 0
-    let actualPlacement = placement
 
     // Calculate initial position based on placement
     switch (placement) {
@@ -87,7 +78,6 @@ export default function Tooltip({
       // If tooltip would go above viewport, place it below the trigger
       if (placement === 'top') {
         top = triggerRect.bottom + scrollY + gap
-        actualPlacement = 'bottom'
       } else {
         top = scrollY + gap
       }
@@ -95,7 +85,6 @@ export default function Tooltip({
       // If tooltip would go below viewport, place it above the trigger
       if (placement === 'bottom') {
         top = triggerRect.top + scrollY - tooltipRect.height - gap
-        actualPlacement = 'top'
       } else {
         top = scrollY + viewportHeight - tooltipRect.height - gap
       }
@@ -171,6 +160,14 @@ export default function Tooltip({
     }
   }, [isVisible, updatePosition])
 
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current)
+      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current)
+    }
+  }, [])
+
   // Animation variants
   const tooltipVariants = {
     hidden: {
@@ -207,7 +204,7 @@ export default function Tooltip({
   const prefersReducedMotion = typeof window !== 'undefined' && 
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  const tooltipContent = mounted && isVisible && (
+  const tooltipContent = isVisible && (
     <AnimatePresence>
       <motion.div
         ref={tooltipRef}
@@ -219,16 +216,16 @@ export default function Tooltip({
           position: 'absolute',
           top: position.top,
           left: position.left,
-          zIndex: 'var(--mark-z-tooltip, 1000)',
+          zIndex: 1000,
           maxWidth: '320px',
-          padding: 'var(--mark-space-2, 8px) var(--mark-space-3, 12px)',
-          backgroundColor: 'var(--mark-bg-tooltip, var(--mark-bg-inverse, #1a1a1a))',
-          color: 'var(--mark-fg-tooltip, var(--mark-fg-inverse, #ffffff))',
-          fontSize: 'var(--mark-text-sm, 14px)',
-          lineHeight: 'var(--mark-leading-tight, 1.25)',
-          borderRadius: 'var(--mark-radius-md, 6px)',
-          boxShadow: 'var(--mark-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05))',
-          border: '1px solid var(--mark-border-tooltip, var(--mark-border-subtle, rgba(255, 255, 255, 0.1)))',
+          padding: 'var(--mark-space-2) var(--mark-space-3)',
+          backgroundColor: '#1a1a1a',
+          color: '#ffffff',
+          fontSize: 'var(--mark-text-sm)',
+          lineHeight: 'var(--mark-leading-tight)',
+          borderRadius: 'var(--mark-radius-md)',
+          boxShadow: 'var(--mark-shadow-lg)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
           wordWrap: 'break-word',
           pointerEvents: 'none',
         }}
@@ -253,7 +250,7 @@ export default function Tooltip({
       >
         {children}
       </div>
-      {mounted && typeof document !== 'undefined' && createPortal(
+      {isClient && createPortal(
         tooltipContent,
         document.body
       )}

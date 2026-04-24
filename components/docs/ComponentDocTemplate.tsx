@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/packages/core";
+import { Badge } from "@markui/core";
 import { DOCS_NAV } from "@/components/docs/DocsNavData";
 
 interface ComponentDocProps {

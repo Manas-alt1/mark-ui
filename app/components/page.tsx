@@ -5,7 +5,7 @@ import '@/styles/showcase.css';
 
 export default function ComponentsPage() {
   return (
-    <div className="components-showcase-page">
+    <div className="components-showcase-page readable-page">
       <ComponentsShowcaseHero />
       <ComponentsShowcaseLayout />
       <ComponentsShowcaseCTA />

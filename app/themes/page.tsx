@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { Button } from "@/packages/core";
+import { Button } from "@markui/core";
 import ThemePreviewCard from "@/components/themes/ThemePreviewCard";
 import "@/styles/themes.css"; // Ensure themes styles are loaded
 
@@ -40,7 +40,7 @@ export default function ThemesShowroomPage() {
   };
 
   return (
-    <main className="themes-page">
+    <main className="themes-page readable-page">
       
       {/* SECTION 1: HERO */}
       <section 

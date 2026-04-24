@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Drawer, Button } from '@/packages/core';
+import { Drawer, Button } from "@markui/core";
 
 /**
  * DrawerPreview Component

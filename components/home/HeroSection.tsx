@@ -1,13 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const stagger = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.1 },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
@@ -21,14 +21,25 @@ const fadeUp = {
 };
 
 export default function HeroSection() {
-  const [showScroll, setShowScroll] = useState(true);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const { scrollY } = useScroll();
+
+  // Map scrollY to 1..0 (erased by 300px down)
+  const scrollProgress = useTransform(scrollY, [0, 300], [1, 0]);
+  
+  // Transform for clipPath: inset(-10% X% -10% -10%)
+  // When scrollProgress is 1, X is 0 (fully visible)
+  // When scrollProgress is 0, X is 100 (fully hidden)
+  const clipPathPercent = useTransform(scrollProgress, (p) => `${100 - p * 100}%`);
+  const clipPath = useTransform(clipPathPercent, (v) => `inset(-10% ${v} -10% -10%)`);
+
+  // Show scroll indicator only at the top
+  const showScroll = useTransform(scrollY, (y) => y < 20);
 
   useEffect(() => {
-    const handler = () => {
-      if (window.scrollY > 20) setShowScroll(false);
-    };
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    // After initial load animations finish (approx 3s)
+    const timer = setTimeout(() => setIsInitialLoad(false), 3000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -43,7 +54,7 @@ export default function HeroSection() {
         initial="hidden"
         animate="show"
       >
-        {/* Pill */}
+        {/* Pill badge */}
         <motion.div variants={fadeUp}>
           <span className="hero-pill">
             Motion-first · Fully themeable · TypeScript ready
@@ -52,40 +63,98 @@ export default function HeroSection() {
 
         {/* Heading */}
         <motion.h1 className="hero-heading" variants={fadeUp}>
-          Build interfaces
+          The Architecture
           <br />
-          that leave a mark.
+          <span className="hero-heading-accent">of Choice.</span>
         </motion.h1>
 
         {/* Subheading */}
         <motion.p className="hero-sub" variants={fadeUp}>
-          A React component library with motion at its core. Swap entire themes
-          in one click. Ship products people actually remember.
+          A modular component library engineered for precision,{" "}
+          <em>styled for creativity.</em>
         </motion.p>
 
         {/* CTA Buttons */}
         <motion.div className="hero-cta-row" variants={fadeUp}>
-          <Link href="/docs" className="btn-primary">
-            Get Started →
+          <Link href="/docs" className="btn-primary active-press">
+            GET STARTED →
           </Link>
-          <Link href="/components" className="btn-secondary">
-            View Components
+          <Link href="/components" className="btn-secondary active-press">
+            EXPLORE COMPONENTS
           </Link>
         </motion.div>
       </motion.div>
 
+      {/* Arrow pointing to the Theme sidebar */}
+      <div className="sidebar-arrow-hint">
+        <motion.span 
+          className="sidebar-arrow-label"
+          style={{ paddingRight: "4px", clipPath }}
+          initial={{ clipPath: "inset(-10% 100% -10% -10%)" }}
+          animate={isInitialLoad ? { clipPath: "inset(-10% 0% -10% -10%)" } : undefined}
+          transition={{
+            duration: 1.5,
+            delay: 1.5,
+            ease: "easeOut"
+          }}
+        >
+          Try switching themes!
+        </motion.span>
+        <svg
+          width="64"
+          height="32"
+          viewBox="0 0 64 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="sidebar-arrow-svg"
+        >
+          <motion.path
+            d="M2 18C12 22 28 26 46 16C50 14 54 10 56 8"
+            stroke="var(--mark-accent-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={isInitialLoad ? { pathLength: 1 } : undefined}
+            style={{ pathLength: isInitialLoad ? undefined : scrollProgress }}
+            transition={{
+              duration: 1.5,
+              delay: 1.5,
+              ease: "easeOut"
+            }}
+          />
+          <motion.path
+            d="M50 4L58 8L52 14"
+            stroke="var(--mark-accent-primary)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={isInitialLoad ? { pathLength: 1 } : undefined}
+            style={{ pathLength: isInitialLoad ? undefined : scrollProgress }}
+            transition={{
+              duration: 0.5,
+              delay: 2.8,
+              ease: "easeOut"
+            }}
+          />
+        </svg>
+      </div>
+
       {/* Scroll Indicator */}
-      {showScroll && (
+      <AnimatePresence>
         <motion.div
           className="scroll-indicator"
+          style={{ opacity: showScroll }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
           exit={{ opacity: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
-          ↓
+          ↓ scroll
         </motion.div>
-      )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -2,7 +2,46 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Button } from "@/packages/core";
+import { Button } from "@markui/core";
+import PropsTable from "@/components/docs/blocks/PropsTable";
+import UsageGuidelines from "@/components/docs/blocks/UsageGuidelines";
+import AccessibilitySection from "@/components/docs/blocks/AccessibilitySection";
+
+const BUTTON_PROPS = [
+  { prop: "variant", type: "'primary' | 'secondary' | 'ghost' | 'destructive'", default: "'primary'", description: "Visual style of the button" },
+  { prop: "size", type: "'sm' | 'md' | 'lg'", default: "'md'", description: "Size of the button" },
+  { prop: "isLoading", type: "boolean", default: "false", description: "Shows spinner, locks dimensions" },
+  { prop: "isDisabled", type: "boolean", default: "false", description: "Prevents interaction" },
+  { prop: "fullWidth", type: "boolean", default: "false", description: "Stretches to container width" },
+  { prop: "leftIcon", type: "React.ReactNode", default: "—", description: "Icon before label" },
+  { prop: "rightIcon", type: "React.ReactNode", default: "—", description: "Icon after label" },
+  { prop: "onClick", type: "() => void", default: "—", description: "Click handler" },
+  { prop: "children*", type: "React.ReactNode", default: "—", description: "Button label content" },
+  { prop: "className", type: "string", default: "—", description: "Additional CSS classes" },
+];
+
+const BUTTON_GUIDELINES = {
+  do: [
+    "Use primary for the single most important action on a page or section.",
+    "Use ghost for low-priority or repetitive actions.",
+    "Use destructive only for irreversible actions like delete or remove.",
+    "Keep button labels short — 1 to 3 words.",
+  ],
+  dont: [
+    "Don't use more than one primary button in the same visual section.",
+    "Don't use buttons for navigation — use a link instead.",
+    "Don't disable buttons without explaining why elsewhere on the page.",
+    "Don't use destructive variant for anything that can be undone.",
+  ],
+};
+
+const BUTTON_A11Y = [
+  { title: "Keyboard", description: "Space and Enter activate the button." },
+  { title: "Focus", description: "Visible focus ring using accent color." },
+  { title: "Loading state", description: "aria-busy='true' when loading, screen readers announce 'loading'." },
+  { title: "Disabled", description: "aria-disabled='true', not focusable when disabled." },
+  { title: "Icon-only buttons", description: "Must have aria-label." },
+];
 
 export default function ButtonDocPage() {
   const [variant, setVariant] = useState<"primary" | "secondary" | "ghost" | "destructive">("primary");
@@ -34,11 +73,11 @@ export default function ButtonDocPage() {
       {/* PLAYGROUND */}
       <h3 id="playground" className="doc-section-label">PLAYGROUND</h3>
       <div className="doc-playground-panel">
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
           
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Variant</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={variant} onChange={(e) => setVariant(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={variant} onChange={(e) => setVariant(e.target.value as typeof variant)}>
               <option value="primary">primary</option>
               <option value="secondary">secondary</option>
               <option value="ghost">ghost</option>
@@ -48,25 +87,25 @@ export default function ButtonDocPage() {
 
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Size</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={size} onChange={(e) => setSize(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={size} onChange={(e) => setSize(e.target.value as typeof size)}>
               <option value="sm">sm</option>
               <option value="md">md</option>
               <option value="lg">lg</option>
             </select>
           </div>
 
-          <div>
-            <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Boolean Props</label>
-            <div style={{ display: "flex", gap: 16 }}>
-              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14 }}>
+          <div style={{ gridColumn: "1 / -1" }}>
+            <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 12, color: "var(--mark-fg)", opacity: 0.6 }}>Boolean Props</label>
+            <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14, cursor: "pointer" }}>
                 <input type="checkbox" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
                 isLoading
               </label>
-              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14 }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14, cursor: "pointer" }}>
                 <input type="checkbox" checked={isDisabled} onChange={(e) => setIsDisabled(e.target.checked)} />
                 isDisabled
               </label>
-              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14 }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--mark-fg)", fontSize: 14, cursor: "pointer" }}>
                 <input type="checkbox" checked={fullWidth} onChange={(e) => setFullWidth(e.target.checked)} />
                 fullWidth
               </label>
@@ -79,9 +118,9 @@ export default function ButtonDocPage() {
       {/* VARIANTS */}
       <h3 id="variants" className="doc-section-label">VARIANTS</h3>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 32, marginBottom: 48 }}>
-        {["primary", "secondary", "ghost", "destructive"].map((v) => (
+        {(["primary", "secondary", "ghost", "destructive"] as const).map((v) => (
           <div key={v} style={{ textAlign: "center" }}>
-            <Button variant={v as any}>Button</Button>
+            <Button variant={v}>Button</Button>
             <div style={{ marginTop: 12, fontSize: 13, color: "var(--mark-fg)", opacity: 0.5 }}>{v}</div>
           </div>
         ))}
@@ -89,63 +128,20 @@ export default function ButtonDocPage() {
 
       {/* USAGE */}
       <h3 id="usage" className="doc-section-label">USAGE GUIDELINES</h3>
-      <div className="usage-columns">
-        <div className="usage-col usage-do">
-          <h4>Do</h4>
-          <ul className="usage-list">
-            <li>Use primary for the single most important action on a page or section.</li>
-            <li>Use ghost for low-priority or repetitive actions.</li>
-            <li>Use destructive only for irreversible actions like delete or remove.</li>
-            <li>Keep button labels short — 1 to 3 words.</li>
-          </ul>
-        </div>
-        <div className="usage-col usage-dont">
-          <h4>Don&apos;t</h4>
-          <ul className="usage-list">
-            <li>Don&apos;t use more than one primary button in the same visual section.</li>
-            <li>Don&apos;t use buttons for navigation — use a link instead.</li>
-            <li>Don&apos;t disable buttons without explaining why elsewhere on the page.</li>
-            <li>Don&apos;t use destructive variant for anything that can be undone.</li>
-          </ul>
-        </div>
-      </div>
+      <UsageGuidelines do={BUTTON_GUIDELINES.do} dont={BUTTON_GUIDELINES.dont} />
 
       {/* ACCESSIBILITY */}
       <h3 id="accessibility" className="doc-section-label">ACCESSIBILITY</h3>
-      <ul style={{ color: "var(--mark-fg)", opacity: 0.8, lineHeight: 1.7, fontSize: 15, marginBottom: 48 }}>
-        <li><strong>Keyboard:</strong> Space and Enter activate the button.</li>
-        <li><strong>Focus:</strong> Visible focus ring using accent color.</li>
-        <li><strong>Loading state:</strong> <code>aria-busy="true"</code> when loading, screen readers announce "loading".</li>
-        <li><strong>Disabled:</strong> <code>aria-disabled="true"</code>, not focusable when disabled.</li>
-        <li><strong>Icon-only buttons:</strong> must have <code>aria-label</code>.</li>
-      </ul>
+      <AccessibilitySection features={BUTTON_A11Y} />
 
       {/* PROPS */}
       <h3 id="props" className="doc-section-label">PROPS</h3>
-      <div className="doc-table-wrapper">
-        <table className="doc-table">
-          <thead>
-            <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>variant</code></td><td><code>'primary' | 'secondary' | 'ghost' | 'destructive'</code></td><td><code>'primary'</code></td><td>Visual style of the button</td></tr>
-            <tr><td><code>size</code></td><td><code>'sm' | 'md' | 'lg'</code></td><td><code>'md'</code></td><td>Size of the button</td></tr>
-            <tr><td><code>isLoading</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Shows spinner, locks dimensions</td></tr>
-            <tr><td><code>isDisabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents interaction</td></tr>
-            <tr><td><code>fullWidth</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Stretches to container width</td></tr>
-            <tr><td><code>leftIcon</code></td><td><code>React.ReactNode</code></td><td>—</td><td>Icon before label</td></tr>
-            <tr><td><code>rightIcon</code></td><td><code>React.ReactNode</code></td><td>—</td><td>Icon after label</td></tr>
-            <tr><td><code>onClick</code></td><td><code>() =&gt; void</code></td><td>—</td><td>Click handler</td></tr>
-            <tr><td><code>children*</code></td><td><code>React.ReactNode</code></td><td>—</td><td>Button label content</td></tr>
-            <tr><td><code>className</code></td><td><code>string</code></td><td>—</td><td>Additional CSS classes</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <PropsTable props={BUTTON_PROPS} />
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
       <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Button {"}"} from '@markui/core'</code></pre>
+        <pre><code>import {"{"} Button {"}"} from &apos;@markui/core&apos;</code></pre>
       </div>
 
     </ComponentDocTemplate>

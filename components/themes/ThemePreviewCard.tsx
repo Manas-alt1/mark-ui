@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Button, Badge, Toggle, Input } from "@/packages/core";
+import { Button, Badge, Toggle, Input } from "@markui/core";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import type { ThemeId } from "@/components/theme/themes";
 

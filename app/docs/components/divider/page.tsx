@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Divider } from "@/packages/core";
+import { Divider } from "@markui/core";
 
 export default function DividerDocPage() {
   const [orientation, setOrientation] = useState<"horizontal" | "vertical">("horizontal");

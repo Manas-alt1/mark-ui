@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Alert } from "@/packages/core";
+import { Alert } from "@markui/core";
 
 export default function FunThemesPage() {
   return (
@@ -33,7 +33,7 @@ export default function FunThemesPage() {
         <div style={{ background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-lg)", padding: "40px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={{ margin: 0 }}>Cyberpunk</h3>
-            <code>data-theme="cyberpunk"</code>
+            <code>data-theme=&quot;cyberpunk&quot;</code>
           </div>
           <p className="docs-body-text">Neon yellow and hot pink on deep dark backgrounds. High contrast, highly aggressive, and extremely bold.</p>
         </div>
@@ -42,7 +42,7 @@ export default function FunThemesPage() {
         <div style={{ background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-lg)", padding: "40px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={{ margin: 0 }}>Matrixx</h3>
-            <code>data-theme="matrixx"</code>
+            <code>data-theme=&quot;matrixx&quot;</code>
           </div>
           <p className="docs-body-text">Pure hacker aesthetics. Terminal green text on pitch black backgrounds, reminiscent of old phosphor displays.</p>
         </div>
@@ -51,7 +51,7 @@ export default function FunThemesPage() {
         <div style={{ background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-lg)", padding: "40px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={{ margin: 0 }}>Gotham</h3>
-            <code>data-theme="gotham"</code>
+            <code>data-theme=&quot;gotham&quot;</code>
           </div>
           <p className="docs-body-text">Deep, dark, and brooding. A dark mode built entirely around a monochrome palette avoiding true blacks for a softer, but cinematic feel.</p>
         </div>

@@ -4,24 +4,24 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    icon: "⚡",
-    title: "Motion first",
-    body: "Every component ships with a defined animation story. What moves, when it moves, and exactly how it feels. Powered by shared motion tokens.",
+    icon: "architecture",
+    title: "Technical Accuracy",
+    body: "Built on a strict 4px grid system with mathematical precision. No guesswork, just geometry.",
   },
   {
-    icon: "🎨",
+    icon: "palette",
     title: "Live theme switching",
-    body: "Two collections. Fifteen themes. Switch the entire personality of your product in one click — no reload, no flash, no configuration.",
+    body: "Two collections. Fifteen themes. Switch the entire personality of your product in one click — no reload, no flash.",
   },
   {
-    icon: "🔷",
-    title: "TypeScript native",
-    body: "Every component is fully typed. Consistent prop APIs across the board. Your editor knows exactly what to suggest before you finish typing.",
+    icon: "draw",
+    title: "Organic Overlays",
+    body: "Doodles and sketches are baked into the core primitives, allowing for expressive and creative documentation.",
   },
   {
-    icon: "♿",
-    title: "Accessible by default",
-    body: "Keyboard navigation, ARIA attributes, visible focus management, and prefers-reduced-motion support. Built in. Not bolted on.",
+    icon: "terminal",
+    title: "Developer First",
+    body: "Every component is fully typed. Consistent prop APIs across the board. Ready to ship with React and TypeScript.",
   },
 ];
 
@@ -40,31 +40,41 @@ const cardVariant = {
 
 export default function FeaturesSection() {
   return (
-    <section
-      className="home-section"
-      style={{ background: "var(--mark-bg-surface)" }}
-    >
+    <section className="home-section">
       <div className="home-section-inner">
-        <motion.p
-          className="section-label"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          WHY MARK UI
-        </motion.p>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
+          <div>
+            <motion.p
+              className="section-label"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              MODULE_PREVIEW_001.TSX
+            </motion.p>
 
-        <motion.h2
-          className="section-heading"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-        >
-          Everything you need.
-          <br />
-          Nothing you don&apos;t.
-        </motion.h2>
+            <motion.h2
+              className="section-heading"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="section-heading-accent">Features</span>
+            </motion.h2>
+          </div>
+
+          <motion.div
+            className="section-quote hidden md:block"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.5 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            &quot;Every component is a canvas,
+            <br />not just a container.&quot;
+          </motion.div>
+        </div>
 
         <div className="features-grid">
           {features.map((f, i) => (
@@ -77,7 +87,12 @@ export default function FeaturesSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <span className="feature-icon">{f.icon}</span>
+              <span
+                className="material-symbols-outlined feature-icon"
+                style={{ color: "var(--mark-accent-primary)", fontSize: 36 }}
+              >
+                {f.icon}
+              </span>
               <h3 className="feature-title">{f.title}</h3>
               <p className="feature-body">{f.body}</p>
             </motion.div>

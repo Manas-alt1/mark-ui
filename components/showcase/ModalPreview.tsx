@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from '@/packages/core';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "@markui/core";
 
 /**
  * ModalPreview Component

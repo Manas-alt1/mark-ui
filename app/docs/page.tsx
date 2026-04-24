@@ -1,4 +1,4 @@
-import { Alert } from "@/packages/core";
+import { Alert } from "@markui/core";
 import Link from "next/link";
 
 export const metadata = { title: "Introduction - MARK UI Docs" };

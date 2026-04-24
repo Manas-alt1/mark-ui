@@ -6,22 +6,24 @@
  * Renders live instances of real MARK UI components.
  */
 
-import Button from '@mark-ui/components/inputs/Button/Button'
-import Input from '@mark-ui/components/inputs/Input/Input'
-import Checkbox from '@mark-ui/components/inputs/Checkbox/Checkbox'
-import Toggle from '@mark-ui/components/inputs/Toggle/Toggle'
-import Select from '@mark-ui/components/inputs/Select/Select'
-import Badge from '@mark-ui/components/display/Badge/Badge'
-import Avatar from '@mark-ui/components/display/Avatar/Avatar'
-import Card from '@mark-ui/components/display/Card/Card'
-import Tag from '@mark-ui/components/display/Tag/Tag'
-import Spinner from '@mark-ui/components/feedback/Spinner/Spinner'
-import Skeleton from '@mark-ui/components/feedback/Skeleton/Skeleton'
-import Alert from '@mark-ui/components/feedback/Alert/Alert'
-import Divider from '@mark-ui/components/layout/Divider/Divider'
-import Container from '@mark-ui/components/layout/Container/Container'
-import Tooltip from '@mark-ui/components/layout/Tooltip/Tooltip'
-import { Toast } from '@mark-ui/components/overlay/Toast'
+import {
+  Button,
+  Input,
+  Checkbox,
+  Toggle,
+  Select,
+  Badge,
+  Avatar,
+  Card,
+  Tag,
+  Spinner,
+  Skeleton,
+  Alert,
+  Divider,
+  Container,
+  Tooltip,
+  Toast
+} from '@markui/core'
 
 interface LivePreviewProps {
   componentId: string;

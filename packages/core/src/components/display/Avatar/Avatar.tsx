@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import type { AvatarProps } from './Avatar.types'
 import { useFunAnimation } from '../../../animations/useFunAnimation'
 
@@ -82,14 +82,6 @@ export default function Avatar({
   const [imageLoaded, setImageLoaded] = useState(false)
   const { triggerAnimation } = useFunAnimation()
 
-  // Reset image state when src changes
-  useEffect(() => {
-    if (src) {
-      setImageError(false)
-      setImageLoaded(false)
-    }
-  }, [src])
-
   const handleImageError = () => {
     setImageError(true)
   }
@@ -158,6 +150,7 @@ export default function Avatar({
       {/* Image */}
       {src && (
         <img
+          key={src} // Reset state automatically when src changes
           src={src}
           alt={alt || ''}
           onError={handleImageError}

@@ -44,7 +44,7 @@ export default function ThemingPage() {
       <div style={{ background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-lg)", padding: "40px", fontFamily: "var(--mark-font-code)", fontSize: "14px", color: "var(--mark-fg)", textAlign: "center", lineHeight: "2" }}>
         <div style={{ background: "var(--mark-accent-primary)", color: "var(--mark-bg)", display: "inline-block", padding: "8px 24px", borderRadius: "8px", fontWeight: "bold" }}>[ ThemeProvider ]</div>
         <div style={{ opacity: 0.5, margin: "8px 0" }}>↓ sets</div>
-        <div style={{ background: "var(--mark-bg-surface)", border: "1px solid var(--mark-border-strong)", display: "inline-block", padding: "8px 24px", borderRadius: "8px" }}>[ data-theme="cyberpunk" on &lt;html&gt; ]</div>
+        <div style={{ background: "var(--mark-bg-surface)", border: "1px solid var(--mark-border-strong)", display: "inline-block", padding: "8px 24px", borderRadius: "8px" }}>[ data-theme=&quot;cyberpunk&quot; on &lt;html&gt; ]</div>
         <div style={{ opacity: 0.5, margin: "8px 0" }}>↓ updates</div>
         <div style={{ background: "var(--mark-bg-surface)", border: "1px solid var(--mark-border-strong)", display: "inline-block", padding: "8px 24px", borderRadius: "8px" }}>[ CSS variables for that theme ]</div>
         <div style={{ opacity: 0.5, margin: "8px 0" }}>↓ flows into</div>

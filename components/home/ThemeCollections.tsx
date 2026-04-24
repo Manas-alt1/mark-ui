@@ -29,7 +29,9 @@ function ThemePreviewCard({
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       style={{
         borderColor: isActive ? theme.tokens.accentPrimary : undefined,
-        boxShadow: isActive ? `0 0 16px ${theme.tokens.accentPrimary}40` : undefined,
+        boxShadow: isActive
+          ? `0 0 16px ${theme.tokens.accentPrimary}40, 4px 4px 0px 0px ${theme.tokens.accentPrimary}`
+          : undefined,
       }}
     >
       <div className="theme-preview-bg" style={{ background: theme.tokens.accentSecondary }}>
@@ -54,10 +56,7 @@ export default function ThemeCollections() {
   const { theme: activeTheme, setTheme } = useTheme();
 
   return (
-    <section
-      className="home-section"
-      style={{ background: "var(--mark-bg-surface)" }}
-    >
+    <section className="home-section">
       <div className="home-section-inner">
         <motion.p
           className="section-label"
@@ -65,7 +64,7 @@ export default function ThemeCollections() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
         >
-          THEMES
+          THEME_ENGINE_V1.CONFIG
         </motion.p>
 
         <motion.h2
@@ -77,7 +76,7 @@ export default function ThemeCollections() {
         >
           One library.
           <br />
-          Every personality.
+          <span className="section-heading-accent">Every personality.</span>
         </motion.h2>
 
         <motion.p
@@ -130,7 +129,7 @@ export default function ThemeCollections() {
         </motion.div>
 
         <div style={{ textAlign: "center", marginTop: 16 }}>
-          <Link href="/themes" className="btn-secondary">
+          <Link href="/themes" className="btn-secondary" style={{ fontSize: 16, padding: "12px 28px" }}>
             Explore all themes →
           </Link>
         </div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Checkbox } from "@/packages/core";
+import { Checkbox } from "@markui/core";
 
 export default function CheckboxDocPage() {
   const [checked, setChecked] = useState(false);

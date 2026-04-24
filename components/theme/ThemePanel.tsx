@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 import { themesByCollection, type Theme } from "./themes";
-import { Drawer, Button } from "@/packages/core";
+import { Drawer, Button } from "@markui/core";
 
 function ThemeCard({
   theme,
@@ -18,37 +18,54 @@ function ThemeCard({
   if (theme.status !== 'live') {
     return (
       <div
-        className="flex items-center gap-3 px-3 py-2.5 rounded-lg opacity-40 cursor-not-allowed"
         style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          padding: "10px 12px",
+          opacity: 0.35,
+          cursor: "not-allowed",
           background: "var(--mark-bg-surface)",
-          borderRadius: "var(--mark-radius-md)",
+          border: "1px dashed",
+          borderColor: "color-mix(in srgb, var(--mark-fg) 15%, transparent)",
+          transition: "all var(--mark-duration-fast) var(--mark-ease-smooth)",
         }}
       >
-        <div className="flex gap-1.5">
+        <div style={{ display: "flex", gap: 6 }}>
           <span
-            className="w-3.5 h-3.5 rounded-full border"
             style={{
+              width: 14,
+              height: 14,
+              borderRadius: "50%",
               backgroundColor: theme.tokens.accentPrimary,
-              borderColor: "var(--mark-border)",
+              border: "1px solid var(--mark-border)",
             }}
           />
           <span
-            className="w-3.5 h-3.5 rounded-full border"
             style={{
+              width: 14,
+              height: 14,
+              borderRadius: "50%",
               backgroundColor: theme.tokens.accentSecondary,
-              borderColor: "var(--mark-border)",
+              border: "1px solid var(--mark-border)",
             }}
           />
         </div>
-        <span className="text-xs flex-1" style={{ color: "var(--mark-fg)" }}>
+        <span style={{
+          fontSize: 13,
+          flex: 1,
+          color: "var(--mark-fg)",
+          fontFamily: "var(--mark-font-hand)",
+        }}>
           {theme.name}
         </span>
         <span
-          className="text-[10px] px-1.5 py-0.5 rounded-full"
           style={{
+            fontSize: 10,
+            padding: "2px 6px",
             background: "var(--mark-border)",
             color: "var(--mark-fg)",
-            borderRadius: "var(--mark-radius-pill)",
+            fontFamily: "var(--mark-font-hand)",
           }}
         >
           Soon
@@ -67,20 +84,28 @@ function ThemeCard({
         stiffness: 400,
         damping: 25,
       }}
-      className="flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-left cursor-pointer"
       style={{
-        background: isActive ? "var(--mark-accent-glow)" : "var(--mark-bg-surface)",
-        borderRadius: "var(--mark-radius-md)",
-        border: isActive
-          ? "1px solid var(--mark-accent-primary)"
-          : "1px solid transparent",
-        transition: `all var(--mark-duration-fast) var(--mark-ease-smooth)`,
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        padding: "10px 12px",
+        width: "100%",
+        textAlign: "left" as const,
+        cursor: "pointer",
+        background: isActive ? "var(--mark-accent-subtle)" : "var(--mark-bg-surface)",
+        border: isActive ? "2px solid var(--mark-accent-primary)" : "2px solid transparent",
+        boxShadow: isActive ? "3px 3px 0px 0px var(--mark-accent-primary)" : "none",
+        borderRadius: "2px 4px 3px 5px / 5px 3px 4px 2px",
+        transition: "all var(--mark-duration-fast) var(--mark-ease-smooth)",
+        fontFamily: "var(--mark-font-hand)",
       }}
     >
-      <div className="flex gap-1.5">
+      <div style={{ display: "flex", gap: 6 }}>
         <span
-          className="w-3.5 h-3.5 rounded-full"
           style={{
+            width: 14,
+            height: 14,
+            borderRadius: "50%",
             backgroundColor: theme.tokens.accentPrimary,
             boxShadow: isActive
               ? `0 0 8px ${theme.tokens.accentPrimary}40`
@@ -88,21 +113,33 @@ function ThemeCard({
           }}
         />
         <span
-          className="w-3.5 h-3.5 rounded-full"
-          style={{ backgroundColor: theme.tokens.accentSecondary }}
+          style={{
+            width: 14,
+            height: 14,
+            borderRadius: "50%",
+            backgroundColor: theme.tokens.accentSecondary,
+          }}
         />
       </div>
       <span
-        className="text-sm font-medium flex-1"
-        style={{ color: "var(--mark-fg)" }}
+        style={{
+          fontSize: 14,
+          fontWeight: 500,
+          flex: 1,
+          color: "var(--mark-fg)",
+        }}
       >
         {theme.name}
       </span>
       {isActive && (
         <motion.span
           layoutId="active-theme-dot"
-          className="w-2 h-2 rounded-full"
-          style={{ backgroundColor: "var(--mark-accent-primary)" }}
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            backgroundColor: "var(--mark-accent-primary)",
+          }}
         />
       )}
     </motion.button>
@@ -123,36 +160,44 @@ export default function ThemePanel() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             onClick={() => setIsOpen(true)}
-            className="fixed z-50 cursor-pointer"
             style={{
+              position: "fixed",
+              zIndex: 50,
               right: 0,
               top: "50%",
               transform: "translateY(-50%)",
-              width: "32px",
-              height: "96px",
-              background: "var(--mark-bg-elevated)",
-              borderLeft: "1px solid var(--mark-border)",
-              borderTop: "1px solid var(--mark-border)",
-              borderBottom: "1px solid var(--mark-border)",
-              borderTopLeftRadius: "var(--mark-radius-md)",
-              borderBottomLeftRadius: "var(--mark-radius-md)",
+              width: 32,
+              height: 96,
+              background: "var(--mark-bg)",
+              borderLeft: "2px solid var(--mark-fg)",
+              borderTop: "2px solid var(--mark-fg)",
+              borderBottom: "2px solid var(--mark-fg)",
+              borderRight: "none",
+              borderTopLeftRadius: 4,
+              borderBottomLeftRadius: 4,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              transition: `box-shadow var(--mark-duration-fast) var(--mark-ease-smooth)`,
+              cursor: "pointer",
+              boxShadow: "-3px 0px 0px 0px var(--mark-accent-primary)",
+              transition: `
+                box-shadow var(--mark-duration-fast) var(--mark-ease-smooth),
+                border-color var(--mark-duration-fast) var(--mark-ease-smooth)
+              `,
             }}
             whileHover={{
-              boxShadow: `inset 0 0 20px var(--mark-accent-glow)`,
+              boxShadow: "-5px 0px 0px 0px var(--mark-accent-primary)",
             }}
           >
             <span
-              className="text-xs font-semibold tracking-wider"
               style={{
-                writingMode: "vertical-rl",
-                textOrientation: "mixed",
+                writingMode: "vertical-rl" as const,
+                textOrientation: "mixed" as const,
+                fontFamily: "var(--mark-font-display)",
+                fontSize: 11,
+                letterSpacing: 1,
                 color: "var(--mark-fg)",
                 opacity: 0.7,
-                fontFamily: "var(--mark-font-display)",
               }}
             >
               Themes
@@ -170,41 +215,69 @@ export default function ThemePanel() {
         showBackdrop={false}
         closeOnBackdrop={true}
       >
-        <div className="h-full flex flex-col">
+        <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
           {/* Header */}
           <div
-            className="flex items-center justify-between px-5 py-4 flex-shrink-0"
             style={{
-              borderBottom: "1px solid var(--mark-border)",
+              padding: "16px 20px",
+              flexShrink: 0,
+              borderBottom: "2px dashed",
+              borderColor: "color-mix(in srgb, var(--mark-fg) 20%, transparent)",
             }}
           >
-            <h2
-              className="text-sm font-bold tracking-wide uppercase"
-              style={{ color: "var(--mark-fg)", fontFamily: "var(--mark-font-display)" }}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--mark-font-display)",
+                  fontSize: 20,
+                  color: "var(--mark-fg)",
+                  textTransform: "uppercase" as const,
+                  letterSpacing: 1,
+                  margin: 0,
+                }}
+              >
+                CONTROL PANEL
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close theme panel"
+              >
+                ✕
+              </Button>
+            </div>
+            <p
+              style={{
+                fontFamily: "var(--mark-font-code)",
+                fontSize: 12,
+                color: "var(--mark-accent-primary)",
+                margin: "4px 0 0",
+                transition: "color var(--mark-duration-normal) var(--mark-ease-smooth)",
+              }}
             >
-              Themes
-            </h2>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(false)}
-              aria-label="Close theme panel"
-            >
-              ✕
-            </Button>
+              THEME ENGINE V.1_BETA
+            </p>
           </div>
 
           {/* Content */}
-          <div className="px-5 py-4 space-y-5 flex-1 overflow-y-auto">
+          <div style={{ padding: "16px 20px", flex: 1, overflowY: "auto" as const }}>
             {/* Professional */}
-            <div>
+            <div style={{ marginBottom: 20 }}>
               <p
-                className="text-xs font-semibold mb-3 uppercase tracking-wider"
-                style={{ color: "var(--mark-fg)", opacity: 0.5 }}
+                style={{
+                  fontFamily: "var(--mark-font-display)",
+                  fontSize: 12,
+                  textTransform: "uppercase" as const,
+                  letterSpacing: 2,
+                  color: "var(--mark-fg)",
+                  opacity: 0.5,
+                  marginBottom: 12,
+                }}
               >
                 💼 Professional
               </p>
-              <div className="space-y-1.5">
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 {themesByCollection.professional.map((t) => (
                   <ThemeCard
                     key={t.id}
@@ -219,20 +292,28 @@ export default function ThemePanel() {
             {/* Divider */}
             <div
               style={{
-                height: "1px",
+                height: 1,
                 background: "var(--mark-border)",
+                margin: "16px 0",
               }}
             />
 
             {/* Fun */}
             <div>
               <p
-                className="text-xs font-semibold mb-3 uppercase tracking-wider"
-                style={{ color: "var(--mark-fg)", opacity: 0.5 }}
+                style={{
+                  fontFamily: "var(--mark-font-display)",
+                  fontSize: 12,
+                  textTransform: "uppercase" as const,
+                  letterSpacing: 2,
+                  color: "var(--mark-fg)",
+                  opacity: 0.5,
+                  marginBottom: 12,
+                }}
               >
                 🎮 Fun
               </p>
-              <div className="space-y-1.5">
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 {themesByCollection.fun.map((t) => (
                   <ThemeCard
                     key={t.id}

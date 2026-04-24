@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Input } from "@/packages/core";
+import { Input } from "@markui/core";
 
 export default function InputDocPage() {
   const [size, setSize] = useState<"sm" | "md" | "lg">("md");

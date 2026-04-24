@@ -15,8 +15,10 @@
 
 [![npm version](https://img.shields.io/npm/v/@markui/core?color=ffffff&labelColor=000000&style=flat-square)](https://www.npmjs.com/package/@markui/core)
 [![npm downloads](https://img.shields.io/npm/dm/@markui/core?color=ffffff&labelColor=000000&style=flat-square)](https://www.npmjs.com/package/@markui/core)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@markui/core?style=flat-square&labelColor=000000&color=ffffff)](https://bundlephobia.com/package/@markui/core)
 [![license](https://img.shields.io/github/license/Manas-bhavsar/mark-ui?color=ffffff&labelColor=000000&style=flat-square)](./LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-ready-ffffff?labelColor=000000&style=flat-square)](https://www.typescriptlang.org/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ffffff?labelColor=000000&style=flat-square)](./CONTRIBUTING.md)
 
 [Documentation](https://markui.vercel.app/docs) · [Components](https://markui.vercel.app/components) · [Themes](https://markui.vercel.app/themes) · [Changelog](https://markui.vercel.app/docs/changelog)
 
@@ -69,7 +71,8 @@ pnpm add @markui/core framer-motion
 yarn add @markui/core framer-motion
 ```
 
-> `framer-motion` is a required peer dependency. `tailwindcss` is **not** required.
+> **Peer dependencies:** `react >= 18`, `react-dom >= 18`, `framer-motion >= 11`.  
+> `tailwindcss` is **not** required.
 
 ---
 
@@ -196,18 +199,74 @@ Read the full [Accessibility guide →](https://markui.vercel.app/docs/accessibi
 
 ---
 
+## Browser Support
+
+| Browser | Support |
+|---|---|
+| Chrome / Edge | ✅ Last 2 versions |
+| Firefox | ✅ Last 2 versions |
+| Safari | ✅ 15.4+ |
+| IE / Legacy Edge | ❌ Not supported |
+
+MARK UI targets modern browsers. It uses CSS custom properties, `@keyframes`, and the Web Animations API — none of which are polyfillable for IE.
+
+---
+
 ## Roadmap
 
-**v0.1.0** — Current release
-18 components · 6 themes · Full docs · npm publish
-
-**v0.2.0** — Planned
-`Tabs` · `Accordion` · `DropdownMenu` · `Breadcrumbs` · `Progress` · `Slider`
-
-**v0.3.0** — Planned
-Premium templates · Additional theme packs · Form validation guide
+| Version | Status | What's included |
+|---|---|---|
+| **v0.1.0** | ✅ Released | 18 components · 6 themes · Full docs · npm publish |
+| **v0.2.0** | 🔄 In progress | `Tabs` · `Accordion` · `DropdownMenu` · `Breadcrumbs` · `Progress` · `Slider` |
+| **v0.3.0** | 📋 Planned | Premium templates · Additional theme packs · Form validation guide |
 
 Follow the [Changelog →](https://markui.vercel.app/docs/changelog) for updates.
+
+---
+
+## Local Development
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/Manas-bhavsar/mark-ui.git
+cd mark-ui
+
+# 2. Install dependencies (pnpm required)
+pnpm install
+
+# 3. Start the docs site
+pnpm dev
+# → http://localhost:3000
+
+# 4. Build the core package
+cd packages/core
+pnpm build
+
+# 5. Run tests
+pnpm test
+```
+
+> **Requires:** Node.js 18+, pnpm 8+
+
+The repo is structured as a monorepo-style project with `packages/core` for the library and the root `app/` for the Next.js docs site.
+
+---
+
+## Contributing
+
+PRs and issues are welcome.
+
+```bash
+# Fork the repo, then:
+git checkout -b feat/your-feature-name
+# make your changes
+pnpm test          # make sure tests pass
+pnpm build         # make sure it builds
+git push origin feat/your-feature-name
+# open a PR
+```
+
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting. For bug reports, open an [issue](https://github.com/Manas-bhavsar/mark-ui/issues) with a minimal reproduction.
 
 ---
 

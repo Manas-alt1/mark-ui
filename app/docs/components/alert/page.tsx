@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Alert } from "@/packages/core";
+import { Alert } from "@markui/core";
 
 export default function AlertDocPage() {
   const [variant, setVariant] = useState<"info" | "success" | "warning" | "error" | "accent">("info");
@@ -49,7 +49,7 @@ export default function AlertDocPage() {
           
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Variant</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={variant} onChange={(e) => setVariant(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={variant} onChange={(e) => setVariant(e.target.value as typeof variant)}>
               <option value="info">info</option>
               <option value="success">success</option>
               <option value="warning">warning</option>
@@ -112,8 +112,8 @@ export default function AlertDocPage() {
       {/* ACCESSIBILITY */}
       <h3 id="accessibility" className="doc-section-label">ACCESSIBILITY</h3>
       <ul style={{ color: "var(--mark-fg)", opacity: 0.8, lineHeight: 1.7, fontSize: 15, marginBottom: 48 }}>
-        <li><strong>ARIA:</strong> <code>role="alert"</code> announces to screen readers immediately on mount.</li>
-        <li><strong>Dismiss:</strong> <code>aria-label="Close alert"</code> on button.</li>
+        <li><strong>ARIA:</strong> <code>role=&quot;alert&quot;</code> announces to screen readers immediately on mount.</li>
+        <li><strong>Dismiss:</strong> <code>aria-label=&quot;Close alert&quot;</code> on button.</li>
         <li><strong>Live region:</strong> content changes within the Alert are announced automatically.</li>
       </ul>
 
@@ -125,7 +125,7 @@ export default function AlertDocPage() {
             <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
           </thead>
           <tbody>
-            <tr><td><code>variant</code></td><td><code>'info'|'success'|'warning'|'error'|'accent'</code></td><td><code>'info'</code></td><td>Visual style</td></tr>
+            <tr><td><code>variant</code></td><td><code>&apos;info&apos;|&apos;success&apos;|&apos;warning&apos;|&apos;error&apos;|&apos;accent&apos;</code></td><td><code>&apos;info&apos;</code></td><td>Visual style</td></tr>
             <tr><td><code>title</code></td><td><code>string</code></td><td>—</td><td>Bold heading above body</td></tr>
             <tr><td><code>isDismissible</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Shows close button</td></tr>
             <tr><td><code>onDismiss</code></td><td><code>function</code></td><td>—</td><td>Called on close</td></tr>
@@ -139,7 +139,7 @@ export default function AlertDocPage() {
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
       <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Alert {"}"} from '@markui/core'</code></pre>
+        <pre><code>import {"{"} Alert {"}"} from &apos;@markui/core&apos;</code></pre>
       </div>
 
     </ComponentDocTemplate>

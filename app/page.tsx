@@ -12,9 +12,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <FeaturesSection />
-      <ShowcaseSection />
       <ThemeCollections />
-      <GetStartedCTA />
     </>
   );
 }

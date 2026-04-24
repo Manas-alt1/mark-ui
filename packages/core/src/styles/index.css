@@ -1,3 +1,143 @@
 @import "tailwindcss";
 
+@theme {
+  /* Button Variants */
+  --color-button-primary-bg: var(--mark-accent-primary);
+  --color-button-primary-fg: var(--mark-bg);
+  
+  --color-button-secondary-bg: var(--mark-bg-elevated);
+  --color-button-secondary-fg: var(--mark-fg);
+  --color-button-secondary-border: var(--mark-border-strong);
+  
+  --color-button-ghost-bg: transparent;
+  --color-button-ghost-fg: var(--mark-fg);
+  --color-button-ghost-hover-bg: var(--mark-bg-elevated);
+  
+  --color-button-destructive-bg: #EF4444;
+  --color-button-destructive-fg: #FAFAFA;
+}
+
+@layer components {
+  .mark-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--mark-radius-md);
+    font-family: var(--mark-font-display);
+    font-weight: 600;
+    transition: all 150ms;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .mark-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .mark-button:focus-visible {
+    outline: 2px solid var(--mark-accent-primary);
+    outline-offset: 2px;
+  }
+
+  /* Sizes */
+  .mark-button-sm {
+    height: var(--mark-size-sm);
+    padding-left: var(--mark-px-sm);
+    padding-right: var(--mark-px-sm);
+    font-size: var(--mark-text-sm);
+  }
+  .mark-button-md {
+    height: var(--mark-size-md);
+    padding-left: var(--mark-px-md);
+    padding-right: var(--mark-px-md);
+    font-size: var(--mark-text-md);
+  }
+  .mark-button-lg {
+    height: var(--mark-size-lg);
+    padding-left: var(--mark-px-lg);
+    padding-right: var(--mark-px-lg);
+    font-size: var(--mark-text-lg);
+  }
+
+  /* Variants */
+  .mark-button-primary {
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-button-primary-fg);
+    border: none;
+  }
+  .mark-button-primary:hover:not(:disabled) {
+    box-shadow: var(--mark-shadow-accent);
+  }
+
+  .mark-button-secondary {
+    background-color: var(--color-button-secondary-bg);
+    color: var(--color-button-secondary-fg);
+    border: 1px solid var(--color-button-secondary-border);
+  }
+
+  .mark-button-ghost {
+    background-color: transparent;
+    color: var(--color-button-ghost-fg);
+    border: 1px solid transparent;
+  }
+  .mark-button-ghost:hover:not(:disabled) {
+    background-color: var(--color-button-ghost-hover-bg);
+  }
+
+  .mark-button-destructive {
+    background-color: var(--color-button-destructive-bg);
+    color: var(--color-button-destructive-fg);
+    border: none;
+  }
+  .mark-button-destructive:hover:not(:disabled) {
+    box-shadow: 0 0 24px rgba(239, 68, 68, 0.25);
+  }
+
+  /* Input */
+  .mark-input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .mark-input {
+    width: 100%;
+    border-radius: var(--mark-radius-md);
+    font-family: var(--mark-font-body);
+    transition: all 150ms;
+    outline: none;
+    background-color: var(--mark-bg-elevated);
+    border: 1px solid var(--mark-border-strong);
+    color: var(--mark-fg);
+  }
+
+  .mark-input:focus {
+    border-color: var(--mark-accent-primary);
+    box-shadow: 0 0 0 3px var(--mark-accent-subtle);
+  }
+
+  .mark-input:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background-color: var(--mark-bg);
+  }
+
+  .mark-input-error {
+    border-color: #EF4444;
+  }
+  .mark-input-error:focus {
+    border-color: #EF4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+  }
+
+  .mark-input-success {
+    border-color: #22C55E;
+  }
+  .mark-input-success:focus {
+    border-color: #22C55E;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+  }
+}
+
 @source "../components/**";

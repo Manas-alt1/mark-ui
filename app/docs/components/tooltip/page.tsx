@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Tooltip, Button } from "@/packages/core";
+import { Tooltip, Button } from "@markui/core";
 
 export default function TooltipDocPage() {
   const [placement, setPlacement] = useState<"top" | "bottom" | "left" | "right">("bottom");

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Card, Button } from "@/packages/core";
+import { Card, Button } from "@markui/core";
 
 export default function CardDocPage() {
   const [variant, setVariant] = useState<"default" | "bordered" | "elevated" | "ghost">("default");

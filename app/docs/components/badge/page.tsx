@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Badge } from "@/packages/core";
+import { Badge } from "@markui/core";
 
 export default function BadgeDocPage() {
   const [variant, setVariant] = useState<"default" | "success" | "warning" | "error" | "info" | "accent">("default");
@@ -34,7 +34,7 @@ export default function BadgeDocPage() {
           
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Variant</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={variant} onChange={(e) => setVariant(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={variant} onChange={(e) => setVariant(e.target.value as typeof variant)}>
               <option value="default">default</option>
               <option value="success">success</option>
               <option value="warning">warning</option>
@@ -46,7 +46,7 @@ export default function BadgeDocPage() {
 
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Size</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={size} onChange={(e) => setSize(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={size} onChange={(e) => setSize(e.target.value as typeof size)}>
               <option value="sm">sm</option>
               <option value="md">md</option>
             </select>
@@ -105,9 +105,9 @@ export default function BadgeDocPage() {
       {/* ACCESSIBILITY */}
       <h3 id="accessibility" className="doc-section-label">ACCESSIBILITY</h3>
       <ul style={{ color: "var(--mark-fg)", opacity: 0.8, lineHeight: 1.7, fontSize: 15, marginBottom: 48 }}>
-        <li><strong>Screen readers:</strong> add <code>aria-label</code> to provide context — "Status: Active" not just "Active".</li>
+        <li><strong>Screen readers:</strong> add <code>aria-label</code> to provide context — &quot;Status: Active&quot; not just &quot;Active&quot;.</li>
         <li><strong>Color:</strong> never rely on color alone to convey status — the label text must also communicate it.</li>
-        <li><strong>Live regions:</strong> for dynamically changing badges use <code>aria-live="polite"</code>.</li>
+        <li><strong>Live regions:</strong> for dynamically changing badges use <code>aria-live=&quot;polite&quot;</code>.</li>
       </ul>
 
       {/* PROPS */}
@@ -118,8 +118,8 @@ export default function BadgeDocPage() {
             <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
           </thead>
           <tbody>
-            <tr><td><code>variant</code></td><td><code>'default'|'success'|'warning'|'error'|'info'|'accent'</code></td><td><code>'default'</code></td><td>Visual style</td></tr>
-            <tr><td><code>size</code></td><td><code>'sm' | 'md'</code></td><td><code>'md'</code></td><td>Badge size</td></tr>
+            <tr><td><code>variant</code></td><td><code>&apos;default&apos;|&apos;success&apos;|&apos;warning&apos;|&apos;error&apos;|&apos;info&apos;|&apos;accent&apos;</code></td><td><code>&apos;default&apos;</code></td><td>Visual style</td></tr>
+            <tr><td><code>size</code></td><td><code>&apos;sm&apos; | &apos;md&apos;</code></td><td><code>&apos;md&apos;</code></td><td>Badge size</td></tr>
             <tr><td><code>dot</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Shows pulsing status dot</td></tr>
             <tr><td><code>children*</code></td><td><code>React.ReactNode</code></td><td>—</td><td>Badge label content</td></tr>
           </tbody>
@@ -129,7 +129,7 @@ export default function BadgeDocPage() {
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
       <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Badge {"}"} from '@markui/core'</code></pre>
+        <pre><code>import {"{"} Badge {"}"} from &apos;@markui/core&apos;</code></pre>
       </div>
 
     </ComponentDocTemplate>

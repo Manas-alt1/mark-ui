@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Avatar, Badge } from "@/packages/core";
+import { Avatar, Badge } from "@markui/core";
 
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import type { ToastProps } from './Toast.types'
 import { useFunAnimation } from '../../../animations/useFunAnimation'
 
@@ -87,6 +87,20 @@ export default function Toast({
 
   const animationConfig = getAnimationConfig()
 
+  const handleDismiss = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+    
+    triggerAnimation({ trigger: 'dismiss', originRef: toastRef })
+    
+    // Add small delay to allow animation to play
+    setTimeout(() => {
+      setVisible(false)
+      onDismiss?.()
+    }, 200)
+  }, [onDismiss, triggerAnimation])
+
   // Auto-dismiss functionality
   useEffect(() => {
     if (duration > 0) {
@@ -100,7 +114,7 @@ export default function Toast({
         clearTimeout(timeoutRef.current)
       }
     }
-  }, [duration])
+  }, [duration, handleDismiss])
 
   // Keyboard dismissal
   useEffect(() => {
@@ -112,21 +126,7 @@ export default function Toast({
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [])
-
-  const handleDismiss = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-    }
-    
-    triggerAnimation({ trigger: 'dismiss', originRef: toastRef })
-    
-    // Add small delay to allow animation to play
-    setTimeout(() => {
-      setVisible(false)
-      onDismiss?.()
-    }, 200)
-  }
+  }, [handleDismiss])
 
   const handleActionClick = () => {
     action?.onClick()

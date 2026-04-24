@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Tag } from "@/packages/core";
+import { Tag } from "@markui/core";
 
 export default function TagDocPage() {
   const [variant, setVariant] = useState<"default" | "accent" | "success" | "warning" | "danger">("default");

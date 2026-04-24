@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Modal, Button, Input } from "@/packages/core";
+import { Modal, Button, Input } from "@markui/core";
 
 export default function ModalDocPage() {
   const [isOpen, setIsOpen] = useState(false);

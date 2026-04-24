@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Clash Display', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-display: 'Oxanium', monospace;
+  --font-sans: var(--font-architects-daughter), cursive;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-display: var(--font-permanent-marker), cursive;
 }
 
 /* ═══════════════════════════════════════════
    MARK UI — Design Token System
+   Hand-Drawn Developer Theme
    ═══════════════════════════════════════════ */
 
 :root {
@@ -26,6 +27,10 @@
   --mark-border:        rgba(250, 250, 250, 0.08);
   --mark-border-strong: rgba(250, 250, 250, 0.16);
   --mark-border-focus:  var(--mark-accent-primary);
+
+  /* ── Grid pattern ── */
+  --mark-grid-color:    rgba(250, 250, 250, 0.04);
+  --mark-grid-size:     32px;
 
   /* ── Spacing scale (4px base) ── */
   --mark-space-1:   4px;
@@ -56,10 +61,11 @@
   --mark-shadow-lg:     0 8px 32px rgba(0, 0, 0, 0.6);
   --mark-shadow-accent: 0 0 24px var(--mark-accent-glow);
 
-  /* ── Typography — Fonts ── */
-  --mark-font-display: 'Oxanium', monospace;
-  --mark-font-body:    'Clash Display', sans-serif;
-  --mark-font-code:    'JetBrains Mono', monospace;
+  /* ── Typography — Fonts (Hand-drawn) ── */
+  --mark-font-display: var(--font-permanent-marker), cursive;
+  --mark-font-body:    var(--font-architects-daughter), cursive;
+  --mark-font-hand:    var(--font-gochi-hand), cursive;
+  --mark-font-code:    var(--font-jetbrains-mono), monospace;
 
   /* ── Typography — Font sizes ── */
   --mark-text-xs:  0.75rem;
@@ -273,7 +279,7 @@
 }
 
 /* ═══════════════════════════════════════════
-   Base Styles
+   Base Styles — Hand-Drawn Developer Theme
    ═══════════════════════════════════════════ */
 
 html {
@@ -290,17 +296,18 @@ body {
   font-family: var(--mark-font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; /* Prevent horizontal scroll globally */
-  background-color: var(--docs-bg, #0A0A0A);
-  transition: background-color var(--mark-duration-slow) var(--mark-ease-smooth);
+  overflow-x: hidden;
+  background-color: var(--mark-bg);
+  background-image:
+    linear-gradient(to right, var(--mark-grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--mark-grid-color) 1px, transparent 1px);
+  background-size: var(--mark-grid-size) var(--mark-grid-size);
+  transition:
+    background-color var(--mark-duration-slow) var(--mark-ease-smooth);
 }
 
-h1 {
+h1, h2 {
   font-family: var(--mark-font-display);
-}
-
-h2 {
-  font-family: var(--mark-font-body);
 }
 
 code, pre, kbd, samp {
@@ -316,6 +323,70 @@ code, pre, kbd, samp {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════
+   Sketchy Utility Classes
+   All colors use theme variables!
+   ═══════════════════════════════════════════ */
+
+/* Sketchy box: solid border + offset accent shadow */
+.sketchy-box {
+  position: relative;
+  background: var(--mark-bg);
+  border: 2px solid var(--mark-fg);
+  box-shadow: 6px 6px 0px 0px var(--mark-accent-primary);
+  border-radius: 2px 5px 3px 6px / 6px 3px 5px 2px;
+  transition:
+    box-shadow var(--mark-duration-normal) var(--mark-ease-smooth),
+    border-color var(--mark-duration-normal) var(--mark-ease-smooth);
+}
+
+/* Wavy SVG underline effect — uses accent-primary color */
+.sketch-underline {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 7 C 20 3, 50 8, 97 4' stroke='currentColor' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 10px;
+  padding-bottom: 8px;
+  /* SVG can't use CSS vars, so we rely on text color */
+  -webkit-text-fill-color: var(--mark-accent-primary);
+  text-decoration-color: var(--mark-accent-primary);
+}
+
+/* Press-down effect on click */
+.active-press {
+  transition: all var(--mark-duration-fast) var(--mark-ease-smooth);
+}
+
+.active-press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px 0px var(--mark-accent-primary) !important;
+}
+
+/* Material Symbols base */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   Selection — uses theme accent
+   ═══════════════════════════════════════════ */
+
+::selection {
+  background: var(--mark-accent-primary);
+  color: var(--mark-bg);
 }
 
 /* ═══════════════════════════════════════════
@@ -352,4 +423,32 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(250, 250, 250, 0.16);
+}
+
+/* ═══════════════════════════════════════════
+   Readable Page Override
+   For content-heavy pages (docs, components,
+   themes, showcase) — switch to Inter
+   ═══════════════════════════════════════════ */
+
+.readable-page {
+  --mark-font-display: var(--font-oxanium), sans-serif;
+  --mark-font-body:    'Clash Display', sans-serif;
+  --mark-font-hand:    'Clash Display', sans-serif;
+}
+
+.readable-page h1,
+.readable-page h2,
+.readable-page h3,
+.readable-page h4 {
+  font-family: var(--mark-font-display);
+  font-weight: 800;
+}
+
+.readable-page p,
+.readable-page li,
+.readable-page span,
+.readable-page a,
+.readable-page label {
+  font-family: var(--mark-font-body);
 }

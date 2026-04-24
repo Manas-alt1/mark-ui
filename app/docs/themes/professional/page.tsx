@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/packages/core";
+import { Badge } from "@markui/core";
 
 export default function ProfessionalThemesPage() {
   return (
@@ -29,7 +29,7 @@ export default function ProfessionalThemesPage() {
         <div style={{ background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-lg)", padding: "40px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={{ margin: 0 }}>Monochrome <Badge variant="default">Default</Badge></h3>
-            <code>data-theme="monochrome"</code>
+            <code>data-theme=&quot;monochrome&quot;</code>
           </div>
           <p className="docs-body-text">The default theme. Stark black and white with a sharp, high-contrast aesthetic. It gets out of the way of your content.</p>
         </div>
@@ -38,7 +38,7 @@ export default function ProfessionalThemesPage() {
         <div style={{ background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-lg)", padding: "40px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={{ margin: 0 }}>Arctic</h3>
-            <code>data-theme="arctic"</code>
+            <code>data-theme=&quot;arctic&quot;</code>
           </div>
           <p className="docs-body-text">A clean, bright theme focused on deep blues and cool greys. Perfect for finance, medical, or analytical dashboards.</p>
         </div>
@@ -47,7 +47,7 @@ export default function ProfessionalThemesPage() {
         <div style={{ background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-lg)", padding: "40px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={{ margin: 0 }}>Obsidian</h3>
-            <code>data-theme="obsidian"</code>
+            <code>data-theme=&quot;obsidian&quot;</code>
           </div>
           <p className="docs-body-text">A professional, highly legible dark mode with subtle muted gold accents to reduce eye strain over long periods.</p>
         </div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Drawer, Button, Input } from "@/packages/core";
+import { Drawer, Button, Input } from "@markui/core";
 
 export default function DrawerDocPage() {
   const [isOpen, setIsOpen] = useState(false);

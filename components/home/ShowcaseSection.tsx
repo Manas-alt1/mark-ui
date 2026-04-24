@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  Button, Badge, Tag, Input, Toggle, 
-  Card, Spinner, Skeleton 
-} from "@/packages/core";
+import {
+  Button, Badge, Tag, Input, Toggle,
+  Card, Spinner, Skeleton
+} from "@markui/core";
 
 export default function ShowcaseSection() {
   const [toggleOn, setToggleOn] = useState(true);
@@ -91,8 +91,22 @@ export default function ShowcaseSection() {
             <div style={{ width: "100%" }}>
               <Card>
                 <div style={{ padding: "20px" }}>
-                  <h4 style={{ fontFamily: "var(--mark-font-display)", fontSize: "18px", fontWeight: "700", marginBottom: "8px", color: "var(--mark-fg)" }}>Card Title</h4>
-                  <p style={{ fontFamily: "var(--mark-font-body)", fontSize: "15px", color: "var(--mark-fg)", opacity: 0.8, marginBottom: "16px", lineHeight: 1.5 }}>
+                  <h4 style={{
+                    fontFamily: "var(--mark-font-display)",
+                    fontSize: "18px",
+                    marginBottom: "8px",
+                    color: "var(--mark-fg)"
+                  }}>
+                    Card Title
+                  </h4>
+                  <p style={{
+                    fontFamily: "var(--mark-font-body)",
+                    fontSize: "15px",
+                    color: "var(--mark-fg)",
+                    opacity: 0.7,
+                    marginBottom: "16px",
+                    lineHeight: 1.6
+                  }}>
                     This is a live component. Switch themes and watch every color
                     update instantly.
                   </p>
@@ -110,6 +124,67 @@ export default function ShowcaseSection() {
             <div style={{ width: 200, display: "flex", flexDirection: "column", gap: 8 }}>
               <Skeleton className="w-full h-4" />
               <Skeleton className="w-2/3 h-4" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Metrics Preview Card */}
+        <motion.div
+          style={{ marginTop: 64 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="preview-card" style={{ maxWidth: 500, margin: "0 auto", position: "relative" }}>
+            {/* Annotations */}
+            <div className="annotation annotation--top-left">
+              <span className="material-symbols-outlined" style={{ fontSize: 20, transform: "rotate(-45deg)" }}>
+                north_west
+              </span>
+              <span>Fluid Grid</span>
+            </div>
+
+            <div className="preview-card-header">
+              <h3 className="preview-card-title">Efficiency Metrics</h3>
+              <div className="preview-card-icon">
+                <span className="material-symbols-outlined" style={{ fontSize: 22 }}>
+                  monitoring
+                </span>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: 24 }}>
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 12 }}>
+                <span className="preview-stat">
+                  99.4<span className="preview-stat-unit">%</span>
+                </span>
+                <span className="preview-stat-label">Uptime Performance</span>
+              </div>
+            </div>
+
+            {/* Bar chart */}
+            <div className="preview-bars">
+              <div className="preview-bar preview-bar--muted" style={{ height: "40%" }} />
+              <div className="preview-bar preview-bar--muted" style={{ height: "60%" }} />
+              <div className="preview-bar preview-bar--accent" style={{ height: "85%" }} />
+              <div className="preview-bar preview-bar--muted" style={{ height: "50%" }} />
+              <div className="preview-bar preview-bar--muted" style={{ height: "70%" }} />
+              <div className="preview-bar preview-bar--accent" style={{ height: "95%" }} />
+              <div className="preview-bar preview-bar--muted" style={{ height: "45%" }} />
+              <div className="preview-bar preview-bar--muted" style={{ height: "55%" }} />
+            </div>
+
+            <div className="preview-footer" style={{ marginTop: 16 }}>
+              <span className="preview-footer-label">System Integrity</span>
+              <span className="preview-footer-status">Optimal</span>
+            </div>
+
+            <div className="annotation annotation--bottom-right">
+              <span>Modular Core</span>
+              <span className="material-symbols-outlined" style={{ fontSize: 20 }}>
+                arrow_right_alt
+              </span>
             </div>
           </div>
         </motion.div>

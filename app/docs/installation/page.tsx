@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert } from "@/packages/core";
+import { Alert } from "@markui/core";
 import Link from "next/link";
 import { useState } from "react";
 

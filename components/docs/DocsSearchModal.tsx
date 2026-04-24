@@ -2,7 +2,7 @@
 
 import { useState, useEffect, KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Modal, Input } from "@/packages/core";
+import { Modal, Input } from "@markui/core";
 import { DOCS_NAV } from "./DocsNavData";
 
 interface DocsSearchModalProps {

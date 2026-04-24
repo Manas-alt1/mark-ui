@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
-import { Container } from "@/packages/core";
+import { Container } from "@markui/core";
 
 export default function ContainerDocPage() {
   const [size, setSize] = useState<"sm" | "md" | "lg" | "xl" | "full">("md");
