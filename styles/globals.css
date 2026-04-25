@@ -28,10 +28,6 @@
   --mark-border-strong: rgba(250, 250, 250, 0.16);
   --mark-border-focus:  var(--mark-accent-primary);
 
-  /* ── Grid pattern ── */
-  --mark-grid-color:    rgba(250, 250, 250, 0.04);
-  --mark-grid-size:     32px;
-
   /* ── Spacing scale (4px base) ── */
   --mark-space-1:   4px;
   --mark-space-2:   8px;
@@ -298,10 +294,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   background-color: var(--mark-bg);
-  background-image:
-    linear-gradient(to right, var(--mark-grid-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--mark-grid-color) 1px, transparent 1px);
-  background-size: var(--mark-grid-size) var(--mark-grid-size);
   transition:
     background-color var(--mark-duration-slow) var(--mark-ease-smooth);
 }

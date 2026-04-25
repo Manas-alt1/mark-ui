@@ -3,12 +3,22 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 const stagger = {
   hidden: {},
   show: {
     transition: { staggerChildren: 0.12 },
   },
+};
+
+const glowColors: Record<string, string> = {
+  monochrome: "radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%)",
+  arctic: "radial-gradient(circle, rgba(147,210,255,0.10) 0%, transparent 70%)",
+  obsidian: "radial-gradient(circle, rgba(180,160,255,0.09) 0%, transparent 70%)",
+  cyberpunk: "radial-gradient(circle, rgba(255,230,0,0.08) 0%, transparent 70%)",
+  matrixx: "radial-gradient(circle, rgba(0,255,120,0.08) 0%, transparent 70%)",
+  gotham: "radial-gradient(circle, rgba(255,100,60,0.09) 0%, transparent 70%)",
 };
 
 const fadeUp = {
@@ -21,12 +31,15 @@ const fadeUp = {
 };
 
 export default function HeroSection() {
+  const { theme } = useTheme();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const { scrollY } = useScroll();
 
+  const glowColor = glowColors[theme] || "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)";
+
   // Map scrollY to 1..0 (erased by 300px down)
   const scrollProgress = useTransform(scrollY, [0, 300], [1, 0]);
-  
+
   // Transform for clipPath: inset(-10% X% -10% -10%)
   // When scrollProgress is 1, X is 0 (fully visible)
   // When scrollProgress is 0, X is 100 (fully hidden)
@@ -44,9 +57,13 @@ export default function HeroSection() {
 
   return (
     <section className="hero">
-      {/* Animated gradient mesh */}
-      <div className="hero-gradient-mesh" />
-      <div className="hero-gradient-orb" />
+      {/* Theme Reactive Glow */}
+      <div
+        className="hero-glow"
+        style={{
+          background: glowColor,
+        }}
+      />
 
       <motion.div
         className="hero-content"
@@ -57,21 +74,20 @@ export default function HeroSection() {
         {/* Pill badge */}
         <motion.div variants={fadeUp}>
           <span className="hero-pill">
-            Motion-first · Fully themeable · TypeScript ready
+            Crafted for React · TypeScript Native · Zero Lock-in
           </span>
         </motion.div>
 
         {/* Heading */}
         <motion.h1 className="hero-heading" variants={fadeUp}>
-          The Architecture
+          Your components,<br /> Your rules,
           <br />
-          <span className="hero-heading-accent">of Choice.</span>
+          <span className="hero-heading-accent">Our motion.</span>
         </motion.h1>
 
         {/* Subheading */}
         <motion.p className="hero-sub" variants={fadeUp}>
-          A modular component library engineered for precision,{" "}
-          <em>styled for creativity.</em>
+          Not another UI kit. MARK UI is a creative system — opinionated enough to ship fast, flexible enough to make it entirely yours.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -87,7 +103,7 @@ export default function HeroSection() {
 
       {/* Arrow pointing to the Theme sidebar */}
       <div className="sidebar-arrow-hint">
-        <motion.span 
+        <motion.span
           className="sidebar-arrow-label"
           style={{ paddingRight: "4px", clipPath }}
           initial={{ clipPath: "inset(-10% 100% -10% -10%)" }}

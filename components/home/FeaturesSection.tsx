@@ -5,23 +5,23 @@ import { motion } from "framer-motion";
 const features = [
   {
     icon: "architecture",
-    title: "Technical Accuracy",
-    body: "Built on a strict 4px grid system with mathematical precision. No guesswork, just geometry.",
+    title: "Precision by default",
+    body: "A strict 4px grid runs through every component. Spacing, radius, line-height — all derived from one base. Your layouts align without you thinking about it.",
   },
   {
     icon: "palette",
-    title: "Live theme switching",
-    body: "Two collections. Fifteen themes. Switch the entire personality of your product in one click — no reload, no flash.",
+    title: "Themes with personality",
+    body: "Not just color swaps. Each of the 6 themes — from Monochrome to Cyberpunk — has its own character. Switch live, no flash, no reload.",
   },
   {
     icon: "draw",
-    title: "Organic Overlays",
-    body: "Doodles and sketches are baked into the core primitives, allowing for expressive and creative documentation.",
+    title: "Motion that means something",
+    body: "Animations aren't sprinkled in — they're part of the component's DNA. Every interaction has intention, every transition has weight.",
   },
   {
     icon: "terminal",
-    title: "Developer First",
-    body: "Every component is fully typed. Consistent prop APIs across the board. Ready to ship with React and TypeScript.",
+    title: "Type it, ship it",
+    body: "Full TypeScript coverage. Consistent prop APIs. Autocomplete that actually helps. Drop in a component and it just works.",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function FeaturesSection() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="section-heading-accent">Features</span>
+              <span className="section-heading-accent">The craft behind every component.</span>
             </motion.h2>
           </div>
 
@@ -71,8 +71,7 @@ export default function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            &quot;Every component is a canvas,
-            <br />not just a container.&quot;
+            &quot;We obsess over the details, so you don't have to.&quot;
           </motion.div>
         </div>
 

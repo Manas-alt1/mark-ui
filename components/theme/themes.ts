@@ -91,7 +91,7 @@ const professionalThemes: Theme[] = [
     id: 'ivory',
     name: 'Ivory',
     collection: 'professional',
-    status: 'planned',
+    status: 'live',
     personality: 'Warm, minimal, refined.',
     tokens: {
       accentPrimary:   '#D97706',
@@ -104,7 +104,7 @@ const professionalThemes: Theme[] = [
     id: 'slate',
     name: 'Slate',
     collection: 'professional',
-    status: 'planned',
+    status: 'live',
     personality: 'Serious, structured, reliable.',
     tokens: {
       accentPrimary:   '#0EA5E9',
@@ -117,7 +117,7 @@ const professionalThemes: Theme[] = [
     id: 'sage',
     name: 'Sage',
     collection: 'professional',
-    status: 'planned',
+    status: 'live',
     personality: 'Calm productivity. Clear focus.',
     tokens: {
       accentPrimary:   '#4D7C6F',
@@ -130,7 +130,7 @@ const professionalThemes: Theme[] = [
     id: 'carbon',
     name: 'Carbon',
     collection: 'professional',
-    status: 'planned',
+    status: 'live',
     personality: 'Industrial bold. High contrast.',
     tokens: {
       accentPrimary:   '#EF4444',
@@ -163,7 +163,7 @@ const funThemes: Theme[] = [
     id: 'shinigami',
     name: 'Shinigami',
     collection: 'fun',
-    status: 'planned',
+    status: 'live',
     personality: 'Dark gold. Deadly elegant.',
     tokens: {
       accentPrimary:   '#C9A84C',
@@ -176,7 +176,7 @@ const funThemes: Theme[] = [
     id: 'titan',
     name: 'Titan',
     collection: 'fun',
-    status: 'planned',
+    status: 'live',
     personality: 'Military grit. Earned strength.',
     tokens: {
       accentPrimary:   '#8B6914',
@@ -189,7 +189,7 @@ const funThemes: Theme[] = [
     id: 'nebula',
     name: 'Nebula',
     collection: 'fun',
-    status: 'planned',
+    status: 'live',
     personality: 'Cosmic scale. Infinite depth.',
     tokens: {
       accentPrimary:   '#9B59B6',
@@ -228,7 +228,7 @@ const funThemes: Theme[] = [
     id: 'akira',
     name: 'Akira',
     collection: 'fun',
-    status: 'planned',
+    status: 'live',
     personality: 'Neo Tokyo. Speed and chaos.',
     tokens: {
       accentPrimary:   '#FF4500',
@@ -241,7 +241,7 @@ const funThemes: Theme[] = [
     id: 'hobbit',
     name: 'Hobbit',
     collection: 'fun',
-    status: 'planned',
+    status: 'live',
     personality: 'Earthy warmth. An unexpected journey.',
     tokens: {
       accentPrimary:   '#8B7355',

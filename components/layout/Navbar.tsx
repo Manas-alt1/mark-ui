@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 const navLinks = [
+  { href: "/", label: "HOME" },
   { href: "/docs", label: "DOCS" },
   { href: "/components", label: "COMPONENTS" },
   { href: "/themes", label: "THEMES" },
