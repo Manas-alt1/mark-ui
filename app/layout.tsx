@@ -15,9 +15,9 @@ import {
 } from "@/styles/fonts";
 
 export const metadata: Metadata = {
-  title: "MARK UI — The Architecture of Choice",
+  title: "MARK UI — Your components. Your rules.",
   description:
-    "A modular component library engineered for precision, styled for creativity. Build interfaces that leave a mark.",
+    "Not another UI kit. MARK UI is a creative system — opinionated enough to ship fast, flexible enough to make it entirely yours.",
 };
 
 export default function RootLayout({
