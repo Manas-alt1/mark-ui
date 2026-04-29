@@ -27,8 +27,8 @@ const roadmapItems: RoadmapEntry[] = [
   {
     status: "shipped",
     label: "SHIPPED",
-    title: "Launch themes",
-    description: "Monochrome, Arctic, Obsidian. Cyberpunk, Matrixx, Gotham.",
+    title: "Initial theme launch",
+    description: "The first live wave established both the professional and fun theme directions.",
   },
   {
     status: "shipped",
@@ -43,10 +43,10 @@ const roadmapItems: RoadmapEntry[] = [
     description: "Playground, props tables, animation details per component.",
   },
   {
-    status: "coming-soon",
-    label: "COMING SOON",
-    title: "More themes",
-    description: "Shinigami, Titan, Nebula, Akira, Hobbit, Carbon, Ivory...",
+    status: "shipped",
+    label: "SHIPPED",
+    title: "Expanded live theme roster",
+    description: "The catalog now spans a broader set of professional and fun personalities, all live on the site.",
   },
   {
     status: "coming-soon",

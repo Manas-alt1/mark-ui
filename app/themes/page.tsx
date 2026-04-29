@@ -6,11 +6,6 @@ import { Button } from "@markui/core";
 import ThemePreviewCard from "@/components/themes/ThemePreviewCard";
 import "@/styles/themes.css"; // Ensure themes styles are loaded
 
-const UPCOMING_THEMES = [
-  "Shinigami", "Titan", "Nebula", "Akira", "Hobbit",
-  "Carbon", "Ivory", "Slate", "Sage"
-];
-
 export default function ThemesShowroomPage() {
   const scrollRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -47,11 +42,11 @@ export default function ThemesShowroomPage() {
         ref={addToRefs} 
         className="themes-hero opacity-0 translate-y-8 transition-all duration-700 ease-out"
       >
-        <div className="themes-hero-tag">6 themes · 2 collections</div>
+        <div className="themes-hero-tag">Live themes · Distinct collections</div>
         <h1 className="themes-hero-title">Every theme.<br/>One library.</h1>
         <p className="themes-hero-body">
-          Two collections. Professional for products that mean business. 
-          Fun for products that refuse to be boring. Every theme switches live — 
+          Professional themes for products that mean business.
+          Fun themes for products that refuse to be boring. Every theme switches live — 
           no reload, no flash, no config.
         </p>
       </section>
@@ -166,21 +161,16 @@ setTheme('cyberpunk')`}</div>
         </div>
       </section>
 
-      {/* SECTION 5: UPCOMING THEMES */}
+      {/* SECTION 5: LIVE ROSTER */}
       <section 
         ref={addToRefs}
         className="themes-upcoming opacity-0 translate-y-8 transition-all duration-700 ease-out"
       >
-        <h2 className="themes-upcoming-title">More themes coming soon</h2>
+        <h2 className="themes-upcoming-title">The live roster keeps growing</h2>
         <p className="themes-upcoming-body">
-          We're constantly expanding the library to match more personalities.
+          The library now spans restrained professional systems and cinematic fun themes,
+          with every live theme ready to use today.
         </p>
-        
-        <div className="themes-upcoming-tags">
-          {UPCOMING_THEMES.map(theme => (
-            <div key={theme} className="themes-upcoming-tag">{theme}</div>
-          ))}
-        </div>
       </section>
 
       {/* SECTION 6: CTA */}

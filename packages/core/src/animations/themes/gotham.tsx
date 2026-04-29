@@ -292,7 +292,7 @@ function GothamDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () => 
   return (
     <>
       {/* Dark vignette closing in */}
-      {['top','bottom','left','right'].map((side, i) => {
+      {['top','bottom','left','right'].map((side) => {
         const styles: React.CSSProperties = {
           position: 'fixed',
           backgroundColor: 'rgba(0,0,0,0.8)',

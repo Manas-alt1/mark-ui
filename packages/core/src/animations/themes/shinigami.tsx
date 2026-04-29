@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AnimationInstance } from '../useFunAnimation';
+import { useStableValue } from '../useStableValue';
 
 export default function ShinigamiAnimations({ instance, onComplete }: { instance: AnimationInstance, onComplete: () => void }) {
   const { trigger, rect } = instance;
@@ -28,7 +29,7 @@ function ShinigamiClick({ rect, onComplete }: { rect: DOMRect, onComplete: () =>
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
-  const orbs = useMemo(() => 
+  const orbs = useStableValue(() =>
     Array.from({ length: 8 }).map(() => ({
       size: 6 + Math.random() * 8,
       angle: Math.random() * Math.PI * 2,
@@ -36,7 +37,6 @@ function ShinigamiClick({ rect, onComplete }: { rect: DOMRect, onComplete: () =>
       lifetime: 800 + Math.random() * 400,
       yOffset: [-60 - Math.random() * 60, -80 - Math.random() * 40],
     })),
-    []
   );
 
   return (
@@ -144,7 +144,7 @@ function ShinigamiToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: ()
   const cx = rect.left + rect.width - 14;
   const cy = rect.top + rect.height / 2;
 
-  const feathers = useMemo(() => 
+  const feathers = useStableValue(() =>
     Array.from({ length: 10 }).map(() => ({
       angle: Math.random() * Math.PI * 2,
       vx: (Math.random() - 0.5) * 200,
@@ -152,7 +152,6 @@ function ShinigamiToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: ()
       lifetime: 1000 + Math.random() * 400,
       rotate: Math.random() * 360,
     })),
-    []
   );
 
   const rings = [
@@ -239,12 +238,11 @@ function ShinigamiToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: ()
 
 // ─── CHECK — Death Note Write (Calligraphy Brush) ─────────────────────────
 function ShinigamiCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const inkSplatters = useMemo(() => 
+  const inkSplatters = useStableValue(() =>
     Array.from({ length: 5 }).map(() => ({
       dx: (Math.random() - 0.5) * 20,
       dy: (Math.random() - 0.5) * 20,
     })),
-    []
   );
 
   return (
@@ -359,14 +357,13 @@ function ShinigamiMount({ rect, onComplete }: { rect: DOMRect, onComplete: () =>
 
 // ─── DISMISS — Soul Extraction ────────────────────────────────────────────
 function ShinigamiDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const orbs = useMemo(() => 
+  const orbs = useStableValue(() =>
     Array.from({ length: 10 }).map(() => ({
       x: (Math.random() - 0.5) * rect.width * 0.8,
       y: -(30 + Math.random() * 60),
       size: 4 + Math.random() * 6,
       delay: Math.random() * 0.2,
     })),
-    [rect.width]
   );
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Badge, Toggle, Input } from "@markui/core";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import type { ThemeId } from "@/components/theme/themes";
@@ -21,15 +21,9 @@ export default function ThemePreviewCard({
   swatches,
 }: ThemePreviewCardProps) {
   const { setTheme, theme: currentGlobalTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [toggleState, setToggleState] = useState(true);
 
-  // Avoid hydration mismatch for live status badge
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isLive = mounted && currentGlobalTheme === themeId;
+  const isLive = currentGlobalTheme === themeId;
 
   return (
     <div className="theme-card">

@@ -21,7 +21,7 @@ const changelog = [
             Skeleton, Spinner, Divider, Container.
           </li>
           <li>
-            <strong>6 launch themes:</strong> Monochrome, Arctic, Obsidian, Cyberpunk, 
+            <strong>6 initial launch themes:</strong> Monochrome, Arctic, Obsidian, Cyberpunk, 
             Matrixx, Gotham.
           </li>
           <li>Full TypeScript support with comprehensive prop types.</li>

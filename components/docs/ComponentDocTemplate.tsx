@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Badge } from "@markui/core";
-import { DOCS_NAV } from "@/components/docs/DocsNavData";
+import { DOCS_NAV, type DocsNavLink } from "@/components/docs/DocsNavData";
 
 interface ComponentDocProps {
   name: string;
@@ -21,11 +21,11 @@ export default function ComponentDocTemplate({
 }: ComponentDocProps) {
   
   // Find prev/next links based on sidebar order
-  const flatLinks: { name: string; href: string }[] = [];
+  const flatLinks: DocsNavLink[] = [];
   DOCS_NAV.forEach(section => {
-    section.items.forEach((item: any) => {
-      if (item.label && item.items) {
-        item.items.forEach((sub: any) => flatLinks.push(sub));
+    section.items.forEach((item) => {
+      if ("label" in item) {
+        item.items.forEach((sub) => flatLinks.push(sub));
       } else {
         flatLinks.push(item);
       }

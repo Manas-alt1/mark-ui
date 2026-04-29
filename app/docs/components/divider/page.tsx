@@ -39,7 +39,7 @@ export default function DividerDocPage() {
           
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Orientation</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={orientation} onChange={(e) => setOrientation(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={orientation} onChange={(e) => setOrientation(e.target.value as typeof orientation)}>
               <option value="horizontal">horizontal</option>
               <option value="vertical">vertical</option>
             </select>

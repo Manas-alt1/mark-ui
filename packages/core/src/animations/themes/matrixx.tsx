@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AnimationInstance } from '../useFunAnimation';
+import { useStableValue } from '../useStableValue';
 
 export default function MatrixxAnimations({ instance, onComplete }: { instance: AnimationInstance, onComplete: () => void }) {
   const { trigger, rect } = instance;
@@ -33,7 +34,7 @@ function MatrixxClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => v
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
-  const codeChars = React.useRef(
+  const codeChars = useStableValue(() =>
     Array.from({ length: 20 }).map((_, i) => ({
       char: rChar(),
       isWhite: i === Math.floor(Math.random() * 20),
@@ -43,7 +44,7 @@ function MatrixxClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => v
       lifetime: 600 + Math.random() * 400,
       rotate: (Math.random() - 0.5) * 360,
     }))
-  ).current;
+  );
 
   return (
     <>
@@ -109,14 +110,14 @@ function MatrixxClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => v
 
 // ─── TOGGLE ON — Reality Rewrite ──────────────────────────────────────────
 function MatrixxToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const streamChars = React.useRef(
+  const streamChars = useStableValue(() =>
     Array.from({ length: 20 }).map((_, i) => ({
       char: rChar(),
       isBright: i % 4 === 0,
     }))
-  ).current;
+  );
 
-  const rainCols = React.useRef(
+  const rainCols = useStableValue(() =>
     Array.from({ length: 8 }).map((_, i) => ({
       x: rect.left + (i / 8) * rect.width,
       chars: Array.from({ length: 10 }).map((_, j) => ({
@@ -125,7 +126,7 @@ function MatrixxToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () =
         delay: j * 0.04,
       })),
     }))
-  ).current;
+  );
 
   return (
     <>
@@ -278,13 +279,13 @@ function MatrixxDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () =>
   const cols = Math.ceil(rect.width / 8);
   const totalCells = rows * cols;
 
-  const cells = React.useRef(
-    Array.from({ length: totalCells }).map((_, i) => ({
+  const cells = useStableValue(() =>
+    Array.from({ length: totalCells }).map(() => ({
       char: rChar(),
       delay: Math.random() * 0.5,
       duration: 0.1 + Math.random() * 0.3,
     }))
-  ).current;
+  );
 
   return (
     <div
@@ -330,14 +331,14 @@ function MatrixxDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () =>
 // ─── FOCUS — Matrix Rain on Border ─────────────────────────────────────────
 function MatrixxFocus({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
   const colCount = Math.max(8, Math.floor(rect.width / 14));
-  const cols = React.useRef(
+  const cols = useStableValue(() =>
     Array.from({ length: colCount }).map((_, i) => ({
       char: rChar(),
       delay: Math.random() * 0.4,
       x: rect.left + (i / colCount) * rect.width,
       isBright: i % 5 === 0,
     }))
-  ).current;
+  );
 
   return (
     <>

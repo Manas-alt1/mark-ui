@@ -69,7 +69,7 @@ export default function ModalPreview() {
           onClose={() => setIsOpen(false)}
         />
         <ModalBody>
-          <p>This is what a modal looks like in MARK UI. It's centered, animated, and fully themeable with proper focus management and accessibility features.</p>
+          <p>This is what a modal looks like in MARK UI. It&apos;s centered, animated, and fully themeable with proper focus management and accessibility features.</p>
         </ModalBody>
         <ModalFooter>
           <Button variant="secondary" onClick={() => setIsOpen(false)}>

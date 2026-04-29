@@ -54,7 +54,7 @@ export default function Drawer({
   const drawerRef = useRef<HTMLDivElement>(null)
   const backdropRef = useRef<HTMLDivElement>(null)
   const previousActiveElement = useRef<HTMLElement | null>(null)
-  const { triggerAnimation } = useFunAnimation()
+  useFunAnimation()
 
   const isHorizontal = placement === 'left' || placement === 'right'
 

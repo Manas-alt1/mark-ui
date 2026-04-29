@@ -33,7 +33,7 @@ export default function TooltipDocPage() {
           
           <div>
             <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--mark-fg)", opacity: 0.6 }}>Placement</label>
-            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={placement} onChange={(e) => setPlacement(e.target.value as any)}>
+            <select style={{ width: "100%", padding: 8, background: "var(--mark-bg)", color: "var(--mark-fg)", border: "1px solid var(--mark-border-strong)", borderRadius: 4 }} value={placement} onChange={(e) => setPlacement(e.target.value as typeof placement)}>
               <option value="top">top</option>
               <option value="bottom">bottom</option>
               <option value="left">left</option>

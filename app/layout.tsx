@@ -33,7 +33,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Clash Display — body font (Fontshare) */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Gochi+Hand&family=JetBrains+Mono:wght@400;500;600;700;800&family=Oxanium:wght@400;500;600;700;800&family=Permanent+Marker&display=swap"
+          rel="stylesheet"
+        />
         <link
           href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap"
           rel="stylesheet"

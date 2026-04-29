@@ -34,7 +34,7 @@ export default function ThemesOverviewPage() {
       <h1>Themes Overview</h1>
 
       <p className="docs-description-line">
-        Mark UI ships with two distinct theme collections out of the box. 
+        Mark UI ships with distinct theme collections out of the box.
         Everything relies on CSS variables for a seamless, instant transition between looks.
       </p>
 

@@ -1,7 +1,32 @@
 {
   "name": "@markui/core",
-  "version": "0.1.0",
-  "description": "Motion-first React component library",
+  "version": "0.1.1",
+  "description": "Motion-first React component library — 18 animated components, 15 live themes, powered by Framer Motion",
+  "license": "MIT",
+  "author": "Manas Bhavsar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manas-bhavsar/mark-ui.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://markui.vercel.app",
+  "bugs": {
+    "url": "https://github.com/Manas-bhavsar/mark-ui/issues"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "animation",
+    "framer-motion",
+    "motion",
+    "typescript",
+    "design-system",
+    "themes",
+    "component-library",
+    "animated",
+    "accessible"
+  ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

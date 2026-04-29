@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AnimationInstance } from '../useFunAnimation';
+import { useStableValue } from '../useStableValue';
 
 export default function CyberpunkAnimations({ instance, onComplete }: { instance: AnimationInstance, onComplete: () => void }) {
   const { trigger, rect } = instance;
@@ -27,22 +28,21 @@ export default function CyberpunkAnimations({ instance, onComplete }: { instance
 
 // ─── CLICK — Neon Gunshot ──────────────────────────────────────────────────
 function CyberpunkClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
   // Shell casing data (stable)
-  const shellData = React.useRef({
+  const shellData = {
     startX: rect.right - 10,
     startY: cy,
-  }).current;
+  };
 
   // Smoke wist data
-  const smokeData = React.useRef(
+  const smokeData = useStableValue(() =>
     [0, 60, 120].map((delay) => ({
       delay,
       dx: (Math.random() - 0.5) * 20,
     }))
-  ).current;
+  );
 
   return (
     <>
@@ -158,7 +158,7 @@ function CyberpunkToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: ()
   const cx = rect.left + rect.width - 14; // thumb arrival (ON side)
   const cy = rect.top + rect.height / 2;
 
-  const sparks = React.useRef(
+  const sparks = useStableValue(() =>
     Array.from({ length: 12 }).map(() => ({
       angle: Math.random() * Math.PI * 2,
       speed: 80 + Math.random() * 120,
@@ -167,8 +167,9 @@ function CyberpunkToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: ()
       isSquare: Math.random() > 0.5,
       lifetime: 600 + Math.random() * 300,
       rotSpeed: (Math.random() - 0.5) * 720,
+      vy: -80 - Math.random() * 80,
     }))
-  ).current;
+  );
 
   return (
     <>
@@ -192,14 +193,13 @@ function CyberpunkToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: ()
       {/* Spark particles */}
       {sparks.map((s, i) => {
         const vx = Math.cos(s.angle) * s.speed;
-        const vy = -80 - Math.random() * 80; // burst upward
         return (
           <motion.div
             key={i}
             initial={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
             animate={{
               x: vx,
-              y: [0, vy, vy + 60], // up then gravity pull down
+              y: [0, s.vy, s.vy + 60], // up then gravity pull down
               opacity: [1, 1, 0],
               rotate: s.rotSpeed,
             }}
@@ -230,12 +230,12 @@ function CyberpunkToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: ()
 
 // ─── CHECK — System Hack Glitch ───────────────────────────────────────────
 function CyberpunkCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const pixels = React.useRef(
+  const pixels = useStableValue(() =>
     Array.from({ length: 6 }).map(() => ({
       angle: Math.random() * Math.PI * 2,
       dist: 12 + Math.random() * 20,
     }))
-  ).current;
+  );
 
   return (
     <>
@@ -438,13 +438,13 @@ function CyberpunkDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () 
 function CyberpunkFocus({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
   const matrixChars = ['0','1','¥','$','#','@','!','ﾊ','ﾐ','ﾋ','ｳ','ｼ','ﾅ','ﾓ','ﾚ','ﾑ'];
   const colCount = Math.max(8, Math.floor(rect.width / 14));
-  const cols = React.useRef(
+  const cols = useStableValue(() =>
     Array.from({ length: colCount }).map((_, i) => ({
       char: matrixChars[Math.floor(Math.random() * matrixChars.length)],
       delay: Math.random() * 0.4,
       x: rect.left + (i / colCount) * rect.width,
     }))
-  ).current;
+  );
 
   return (
     <>

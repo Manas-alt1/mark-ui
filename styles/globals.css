@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-architects-daughter), cursive;
-  --font-mono: var(--font-jetbrains-mono), monospace;
-  --font-display: var(--font-permanent-marker), cursive;
+  --font-sans: "Architects Daughter", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
+  --font-display: "Permanent Marker", "Arial Black", sans-serif;
 }
 
 /* ═══════════════════════════════════════════
@@ -58,10 +58,10 @@
   --mark-shadow-accent: 0 0 24px var(--mark-accent-glow);
 
   /* ── Typography — Fonts (Hand-drawn) ── */
-  --mark-font-display: var(--font-permanent-marker), cursive;
-  --mark-font-body:    var(--font-architects-daughter), cursive;
-  --mark-font-hand:    var(--font-gochi-hand), cursive;
-  --mark-font-code:    var(--font-jetbrains-mono), monospace;
+  --mark-font-display: var(--font-display);
+  --mark-font-body: var(--font-sans);
+  --mark-font-hand: "Gochi Hand", "Comic Sans MS", cursive;
+  --mark-font-code: var(--font-mono);
 
   /* ── Typography — Font sizes ── */
   --mark-text-xs:  0.75rem;
@@ -424,9 +424,9 @@ a {
    ═══════════════════════════════════════════ */
 
 .readable-page {
-  --mark-font-display: var(--font-oxanium), sans-serif;
-  --mark-font-body:    'Clash Display', sans-serif;
-  --mark-font-hand:    'Clash Display', sans-serif;
+  --mark-font-display: "Oxanium", "Segoe UI", sans-serif;
+  --mark-font-body: "Clash Display", "Helvetica Neue", Arial, sans-serif;
+  --mark-font-hand: "Clash Display", "Helvetica Neue", Arial, sans-serif;
 }
 
 .readable-page h1,

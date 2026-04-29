@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AnimationInstance } from '../useFunAnimation';
+import { useStableValue } from '../useStableValue';
 
 export default function NebulaAnimations({ instance, onComplete }: { instance: AnimationInstance, onComplete: () => void }) {
   const { trigger, rect } = instance;
@@ -29,7 +30,7 @@ function NebulaClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => vo
   const cy = rect.top + rect.height / 2;
   const colors = ['#9B59B6', '#E74C3C', '#FFFFFF', '#FFD700'];
 
-  const particles = React.useRef(
+  const particles = useStableValue(() =>
     Array.from({ length: 20 }).map(() => {
       const angle = Math.random() * Math.PI * 2;
       const speed = 80 + Math.random() * 120;
@@ -42,7 +43,7 @@ function NebulaClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => vo
         startOpacity: 0.7 + Math.random() * 0.3,
       };
     })
-  ).current;
+  );
 
   const nebulaClouds = [
     { color: 'rgba(155,89,182,0.15)', dx: 10, dy: -5 },
@@ -127,14 +128,14 @@ function NebulaClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => vo
 // ─── TOGGLE ON — Star Trail ───────────────────────────────────────────────
 function NebulaToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
   const starColors = ['#9B59B6', '#E74C3C', '#FFFFFF', '#FFD700'];
-  const stars = React.useRef(
+  const stars = useStableValue(() =>
     Array.from({ length: 8 }).map((_, i) => ({
       color: starColors[i % 4],
       delay: i * 0.04,
       size: 3 + Math.random() * 5,
       xPos: rect.left + (i / 8) * rect.width,
     }))
-  ).current;
+  );
 
   return (
     <>

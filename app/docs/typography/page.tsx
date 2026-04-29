@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
-const typographyScale = [
+const typographyScale: Array<{
+  label: string;
+  variable: string;
+  value: string;
+  weight: CSSProperties["fontWeight"];
+}> = [
   { label: "Display 7XL", variable: "--mark-text-7xl", value: "4.5rem", weight: "var(--mark-weight-extrabold)" },
   { label: "Display 6XL", variable: "--mark-text-6xl", value: "3.75rem", weight: "var(--mark-weight-extrabold)" },
   { label: "Display 5XL", variable: "--mark-text-5xl", value: "3rem", weight: "var(--mark-weight-bold)" },
@@ -69,7 +75,7 @@ export default function TypographyPage() {
                 <td>
                   <div style={{ 
                     fontSize: `var(${item.variable})`, 
-                    fontWeight: item.weight as any,
+                    fontWeight: item.weight,
                     fontFamily: item.variable.includes('7xl') || item.variable.includes('6xl') || item.variable.includes('5xl') ? 'var(--mark-font-display)' : 'var(--mark-font-body)',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -94,9 +100,9 @@ export default function TypographyPage() {
           { label: "Semibold", var: "--mark-weight-semibold", val: "600" },
           { label: "Bold", var: "--mark-weight-bold", val: "700" },
           { label: "Extrabold", var: "--mark-weight-extrabold", val: "800" },
-        ].map(w => (
+        ].map((w) => (
           <div key={w.var} style={{ padding: "20px", background: "var(--mark-bg-elevated)", border: "1px solid var(--mark-border)", borderRadius: "var(--mark-radius-md)" }}>
-             <div style={{ fontWeight: w.val as any, fontSize: "20px", marginBottom: "8px" }}>{w.label}</div>
+             <div style={{ fontWeight: w.val as CSSProperties["fontWeight"], fontSize: "20px", marginBottom: "8px" }}>{w.label}</div>
              <code>{w.var}</code>
           </div>
         ))}

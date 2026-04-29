@@ -61,7 +61,7 @@ export default function IntroPage() {
             <span style={{ fontSize: 24 }}>🎨</span> Themes that actually work
           </h3>
           <p className="docs-body-text" style={{ margin: 0 }}>
-            Two collections. Six themes at launch. Switch the entire personality
+            Distinct collections. A full live roster. Switch the entire personality
             of your product in one click — no reload, no flash, no config.
           </p>
         </div>

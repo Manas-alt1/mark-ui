@@ -48,7 +48,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       // Save to storage
       try {
         localStorage.setItem(STORAGE_KEY, safeTheme);
-      } catch (e) {
+      } catch {
         // Ignore quota errors
       }
     },
@@ -72,18 +72,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("storage", handleStorage);
   }, [setTheme]);
 
-  // Re-verify theme is live on mount (in case status changed in code)
-  useEffect(() => {
-    if (!isThemeLive(theme)) {
-      setTheme(getSafeThemeId(theme));
-    }
-  }, [theme, setTheme]);
-
   // Validate current theme when page becomes visible (user returns to tab)
   useEffect(() => {
     const validateCurrentTheme = () => {
       if (!isThemeLive(theme)) {
-        setTheme(getSafeThemeId(theme));
+        const safeTheme = getSafeThemeId(theme);
+        applyTheme(safeTheme);
       }
     };
 

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AnimationInstance } from '../useFunAnimation';
+import { useStableValue } from '../useStableValue';
 
 export default function TitanAnimations({ instance, onComplete }: { instance: AnimationInstance, onComplete: () => void }) {
   const { trigger, rect } = instance;
@@ -28,7 +29,7 @@ function TitanClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => voi
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
-  const debris = useMemo(() => 
+  const debris = useStableValue(() =>
     Array.from({ length: 16 }).map(() => ({
       angle: Math.random() * Math.PI * 2,
       speed: 80 + Math.random() * 120,
@@ -39,7 +40,6 @@ function TitanClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => voi
       rotSpeed: (Math.random() - 0.5) * 1440,
       lifetime: 600 + Math.random() * 400,
     })),
-    []
   );
 
   const slashAngles = [30, 90, 150];
@@ -148,13 +148,12 @@ function TitanToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () => 
     }
   }, []);
 
-  const dustClouds = useMemo(() => 
+  const dustClouds = useStableValue(() =>
     Array.from({ length: 8 }).map(() => ({
       x: (Math.random() - 0.5) * 60,
       size: 20 + Math.random() * 20,
       delay: Math.random() * 0.1,
     })),
-    []
   );
 
   return (
@@ -231,11 +230,10 @@ function TitanToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () => 
 
 // ─── CHECK — Military Brand ───────────────────────────────────────────────
 function TitanCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const smokeParticles = useMemo(() => 
+  const smokeParticles = useStableValue(() =>
     Array.from({ length: 4 }).map(() => ({
       dx: (Math.random() - 0.5) * 10,
     })),
-    []
   );
 
   return (
@@ -301,13 +299,12 @@ function TitanCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => voi
 
 // ─── MOUNT — Parachute Drop ───────────────────────────────────────────────
 function TitanMount({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const dustParticles = useMemo(() => 
+  const dustParticles = useStableValue(() =>
     Array.from({ length: 6 }).map((_, i) => ({
       dir: i % 2 === 0 ? 'left' : 'right' as 'left' | 'right',
       x: ((i % 2 === 0 ? -1 : 1) * (20 + Math.random() * 30)),
       size: 12 + Math.random() * 8,
     })),
-    []
   );
 
   return (

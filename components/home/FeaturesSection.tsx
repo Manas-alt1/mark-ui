@@ -11,7 +11,7 @@ const features = [
   {
     icon: "palette",
     title: "Themes with personality",
-    body: "Not just color swaps. Each of the 6 themes — from Monochrome to Cyberpunk — has its own character. Switch live, no flash, no reload.",
+    body: "Not just color swaps. Every live theme has its own character and interaction feel. Switch instantly with no flash and no reload.",
   },
   {
     icon: "draw",
@@ -71,7 +71,7 @@ export default function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            &quot;We obsess over the details, so you don't have to.&quot;
+            &quot;We obsess over the details, so you don&apos;t have to.&quot;
           </motion.div>
         </div>
 

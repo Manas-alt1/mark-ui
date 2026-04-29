@@ -44,13 +44,11 @@ That's MARK UI. A motion-first React component library where every interaction h
 
 **18 production-ready components** — inputs, display, feedback, overlays — every one of them animated with Framer Motion v12 from the ground up.
 
-**6 launch themes** across two families:
+**A growing live theme roster** across distinct families:
 
 | Professional | Fun |
 |---|---|
-| `monochrome` — clean black and white | `cyberpunk` — neon yellow on deep black |
-| `arctic` — cool whites and icy blues | `matrixx` — matrix green on dark |
-| `obsidian` — dark glass, muted tones | `gotham` — moody greys and shadow |
+| `monochrome` `arctic` `obsidian` `ivory` `slate` `sage` `carbon` | `cyberpunk` `shinigami` `titan` `nebula` `matrixx` `gotham` `akira` `hobbit` |
 
 **Zero Tailwind config required.** MARK UI ships pre-built CSS. You import it once and you're done.
 
@@ -216,7 +214,7 @@ MARK UI targets modern browsers. It uses CSS custom properties, `@keyframes`, an
 
 | Version | Status | What's included |
 |---|---|---|
-| **v0.1.0** | ✅ Released | 18 components · 6 themes · Full docs · npm publish |
+| **v0.1.0** | ✅ Released | 18 components · initial theme launch · full docs · npm publish |
 | **v0.2.0** | 🔄 In progress | `Tabs` · `Accordion` · `DropdownMenu` · `Breadcrumbs` · `Progress` · `Slider` |
 | **v0.3.0** | 📋 Planned | Premium templates · Additional theme packs · Form validation guide |
 

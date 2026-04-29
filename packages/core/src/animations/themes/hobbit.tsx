@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AnimationInstance } from '../useFunAnimation';
+import { useStableValue } from '../useStableValue';
 
 export default function HobbitAnimations({ instance, onComplete }: { instance: AnimationInstance, onComplete: () => void }) {
   const { trigger, rect } = instance;
@@ -40,7 +41,7 @@ function HobbitClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => vo
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
-  const leaves = React.useRef(
+  const leaves = useStableValue(() =>
     Array.from({ length: 12 }).map(() => ({
       color: LEAF_COLORS[Math.floor(Math.random() * LEAF_COLORS.length)],
       size: 12 + Math.random() * 12,
@@ -51,15 +52,15 @@ function HobbitClick({ rect, onComplete }: { rect: DOMRect, onComplete: () => vo
       driftAmp: 8 + Math.random() * 8,
       lifetime: 1200 + Math.random() * 800,
     }))
-  ).current;
+  );
 
-  const sparkles = React.useRef(
+  const sparkles = useStableValue(() =>
     Array.from({ length: 8 }).map(() => ({
       dx: (Math.random() - 0.5) * 60,
       dy: (Math.random() - 0.5) * 40,
       delay: Math.random() * 0.3,
     }))
-  ).current;
+  );
 
   return (
     <>
@@ -187,7 +188,6 @@ function HobbitToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () =>
 
       {/* Flower bloom at arrival */}
       {[0,60,120,180,240,300].map((angle, i) => {
-        const r = Math.PI * angle / 180;
         return (
           <motion.div
             key={i}
@@ -215,13 +215,13 @@ function HobbitToggleOn({ rect, onComplete }: { rect: DOMRect, onComplete: () =>
 
 // ─── CHECK — Elvish Rune Inscription ──────────────────────────────────────
 function HobbitCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const scatterLeaves = React.useRef(
+  const scatterLeaves = useStableValue(() =>
     Array.from({ length: 4 }).map(() => ({
       dx: (Math.random() - 0.5) * 24,
       dy: (Math.random() - 0.5) * 24,
       color: LEAF_COLORS[Math.floor(Math.random() * LEAF_COLORS.length)],
     }))
-  ).current;
+  );
 
   return (
     <div style={{ position: 'fixed', top: rect.top, left: rect.left, width: rect.width, height: rect.height, pointerEvents: 'none' }}>
@@ -286,13 +286,13 @@ function HobbitCheck({ rect, onComplete }: { rect: DOMRect, onComplete: () => vo
 
 // ─── MOUNT — Seed to Bloom ─────────────────────────────────────────────────
 function HobbitMount({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const blossoms = React.useRef(
+  const blossoms = useStableValue(() =>
     Array.from({ length: 6 }).map(() => ({
       dx: (Math.random() - 0.5) * 60,
       dy: 10 + Math.random() * 30,
       delay: Math.random() * 0.2,
     }))
-  ).current;
+  );
 
   return (
     <>
@@ -342,7 +342,7 @@ function HobbitMount({ rect, onComplete }: { rect: DOMRect, onComplete: () => vo
 
 // ─── DISMISS — Carried By The Wind ────────────────────────────────────────
 function HobbitDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () => void }) {
-  const windLeaves = React.useRef(
+  const windLeaves = useStableValue(() =>
     Array.from({ length: 6 }).map((_, i) => ({
       color: LEAF_COLORS[i % LEAF_COLORS.length],
       startX: rect.left + (i / 6) * rect.width,
@@ -350,7 +350,7 @@ function HobbitDismiss({ rect, onComplete }: { rect: DOMRect, onComplete: () => 
       vx: 20 + Math.random() * 40,
       delay: Math.random() * 0.2,
     }))
-  ).current;
+  );
 
   return (
     <>

@@ -1,4 +1,19 @@
-export const DOCS_NAV = [
+export interface DocsNavLink {
+  name: string;
+  href: string;
+}
+
+export interface DocsNavGroup {
+  label: string;
+  items: DocsNavLink[];
+}
+
+export interface DocsNavSection {
+  title: string;
+  items: Array<DocsNavLink | DocsNavGroup>;
+}
+
+export const DOCS_NAV: DocsNavSection[] = [
   {
     title: "GETTING STARTED",
     items: [

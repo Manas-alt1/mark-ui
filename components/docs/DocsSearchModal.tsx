@@ -3,7 +3,7 @@
 import { useState, useEffect, KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Modal, Input } from "@markui/core";
-import { DOCS_NAV } from "./DocsNavData";
+import { DOCS_NAV, type DocsNavGroup, type DocsNavLink } from "./DocsNavData";
 
 interface DocsSearchModalProps {
   isOpen: boolean;
@@ -13,15 +13,21 @@ interface DocsSearchModalProps {
 // Flatten navigation for search
 const searchableItems = DOCS_NAV.flatMap((section) => {
   if (section.title === "GETTING STARTED") {
-    return section.items.map((item: any) => ({ ...item, section: section.title }));
+    return section.items
+      .filter((item): item is DocsNavLink => !("label" in item))
+      .map((item) => ({ ...item, section: section.title }));
   }
   if (section.title === "THEMES") {
-    return section.items.map((item: any) => ({ ...item, section: section.title }));
+    return section.items
+      .filter((item): item is DocsNavLink => !("label" in item))
+      .map((item) => ({ ...item, section: section.title }));
   }
   if (section.title === "COMPONENTS") {
-    return section.items.flatMap((group: any) => 
-      group.items.map((item: any) => ({ ...item, section: `Component / ${group.label}` }))
-    );
+    return section.items
+      .filter((item): item is DocsNavGroup => "label" in item)
+      .flatMap((group) =>
+        group.items.map((item) => ({ ...item, section: `Component / ${group.label}` }))
+      );
   }
   return [];
 });
@@ -36,10 +42,6 @@ export default function DocsSearchModal({ isOpen, onClose }: DocsSearchModalProp
         item.name.toLowerCase().includes(query.toLowerCase())
       )
     : [];
-
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [query]);
 
   // Global ⌘K shortcut listener
   useEffect(() => {
@@ -82,13 +84,16 @@ export default function DocsSearchModal({ isOpen, onClose }: DocsSearchModalProp
           <Input
             placeholder="Search documentation..."
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setSelectedIndex(0);
+            }}
           />
         </div>
         
         {query && results.length === 0 && (
           <div style={{ padding: "32px 0", textAlign: "center", color: "var(--mark-fg)", opacity: 0.6, fontSize: 14 }}>
-            No results found for "{query}"
+            No results found for &quot;{query}&quot;
           </div>
         )}
 

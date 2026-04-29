@@ -4,7 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import DocsSearchModal from "./DocsSearchModal";
-import { DOCS_NAV } from "./DocsNavData";
+import {
+  DOCS_NAV,
+  type DocsNavGroup,
+  type DocsNavSection,
+} from "./DocsNavData";
+
+function isNavGroup(item: DocsNavSection["items"][number]): item is DocsNavGroup {
+  return "label" in item;
+}
 
 export default function DocsSidebar() {
   const pathname = usePathname();
@@ -41,15 +49,15 @@ export default function DocsSidebar() {
             <div key={section.title}>
               <div className="sidebar-section-title">{section.title}</div>
               <div className="sidebar-nav-group">
-                {section.items.map((item: any) => {
+                {section.items.map((item) => {
                   // If it's a categorized group (like "Inputs" under Components)
-                  if (item.label) {
+                  if (isNavGroup(item)) {
                     return (
                       <div key={item.label} style={{ marginBottom: "16px" }}>
                         <div className="sidebar-category-title">
                           {item.label}
                         </div>
-                        {item.items.map((subItem: any) => (
+                        {item.items.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}

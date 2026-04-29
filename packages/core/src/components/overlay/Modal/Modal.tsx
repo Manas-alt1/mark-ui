@@ -57,7 +57,7 @@ export const Modal: React.FC<ModalProps> & {
   const modalRef = useRef<HTMLDivElement>(null)
   const backdropRef = useRef<HTMLDivElement>(null)
   const previousActiveElement = useRef<HTMLElement | null>(null)
-  const { triggerAnimation } = useFunAnimation()
+  useFunAnimation()
 
   // Store the previously focused element
   useEffect(() => {
