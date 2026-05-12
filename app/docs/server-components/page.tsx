@@ -1,25 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { Alert } from "@markui/core";
 import Link from "next/link";
-import { useState } from "react";
 
-function CodeBlock({ code }: { code: string }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-  return (
-    <div className="doc-code-block">
-      <button className="doc-code-copy" onClick={handleCopy}>
-        {copied ? "Copied" : "Copy"}
-      </button>
-      <pre>{code}</pre>
-    </div>
-  );
-}
+
 
 export default function ServerComponentsPage() {
   return (
@@ -123,9 +108,9 @@ const Modal = dynamic(() => import('@markui/core').then(mod => mod.Modal), {
           <div style={{ fontSize: "18px", fontWeight: 600, marginTop: "4px" }}>Installation</div>
         </Link>
         
-        <Link href="/docs/typography" style={{ textDecoration: "none", color: "var(--mark-fg)", textAlign: "right" }}>
+        <Link href="/docs/theming" style={{ textDecoration: "none", color: "var(--mark-fg)", textAlign: "right" }}>
           <div style={{ fontSize: "12px", opacity: 0.5, fontFamily: "var(--mark-font-display)" }}>NEXT →</div>
-          <div style={{ fontSize: "18px", fontWeight: 600, marginTop: "4px" }}>Typography</div>
+          <div style={{ fontSize: "18px", fontWeight: 600, marginTop: "4px" }}>Theming Guide</div>
         </Link>
       </div>
     </>

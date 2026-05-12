@@ -109,9 +109,9 @@ export default function TypographyPage() {
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: "100px", paddingTop: "32px", borderTop: "1px solid var(--mark-border-strong)" }}>
-        <Link href="/docs/server-components" style={{ textDecoration: "none", color: "var(--mark-fg)" }}>
+        <Link href="/docs/motion" style={{ textDecoration: "none", color: "var(--mark-fg)" }}>
           <div style={{ fontSize: "12px", opacity: 0.5, fontFamily: "var(--mark-font-display)" }}>← PREVIOUS</div>
-          <div style={{ fontSize: "18px", fontWeight: 600, marginTop: "4px" }}>Server Components</div>
+          <div style={{ fontSize: "18px", fontWeight: 600, marginTop: "4px" }}>Motion Guide</div>
         </Link>
         
         <Link href="/docs/accessibility" style={{ textDecoration: "none", color: "var(--mark-fg)", textAlign: "right" }}>

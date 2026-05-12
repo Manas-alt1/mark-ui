@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Input } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function InputDocPage() {
   const [size, setSize] = useState<"sm" | "md" | "lg">("md");
@@ -135,10 +137,12 @@ export default function InputDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Input {"}"} from '@markui/core'</code></pre>
-      </div>
+      <CodeBlock code={`import { Input } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="input" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

@@ -1,11 +1,13 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Button } from "@markui/core";
 import PropsTable from "@/components/docs/blocks/PropsTable";
 import UsageGuidelines from "@/components/docs/blocks/UsageGuidelines";
 import AccessibilitySection from "@/components/docs/blocks/AccessibilitySection";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 const BUTTON_PROPS = [
   { prop: "variant", type: "'primary' | 'secondary' | 'ghost' | 'destructive'", default: "'primary'", description: "Visual style of the button" },
@@ -140,9 +142,11 @@ export default function ButtonDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Button {"}"} from &apos;@markui/core&apos;</code></pre>
-      </div>
+      <CodeBlock code={`import { Button } from '@markui/core'`} />
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="button" hideComponentSelector />
 
     </ComponentDocTemplate>
   );

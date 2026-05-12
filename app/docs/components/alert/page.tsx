@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Alert } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function AlertDocPage() {
   const [variant, setVariant] = useState<"info" | "success" | "warning" | "error" | "accent">("info");
@@ -138,10 +140,12 @@ export default function AlertDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Alert {"}"} from &apos;@markui/core&apos;</code></pre>
-      </div>
+      <CodeBlock code={`import { Alert } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="alert" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

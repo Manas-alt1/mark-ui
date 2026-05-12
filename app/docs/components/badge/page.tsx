@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Badge } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function BadgeDocPage() {
   const [variant, setVariant] = useState<"default" | "success" | "warning" | "error" | "info" | "accent">("default");
@@ -128,10 +130,12 @@ export default function BadgeDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Badge {"}"} from &apos;@markui/core&apos;</code></pre>
-      </div>
+      <CodeBlock code={`import { Badge } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="badge" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

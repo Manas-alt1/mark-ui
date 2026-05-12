@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Card, Button } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function CardDocPage() {
   const [variant, setVariant] = useState<"default" | "bordered" | "elevated" | "ghost">("default");
@@ -145,10 +147,12 @@ export default function CardDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Card {"}"} from '@markui/core'</code></pre>
-      </div>
+      <CodeBlock code={`import { Card } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="card" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

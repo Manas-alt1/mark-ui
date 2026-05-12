@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Tag } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function TagDocPage() {
   const [variant, setVariant] = useState<"default" | "accent" | "success" | "warning" | "danger">("default");
@@ -132,10 +134,12 @@ export default function TagDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Tag {"}"} from '@markui/core'</code></pre>
-      </div>
+      <CodeBlock code={`import { Tag } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="tag" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

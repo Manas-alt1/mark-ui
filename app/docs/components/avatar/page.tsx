@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Avatar } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function AvatarDocPage() {
   const [size, setSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">("md");
@@ -147,10 +149,12 @@ export default function AvatarDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Avatar {"}"} from &apos;@markui/core&apos;</code></pre>
-      </div>
+      <CodeBlock code={`import { Avatar } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="avatar" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Button, useToast } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function ToastDocPage() {
   const { toast } = useToast();
@@ -140,8 +142,7 @@ export default function ToastDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>{`import { useToast, ToastProvider } from '@markui/core'
+      <CodeBlock code={`import { useToast, ToastProvider } from '@markui/core'
 
 export default function App() {
   return (
@@ -149,8 +150,11 @@ export default function App() {
       <MyComponent />
     </ToastProvider>
   )
-}`}</code></pre>
-      </div>
+}`} />
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="toast" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

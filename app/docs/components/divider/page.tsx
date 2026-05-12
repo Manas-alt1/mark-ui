@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Divider } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function DividerDocPage() {
   const [orientation, setOrientation] = useState<"horizontal" | "vertical">("horizontal");
@@ -103,10 +105,12 @@ export default function DividerDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Divider {"}"} from '@markui/core'</code></pre>
-      </div>
+      <CodeBlock code={`import { Divider } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="divider" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

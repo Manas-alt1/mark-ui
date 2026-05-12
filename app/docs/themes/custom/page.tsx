@@ -1,24 +1,9 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import Link from "next/link";
-import { useState } from "react";
 
-function CodeBlock({ code }: { code: string }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-  return (
-    <div className="doc-code-block" style={{ marginBottom: 32 }}>
-      <button className="doc-code-copy" onClick={handleCopy}>
-        {copied ? "Copied" : "Copy"}
-      </button>
-      <pre>{code}</pre>
-    </div>
-  );
-}
+
 
 export default function CustomThemesPage() {
   return (

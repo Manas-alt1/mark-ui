@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Container } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function ContainerDocPage() {
   const [size, setSize] = useState<"sm" | "md" | "lg" | "xl" | "full">("md");
@@ -80,8 +82,7 @@ export default function ContainerDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>{`import { Container } from '@markui/core'
+      <CodeBlock code={`import { Container } from '@markui/core'
 
 export default function Layout() {
   return (
@@ -92,9 +93,12 @@ export default function Layout() {
       </Container>
     </main>
   )
-}`}</code></pre>
-      </div>
+}`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="container" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

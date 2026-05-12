@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Tooltip, Button } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function TooltipDocPage() {
   const [placement, setPlacement] = useState<"top" | "bottom" | "left" | "right">("bottom");
@@ -112,10 +114,12 @@ export default function TooltipDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Tooltip {"}"} from '@markui/core'</code></pre>
-      </div>
+      <CodeBlock code={`import { Tooltip } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="tooltip" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

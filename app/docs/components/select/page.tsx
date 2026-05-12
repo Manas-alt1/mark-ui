@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Select } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 const BASIC_OPTIONS = [
   { label: "New York", value: "ny" },
@@ -147,10 +149,12 @@ export default function SelectDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Select {"}"} from '@markui/core'</code></pre>
-      </div>
+      <CodeBlock code={`import { Select } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="select" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }

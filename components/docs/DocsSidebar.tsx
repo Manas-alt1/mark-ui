@@ -17,6 +17,7 @@ function isNavGroup(item: DocsNavSection["items"][number]): item is DocsNavGroup
 export default function DocsSidebar() {
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -26,7 +27,17 @@ export default function DocsSidebar() {
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+
+    // Sync desktop state for <details open>
+    const mql = window.matchMedia("(min-width: 1025px)");
+    setIsDesktop(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      mql.removeEventListener("change", handler);
+    };
   }, []);
 
   return (
@@ -44,51 +55,53 @@ export default function DocsSidebar() {
           <span className="search-shortcut">⌘K</span>
         </button>
 
-        <nav className="sidebar-nav">
-          {DOCS_NAV.map((section) => (
-            <div key={section.title}>
-              <div className="sidebar-section-title">{section.title}</div>
-              <div className="sidebar-nav-group">
-                {section.items.map((item) => {
-                  // If it's a categorized group (like "Inputs" under Components)
-                  if (isNavGroup(item)) {
-                    return (
-                      <div key={item.label} style={{ marginBottom: "16px" }}>
-                        <div className="sidebar-category-title">
-                          {item.label}
+        <details className="sidebar-mobile-details" open={isDesktop}>
+          <summary className="sidebar-mobile-summary">Menu</summary>
+          <nav className="sidebar-nav">
+            {DOCS_NAV.map((section) => (
+              <div key={section.title}>
+                <div className="sidebar-section-title">{section.title}</div>
+                <div className="sidebar-nav-group">
+                  {section.items.map((item) => {
+                    // If it's a categorized group (like "Inputs" under Components)
+                    if (isNavGroup(item)) {
+                      return (
+                        <div key={item.label} style={{ marginBottom: "16px" }}>
+                          <div className="sidebar-category-title">
+                            {item.label}
+                          </div>
+                          {item.items.map((subItem) => (
+                            <Link
+                              key={subItem.href}
+                              href={subItem.href}
+                              className="sidebar-nav-link"
+                              data-active={pathname === subItem.href}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
                         </div>
-                        {item.items.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            className="sidebar-nav-link"
-                            data-active={pathname === subItem.href}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
+                      );
+                    }
+
+                    // If it's a standard link
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="sidebar-nav-link"
+                        data-active={pathname === item.href}
+                      >
+                        {item.name}
+                      </Link>
                     );
-                  }
-
-                  // If it's a standard link
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="sidebar-nav-link"
-                      data-active={pathname === item.href}
-                    >
-                      {item.name}
-                    </Link>
-                  );
-                })}
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
-        </nav>
+            ))}
+          </nav>
+        </details>
       </aside>
-
       <DocsSearchModal 
         isOpen={isSearchOpen} 
         onClose={() => setIsSearchOpen(false)} 

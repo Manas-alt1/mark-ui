@@ -188,7 +188,7 @@ setTheme('cyberpunk')`}</div>
           <Link href="/docs">
             <Button variant="primary" size="lg">Get Started →</Button>
           </Link>
-          <Link href="/docs/components">
+          <Link href="/components">
             <Button variant="ghost" size="lg">View Components</Button>
           </Link>
         </div>

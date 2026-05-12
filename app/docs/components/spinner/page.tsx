@@ -1,8 +1,10 @@
 "use client";
 
+import CodeBlock from "@/components/docs/blocks/CodeBlock";
 import { useState } from "react";
 import ComponentDocTemplate from "@/components/docs/ComponentDocTemplate";
 import { Spinner, Button } from "@markui/core";
+import { ThemeSnippetViewer } from "@/components/docs";
 
 export default function SpinnerDocPage() {
   const [size, setSize] = useState<"sm" | "md" | "lg" | "xl">("md");
@@ -117,10 +119,12 @@ export default function SpinnerDocPage() {
 
       {/* IMPORT */}
       <h3 id="import" className="doc-section-label">IMPORT</h3>
-      <div className="doc-code-block" style={{ marginBottom: 0 }}>
-        <pre><code>import {"{"} Spinner {"}"} from '@markui/core'</code></pre>
-      </div>
+      <CodeBlock code={`import { Spinner } from '@markui/core'`} />
 
+
+      {/* CODE SNIPPET — theme-aware, updates live with active theme */}
+      <h3 id="snippet" className="doc-section-label">CODE SNIPPET</h3>
+      <ThemeSnippetViewer componentId="spinner" hideComponentSelector />
     </ComponentDocTemplate>
   );
 }
