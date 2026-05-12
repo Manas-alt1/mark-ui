@@ -444,3 +444,41 @@ a {
 .readable-page label {
   font-family: var(--mark-font-body);
 }
+
+/* ═══════════════════════════════════════════
+   Navbar — Responsive (Mobile / Desktop)
+   ═══════════════════════════════════════════ */
+
+/* Desktop nav links: hidden on mobile, flex on ≥768px */
+.nav-desktop-links {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .nav-desktop-links {
+    display: flex;
+  }
+}
+
+/* Mobile hamburger toggle: flex on mobile, hidden on ≥768px */
+.nav-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 2px solid var(--mark-border-strong);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .nav-mobile-toggle {
+    display: none;
+  }
+}

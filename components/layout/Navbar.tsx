@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "HOME" },
@@ -27,9 +27,64 @@ function GitHubIcon() {
   );
 }
 
+/* ── Animated hamburger icon (3-line → X) ── */
+function HamburgerIcon({ open }: { open: boolean }) {
+  const lineStyle: React.CSSProperties = {
+    display: "block",
+    width: "22px",
+    height: "2.5px",
+    backgroundColor: "var(--mark-fg)",
+    borderRadius: "2px",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    transformOrigin: "center",
+  };
+
+  return (
+    <span
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: open ? 0 : "5px",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 22,
+        height: 22,
+        position: "relative",
+      }}
+    >
+      <span
+        style={{
+          ...lineStyle,
+          transform: open
+            ? "translateY(1.25px) rotate(45deg)"
+            : "none",
+          position: open ? "absolute" : "relative",
+        }}
+      />
+      <span
+        style={{
+          ...lineStyle,
+          opacity: open ? 0 : 1,
+          transform: open ? "scaleX(0)" : "scaleX(1)",
+        }}
+      />
+      <span
+        style={{
+          ...lineStyle,
+          transform: open
+            ? "translateY(-1.25px) rotate(-45deg)"
+            : "none",
+          position: open ? "absolute" : "relative",
+        }}
+      />
+    </span>
+  );
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8);
@@ -37,6 +92,25 @@ export default function Navbar() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  const toggleMobile = useCallback(() => setMobileOpen((v) => !v), []);
 
   return (
     <>
@@ -86,15 +160,8 @@ export default function Navbar() {
           </motion.div>
         </Link>
 
-        {/* Desktop Links */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 32,
-          }}
-          className="hidden md:flex"
-        >
+        {/* Desktop Links — hidden on mobile via CSS class */}
+        <div className="nav-desktop-links">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -137,7 +204,7 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right Side — GitHub */}
+        {/* Right Side — GitHub + Mobile hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           {/* GitHub */}
           <a
@@ -163,8 +230,144 @@ export default function Navbar() {
           >
             <GitHubIcon />
           </a>
+
+          {/* Mobile hamburger — visible only below md */}
+          <button
+            onClick={toggleMobile}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            className="nav-mobile-toggle"
+          >
+            <HamburgerIcon open={mobileOpen} />
+          </button>
         </div>
       </nav>
+
+      {/* ── Mobile menu overlay ── */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 49, // just below nav (50)
+              background: "var(--mark-bg)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 0,
+              paddingTop: "72px", // account for navbar height
+            }}
+          >
+            {/* Decorative top accent line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.15, duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              style={{
+                position: "absolute",
+                top: "72px",
+                left: "24px",
+                right: "24px",
+                height: "3px",
+                background: "var(--mark-accent-primary)",
+                transformOrigin: "left",
+                borderRadius: "2px",
+              }}
+            />
+
+            <nav
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 8,
+                width: "100%",
+                padding: "0 24px",
+              }}
+            >
+              {navLinks.map((link, i) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{
+                      delay: 0.08 * i,
+                      duration: 0.3,
+                      ease: [0.4, 0, 0.2, 1],
+                    }}
+                    style={{ width: "100%" }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        textAlign: "center",
+                        fontFamily: "var(--mark-font-display)",
+                        fontSize: "28px",
+                        letterSpacing: "2px",
+                        padding: "16px 0",
+                        color: isActive
+                          ? "var(--mark-accent-primary)"
+                          : "var(--mark-fg)",
+                        opacity: isActive ? 1 : 0.65,
+                        textDecoration: "none",
+                        borderBottom: isActive
+                          ? "3px solid var(--mark-accent-primary)"
+                          : "1px solid var(--mark-border)",
+                        transition: `all 0.2s ease`,
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+
+            {/* GitHub link in mobile menu */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.08 * navLinks.length + 0.1, duration: 0.3 }}
+              style={{ marginTop: 32 }}
+            >
+              <a
+                href="https://github.com/Manas-bhavsar/mark-ui"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  fontFamily: "var(--mark-font-hand)",
+                  fontSize: "16px",
+                  color: "var(--mark-fg)",
+                  opacity: 0.5,
+                  textDecoration: "none",
+                  padding: "8px 16px",
+                  border: "2px solid var(--mark-border)",
+                  borderRadius: "4px",
+                }}
+              >
+                <GitHubIcon />
+                <span>GitHub</span>
+              </a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
